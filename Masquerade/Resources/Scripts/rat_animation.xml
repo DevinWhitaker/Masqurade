@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="rat" type="anchor" image_file="Resources/Images/Characters/Enemy_Rat_Sheet.png" r="0" g="0" b="0" num_anchors="3">
+    <anchor events="0">
+      <rect left="0" right="27" top="44" bottom="68" />
+      <point x="17" y="18" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="30" right="57" top="44" bottom="68" />
+      <point x="19" y="19" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="61" right="92" top="44" bottom="68" />
+      <point x="18" y="17" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+</animation-list>

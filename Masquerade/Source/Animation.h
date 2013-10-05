@@ -1,0 +1,95 @@
+#pragma once
+
+#include <string>
+#include "..\SGD Wrappers\CSGD_TextureManager.h"
+
+#include "Frame.h"
+class CBaseObject;
+class CFrame;
+
+class CAnimation 
+{
+private:
+	
+
+public:
+
+	////////////////////////////////////////////////////////////
+	//Purpose:	constructor
+	//
+	//In:		None
+	//
+	//Return:	None
+	////////////////////////////////////////////////////////////
+	CAnimation(void);
+
+	////////////////////////////////////////////////////////////
+	//Purpose:	destructor
+	//
+	//In:		None
+	//
+	//Return:	None
+	////////////////////////////////////////////////////////////
+	~CAnimation(void);
+
+	////////////////////////////////////////////////////////////
+	//Purpose:	interface function for derived classes
+	//
+	//In:		filename: NOT USED
+	//
+	//Return:	None
+	////////////////////////////////////////////////////////////
+	virtual void Init(std::string filename);
+
+	////////////////////////////////////////////////////////////
+	//Purpose:	interface function for derived classes
+	//
+	//In:		fElapsed:	NOT USED
+	//			animInfo:	NOT USED
+	//
+	//Return:	None
+	////////////////////////////////////////////////////////////
+	virtual void Update(float fElapsed, CFrame& animInfo);
+
+	////////////////////////////////////////////////////////////
+	//Purpose:	interface function for derived classes
+	//
+	//In:
+	//		frame:		NOT USED
+	//		x:			NOT USED
+	//		y:			NOT USED
+	//		scalex:		NOT USED
+	//		scaley:		NOT USED
+	//		dwColor:	NOT USED
+	//		flipped:	NOT USED
+	//		playing:	NOT USED
+	//		looping:	NOT USED
+	//
+	//Return:	None
+	////////////////////////////////////////////////////////////
+	virtual void Render(int frame, int x, int y, float speed, float elapsed, DWORD dwColor, bool flipped, bool playing, bool looping);
+	
+	////////////////////////////////////////////////////////////
+	//Purpose:	interface function for derived classes
+	//
+	//In:
+	//		pBase:	NOT USED
+	//		key:	NOT USED
+	//
+	//Return	false
+	////////////////////////////////////////////////////////////
+	virtual bool CheckCollision(CBaseObject* pBase, CFrame key);
+
+	////////////////////////////////////////////////////////////
+	//Purpose:	interface function for derived classes
+	//
+	//In:
+	//		pBase:	NOT USED
+	//		key:	NOT USED
+	//
+	//Return:	false
+	////////////////////////////////////////////////////////////
+	virtual bool CheckCollision(CFrame* pBase, CFrame key);
+};
+
+

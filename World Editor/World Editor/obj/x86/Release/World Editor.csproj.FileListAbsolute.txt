@@ -1,0 +1,8 @@
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\bin\Release\World Editor.exe.config
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\bin\Release\World Editor.exe
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\bin\Release\World Editor.pdb
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Release\World_Editor.Form1.resources
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Release\World_Editor.Properties.Resources.resources
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Release\World Editor.csproj.GenerateResource.Cache
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Release\World Editor.exe
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Release\World Editor.pdb

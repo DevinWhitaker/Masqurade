@@ -1,0 +1,38 @@
+C:\Users\Eros\Desktop\LR\World Editor\World Editor\bin\Debug\World Editor.exe.config
+C:\Users\Eros\Desktop\LR\World Editor\World Editor\obj\x86\Debug\World Editor.exe
+C:\Users\Eros\Desktop\LR\World Editor\World Editor\obj\x86\Debug\World Editor.pdb
+C:\Users\Eros\Desktop\LR\World Editor\World Editor\bin\Debug\World Editor.exe
+C:\Users\Eros\Desktop\LR\World Editor\World Editor\bin\Debug\World Editor.pdb
+C:\Users\Eros\Desktop\LR\World Editor\World Editor\obj\x86\Debug\World Editor.csprojResolveAssemblyReference.cache
+C:\Users\Eros\Desktop\LR\World Editor\World Editor\obj\x86\Debug\World_Editor.Form1.resources
+C:\Users\Eros\Desktop\LR\World Editor\World Editor\obj\x86\Debug\World_Editor.Properties.Resources.resources
+C:\Users\Eros\Desktop\LR\World Editor\World Editor\obj\x86\Debug\World Editor.csproj.GenerateResource.Cache
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\bin\Debug\World Editor.exe.config
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\bin\Debug\World Editor.exe
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\bin\Debug\World Editor.pdb
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Debug\World Editor.csprojResolveAssemblyReference.cache
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Debug\World_Editor.Form1.resources
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Debug\World_Editor.Properties.Resources.resources
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Debug\World Editor.csproj.GenerateResource.Cache
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Debug\World Editor.exe
+D:\Dox\[ Full Sail ]\Small Game Production\Masquerade\Code\World Editor\World Editor\obj\x86\Debug\World Editor.pdb
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\bin\Debug\World Editor.exe.config
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\obj\x86\Debug\World Editor.exe
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\obj\x86\Debug\World Editor.pdb
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\bin\Debug\World Editor.exe
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\bin\Debug\World Editor.pdb
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\obj\x86\Debug\World_Editor.Form1.resources
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\obj\x86\Debug\World_Editor.Properties.Resources.resources
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Eros\Desktop\Masquerade\sgp1205-jamd-masquerade\World Editor\World Editor\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\bin\Debug\World Editor.exe.config
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\bin\Debug\World Editor.exe
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\bin\Debug\World Editor.pdb
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\obj\x86\Debug\World_Editor.Form1.resources
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\obj\x86\Debug\World_Editor.Properties.Resources.resources
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\obj\x86\Debug\World Editor.exe
+C:\Users\Ja'Michael\SVN\JAM\World Editor\World Editor\obj\x86\Debug\World Editor.pdb

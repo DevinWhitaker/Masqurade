@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="NPC_Bird" type="anchor" image_file="Resources/Images/Characters/MASQ_NPC_Bird.png" r="0" g="128" b="0" num_anchors="6">
+    <anchor events="0">
+      <rect left="7" right="48" top="131" bottom="170" />
+      <point x="37" y="19" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="51" right="89" top="131" bottom="164" />
+      <point x="35" y="18" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="92" right="135" top="128" bottom="159" />
+      <point x="39" y="22" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="137" right="178" top="116" bottom="161" />
+      <point x="38" y="35" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="181" right="222" top="113" bottom="158" />
+      <point x="39" y="37" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="227" right="271" top="122" bottom="161" />
+      <point x="40" y="28" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+</animation-list>

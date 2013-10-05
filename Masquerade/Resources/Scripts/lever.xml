@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="lever_off" type="anchor" image_file="Resources/Images/Graphics/MASQ_Lever.png" r="0" g="0" b="0" num_anchors="1">
+    <anchor events="1">
+      <rect left="0" right="30" top="8" bottom="65" />
+      <point x="15" y="51" />
+      <duration value="0.12" />
+      <event id="None" left="3" top="32" right="28" bottom="63" />
+    </anchor>
+  </animation_info>
+  <animation_info name="lever_on" type="anchor" image_file="Resources/Images/Graphics/MASQ_Lever.png" r="0" g="0" b="0" num_anchors="2">
+    <anchor events="1">
+      <rect left="32" right="64" top="8" bottom="63" />
+      <point x="15" y="51" />
+      <duration value="0.12" />
+      <event id="None" left="33" top="29" right="62" bottom="62" />
+    </anchor>
+    <anchor events="1">
+      <rect left="63" right="96" top="8" bottom="63" />
+      <point x="16" y="51" />
+      <duration value="0.12" />
+      <event id="None" left="62" top="27" right="94" bottom="62" />
+    </anchor>
+  </animation_info>
+</animation-list>

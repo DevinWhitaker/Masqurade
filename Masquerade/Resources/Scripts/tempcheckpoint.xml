@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="CP" type="anchor" image_file="Resources/Images/Graphics/MASQ_Checkpoint.png" r="0" g="0" b="0" num_anchors="1">
+    <anchor events="0">
+      <rect left="1" right="49" top="0" bottom="126" />
+      <point x="15" y="124" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+</animation-list>

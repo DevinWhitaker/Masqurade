@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="logo" type="anchor" image_file="Resources\Images\MenuImages\GameLogo.png" r="0" g="0" b="0" num_anchors="2">
+    <anchor events="0">
+      <rect left="2" right="302" top="6" bottom="81" />
+      <point x="49" y="59" />
+      <duration value="2.62" />
+    </anchor>
+    <anchor events="0">
+      <rect left="2" right="301" top="104" bottom="181" />
+      <point x="49" y="61" />
+      <duration value="0.5" />
+    </anchor>
+  </animation_info>
+</animation-list>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="MASQ_Clown_Walk" type="anchor" image_file="Resources/Images/Characters/MASQ_Clown.png" r="0" g="0" b="0" num_anchors="8">
+    <anchor events="1">
+      <rect left="11" right="74" top="120" bottom="202" />
+      <point x="11" y="79" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="9" top="3" right="45" bottom="77" />
+    </anchor>
+    <anchor events="1">
+      <rect left="74" right="134" top="120" bottom="202" />
+      <point x="11" y="79" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="9" top="4" right="41" bottom="80" />
+    </anchor>
+    <anchor events="1">
+      <rect left="136" right="188" top="118" bottom="200" />
+      <point x="12" y="80" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="9" top="4" right="38" bottom="79" />
+    </anchor>
+    <anchor events="1">
+      <rect left="189" right="238" top="120" bottom="200" />
+      <point x="15" y="78" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="7" top="1" right="35" bottom="75" />
+    </anchor>
+    <anchor events="1">
+      <rect left="237" right="293" top="121" bottom="202" />
+      <point x="17" y="78" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="7" top="2" right="36" bottom="77" />
+    </anchor>
+    <anchor events="1">
+      <rect left="301" right="349" top="120" bottom="203" />
+      <point x="20" y="80" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="10" top="3" right="38" bottom="79" />
+    </anchor>
+    <anchor events="1">
+      <rect left="359" right="418" top="120" bottom="203" />
+      <point x="13" y="80" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="10" top="3" right="40" bottom="77" />
+    </anchor>
+    <anchor events="1">
+      <rect left="431" right="477" top="121" bottom="203" />
+      <point x="15" y="79" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="6" top="3" right="35" bottom="78" />
+    </anchor>
+  </animation_info>
+  <animation_info name="MASQ_Clown_Idle" type="anchor" image_file="Resources/Images/Characters/MASQ_Clown.png" r="0" g="0" b="0" num_anchors="4">
+    <anchor events="1">
+      <rect left="13" right="75" top="234" bottom="322" />
+      <point x="39" y="86" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="8" top="5" right="45" bottom="86" />
+    </anchor>
+    <anchor events="1">
+      <rect left="80" right="142" top="232" bottom="322" />
+      <point x="40" y="88" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="11" top="5" right="45" bottom="87" />
+    </anchor>
+    <anchor events="1">
+      <rect left="144" right="207" top="231" bottom="322" />
+      <point x="41" y="89" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="10" top="5" right="43" bottom="88" />
+    </anchor>
+    <anchor events="1">
+      <rect left="212" right="274" top="230" bottom="321" />
+      <point x="39" y="89" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="8" top="4" right="42" bottom="89" />
+    </anchor>
+  </animation_info>
+  <animation_info name="MASQ_Clown_Throw" type="anchor" image_file="Resources/Images/Characters/MASQ_Clown.png" r="0" g="0" b="0" num_anchors="6">
+    <anchor events="1">
+      <rect left="11" right="72" top="470" bottom="563" />
+      <point x="30" y="91" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="10" top="5" right="49" bottom="91" />
+    </anchor>
+    <anchor events="1">
+      <rect left="84" right="174" top="464" bottom="563" />
+      <point x="45" y="96" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="15" top="11" right="72" bottom="96" />
+    </anchor>
+    <anchor events="1">
+      <rect left="184" right="273" top="462" bottom="562" />
+      <point x="45" y="97" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="12" top="15" right="77" bottom="97" />
+    </anchor>
+    <anchor events="1">
+      <rect left="283" right="368" top="460" bottom="561" />
+      <point x="38" y="98" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="10" top="15" right="67" bottom="98" />
+    </anchor>
+    <anchor events="1">
+      <rect left="379" right="449" top="466" bottom="560" />
+      <point x="34" y="91" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="15" top="10" right="55" bottom="92" />
+    </anchor>
+    <anchor events="1">
+      <rect left="459" right="531" top="467" bottom="561" />
+      <point x="34" y="91" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="18" top="17" right="60" bottom="90" />
+    </anchor>
+  </animation_info>
+  <animation_info name="MASQ_Clown_Faint" type="anchor" image_file="Resources/Images/Characters/MASQ_Clown.png" r="0" g="0" b="0" num_anchors="5">
+    <anchor events="1">
+      <rect left="16" right="88" top="589" bottom="678" />
+      <point x="28" y="86" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="9" top="4" right="58" bottom="83" />
+    </anchor>
+    <anchor events="1">
+      <rect left="102" right="185" top="617" bottom="702" />
+      <point x="39" y="71" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="8" top="6" right="73" bottom="54" />
+    </anchor>
+    <anchor events="1">
+      <rect left="202" right="307" top="623" bottom="674" />
+      <point x="52" y="43" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="5" top="4" right="96" bottom="47" />
+    </anchor>
+    <anchor events="1">
+      <rect left="330" right="432" top="620" bottom="720" />
+      <point x="50" y="68" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="9" top="10" right="91" bottom="50" />
+    </anchor>
+    <anchor events="1">
+      <rect left="459" right="564" top="634" bottom="679" />
+      <point x="53" y="33" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="6" top="4" right="99" bottom="35" />
+    </anchor>
+  </animation_info>
+</animation-list>

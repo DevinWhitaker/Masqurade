@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="Masquerade_Title" type="anchor" image_file="Resources\Images\MenuImages\MASQ_GameLogo.png" r="0" g="0" b="0" num_anchors="2">
+    <anchor events="0">
+      <rect left="1" right="301" top="0" bottom="79" />
+      <point x="155" y="66" />
+      <duration value="0.45" />
+    </anchor>
+    <anchor events="0">
+      <rect left="0" right="299" top="98" bottom="177" />
+      <point x="156" y="68" />
+      <duration value="1" />
+    </anchor>
+  </animation_info>
+</animation-list>

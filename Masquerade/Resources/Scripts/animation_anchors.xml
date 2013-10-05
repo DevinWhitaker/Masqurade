@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<animation-list>
+    <animation_info name="Fox" type="anchor" image_file="Resources/Images/Characters/MASQ_DW_Enemy.png" r="0" g="0" b="255" num_anchors="6">
+      <anchor events="1">
+          <rect left="0" top="0" right="35" bottom="50" />
+          <point x="0" y="0"  />
+          <duration value="0.25"/>
+          <event id="frame: 1 event: 1" left="0" top="0" right="32" bottom="50" />
+      </anchor>
+      <anchor events="2">
+        <rect left="40" top="0" right="65" bottom="50" />
+        <point x="0" y="0" />
+        <duration value="0.25"/>
+        <event id="frame: 2 event: 1" left="0" top="0" right="32" bottom="50" />
+        <event id="frame: 2 event: 2" left="0" top="0" right="32" bottom="50" />
+      </anchor>
+      <anchor events="3">
+        <rect left="72" top="0" right="105" bottom="50" />
+        <point x="0" y="0" />
+        <duration value="0.25"/>
+        <event id="frame: 3 event: 1" left="0" top="0" right="32" bottom="50" />
+        <event id="frame: 3 event: 2" left="0" top="0" right="32" bottom="50" />
+        <event id="frame: 3 event: 3" left="0" top="0" right="32" bottom="50" />
+      </anchor>
+      <anchor events="1">
+        <rect left="108" top="0" right="130" bottom="50" />
+        <point x="0" y="0" />
+        <duration value="0.25"/>
+        <event id="frame: 3 event: 3" left="0" top="0" right="32" bottom="50" />
+      </anchor>
+      <anchor events="1">
+        <rect left="135" top="0" right="169" bottom="50" />
+        <point x="0" y="0" />
+        <duration value="0.25"/>
+        <event id="frame: 3 event: 3" left="0" top="0" right="32" bottom="50" />
+      </anchor>
+      <anchor events="1">
+        <rect left="171" top="0" right="192" bottom="47" />
+        <point x="0" y="0" />
+        <duration value="0.25"/>
+        <event id="frame: 3 event: 3" left="0" top="0" right="32" bottom="50" />
+      </anchor>
+    </animation_info>
+    <animation_info name="Corinne" type="anchor" image_file="Resources/Images/Characters/MASQ_DW_Hero.png" r="0" g="255" b="0" num_anchors="6">
+      <anchor events="1">
+        <rect left="0" right="40" top="0" bottom="41" />
+        <point x="15" y="37" />
+        <duration value="0.12" />
+        <event id="NONE" left="0" right="40" top="0" bottom="41" />
+      </anchor>
+      <anchor events="1">
+        <rect left="39" right="79" top="1" bottom="41" />
+        <point x="14" y="37" />
+        <duration value="0.12" />
+        <event id="NONE" left="0" right="40" top="0" bottom="41" />
+      </anchor>
+      <anchor events="1">
+        <rect left="79" right="119" top="1" bottom="41" />
+        <point x="15" y="37" />
+        <duration value="0.12" />
+        <event id="NONE" left="0" right="40" top="0" bottom="41" />
+      </anchor>
+      <anchor events="1">
+        <rect left="119" right="160" top="0" bottom="41" />
+        <point x="14" y="38" />
+        <duration value="0.12" />
+        <event id="NONE" left="0" right="40" top="0" bottom="41" />
+      </anchor>
+      <anchor events="1">
+        <rect left="160" right="200" top="1" bottom="41" />
+        <point x="15" y="37" />
+        <duration value="0.12" />
+        <event id="NONE" left="0" right="40" top="0" bottom="41" />
+      </anchor>
+      <anchor events="1">
+        <rect left="200" right="240" top="1" bottom="41" />
+        <point x="15" y="36" />
+        <duration value="0.12" />
+        <event id="NONE" left="0" right="40" top="0" bottom="41" />
+      </anchor>
+    </animation_info>
+</animation-list>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="clown_walk" type="anchor" image_file="Resources/Images/Characters/clown_placeholder.png" r="0" g="0" b="0" num_anchors="6">
+    <anchor events="0">
+      <rect left="91" right="180" top="7" bottom="136" />
+      <point x="45" y="124" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="183" right="262" top="6" bottom="135" />
+      <point x="37" y="124" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="268" right="347" top="5" bottom="134" />
+      <point x="38" y="125" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="356" right="429" top="8" bottom="135" />
+      <point x="33" y="124" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="434" right="503" top="5" bottom="134" />
+      <point x="30" y="125" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="508" right="580" top="5" bottom="134" />
+      <point x="34" y="125" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+  <animation_info name="clown_idle" type="anchor" image_file="Resources/Images/Characters/clown_placeholder.png" r="0" g="0" b="0" num_anchors="1">
+    <anchor events="0">
+      <rect left="3" right="94" top="5" bottom="135" />
+      <point x="49" y="125" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+  <animation_info name="clown_throw" type="anchor" image_file="Resources/Images/Characters/clown_placeholder.png" r="0" g="0" b="0" num_anchors="3">
+    <anchor events="0">
+      <rect left="216" right="350" top="143" bottom="272" />
+      <point x="81" y="124" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="356" right="456" top="142" bottom="270" />
+      <point x="55" y="123" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="466" right="584" top="139" bottom="270" />
+      <point x="71" y="127" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+  <animation_info name="clown_faint" type="anchor" image_file="Resources/Images/Characters/clown_placeholder.png" r="0" g="0" b="0" num_anchors="4">
+    <anchor events="0">
+      <rect left="1" right="101" top="410" bottom="528" />
+      <point x="55" y="112" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="108" right="205" top="410" bottom="527" />
+      <point x="47" y="112" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="212" right="323" top="409" bottom="525" />
+      <point x="53" y="111" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="332" right="466" top="466" bottom="526" />
+      <point x="66" y="56" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+</animation-list>

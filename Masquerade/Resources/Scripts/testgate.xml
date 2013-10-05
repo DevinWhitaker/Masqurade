@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="gate" type="anchor" image_file="Resources/Images/MenuImages/MASQ_Menu_Buttons.png" r="0" g="0" b="0" num_anchors="2">
+    <anchor events="1">
+      <rect left="257" right="412" top="129" bottom="190" />
+      <point x="73" y="5" />
+      <duration value="3.12" />
+      <event id="Closed" left="0" top="0" right="155" bottom="61" />
+      
+    </anchor>
+    <anchor events="1">
+      <rect left="258" right="414" top="190" bottom="260" />
+      <point x="71" y="57" />
+      <duration value="3.12" />
+      <event id="Open" left="0" top="0" right="156" bottom="70" />
+    </anchor>
+  </animation_info>
+</animation-list>

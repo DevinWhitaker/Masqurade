@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="Gate" type="anchor" image_file="Resources\Images\Graphics\MASQ_Gate.png" r="0" g="0" b="0" num_anchors="6">
+    <anchor events="1">
+      <rect left="2" right="148" top="25" bottom="321" />
+      <point x="65" y="291" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="74" top="139" right="111" bottom="292" />
+    </anchor>
+    <anchor events="1">
+      <rect left="159" right="305" top="25" bottom="321" />
+      <point x="65" y="291" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="72" top="135" right="113" bottom="268" />
+    </anchor>
+    <anchor events="1">
+      <rect left="315" right="460" top="25" bottom="321" />
+      <point x="65" y="291" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="79" top="136" right="115" bottom="244" />
+    </anchor>
+    <anchor events="1">
+      <rect left="476" right="618" top="25" bottom="321" />
+      <point x="62" y="291" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="74" top="134" right="111" bottom="210" />
+    </anchor>
+    <anchor events="1">
+      <rect left="632" right="776" top="25" bottom="321" />
+      <point x="63" y="291" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="77" top="138" right="111" bottom="175" />
+    </anchor>
+    <anchor events="1">
+      <rect left="780" right="933" top="25" bottom="321" />
+      <point x="73" y="291" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="84" top="133" right="119" bottom="152" />
+    </anchor>
+  </animation_info>
+  <animation_info name="Horizontal_Gate" type="anchor" image_file="Resources/Images/Graphics/MASQ_Gate.png" r="0" g="0" b="0" num_anchors="6">
+    <anchor events="1">
+      <rect left="9" right="236" top="378" bottom="457" />
+      <point x="45" y="40" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="46" top="21" right="224" bottom="57" />
+    </anchor>
+    <anchor events="1">
+      <rect left="239" right="446" top="378" bottom="458" />
+      <point x="51" y="39" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="48" top="19" right="204" bottom="58" />
+    </anchor>
+    <anchor events="1">
+      <rect left="448" right="617" top="379" bottom="456" />
+      <point x="45" y="38" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="44" top="20" right="168" bottom="56" />
+    </anchor>
+    <anchor events="1">
+      <rect left="619" right="763" top="377" bottom="457" />
+      <point x="45" y="40" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="44" top="21" right="143" bottom="58" />
+    </anchor>
+    <anchor events="1">
+      <rect left="770" right="880" top="377" bottom="457" />
+      <point x="45" y="41" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="45" top="21" right="108" bottom="58" />
+    </anchor>
+    <anchor events="1">
+      <rect left="894" right="973" top="378" bottom="457" />
+      <point x="44" y="40" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="43" top="21" right="78" bottom="58" />
+    </anchor>
+  </animation_info>
+</animation-list>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="Button_Off" type="anchor" image_file="Resources/Images/MenuImages/MASQ_Menu_Buttons.png" r="0" g="0" b="0" num_anchors="1">
+    <anchor events="0">
+      <rect left="255" right="416" top="0" bottom="62" />
+      <point x="86" y="54" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+  <animation_info name="Button_Hover" type="anchor" image_file="Resources/Images/MenuImages/MASQ_Menu_Buttons.png" r="0" g="0" b="0" num_anchors="3">
+    <anchor events="0">
+      <rect left="255" right="416" top="62" bottom="126" />
+      <point x="85" y="56" />
+      <duration value="0.15" />
+    </anchor>
+    <anchor events="0">
+      <rect left="255" right="416" top="126" bottom="190" />
+      <point x="85" y="56" />
+      <duration value="0.2" />
+    </anchor>
+    <anchor events="0">
+      <rect left="2" right="159" top="193" bottom="258" />
+      <point x="82" y="57" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+  <animation_info name="Button_Click" type="anchor" image_file="Resources/Images/MenuImages/MASQ_Menu_Buttons.png" r="0" g="0" b="0" num_anchors="1">
+    <anchor events="0">
+      <rect left="256" right="415" top="190" bottom="254" />
+      <point x="84" y="56" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+</animation-list>

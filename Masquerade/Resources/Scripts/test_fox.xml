@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="fox_walk" type="anchor" image_file="Resources/Images/Characters/sprites_fox.png" r="0" g="0" b="0" num_anchors="7">
+    <anchor events="0">
+      <rect left="15" right="62" top="6" bottom="109" />
+      <point x="26" y="103" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="70" right="137" top="6" bottom="109" />
+      <point x="34" y="102" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="143" right="214" top="5" bottom="109" />
+      <point x="30" y="102" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="222" right="275" top="6" bottom="109" />
+      <point x="27" y="102" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="282" right="335" top="6" bottom="109" />
+      <point x="25" y="102" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="341" right="409" top="6" bottom="109" />
+      <point x="31" y="101" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="415" right="474" top="6" bottom="109" />
+      <point x="25" y="102" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+</animation-list>

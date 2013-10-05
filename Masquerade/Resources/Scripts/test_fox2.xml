@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="fox_walk" type="anchor" image_file="Resources\Images\Characters\MASQ_sprites_fox.png" r="0" g="0" b="0" num_anchors="7">
+    <anchor events="1">
+      <rect left="15" right="62" top="6" bottom="109" />
+      <point x="26" y="103" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="36" top="18" right="61" bottom="108" />
+    </anchor>
+    <anchor events="1">
+      <rect left="70" right="137" top="6" bottom="109" />
+      <point x="34" y="102" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="73" top="10" right="134" bottom="106" />
+    </anchor>
+    <anchor events="1">
+      <rect left="143" right="214" top="5" bottom="109" />
+      <point x="30" y="102" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="147" top="9" right="210" bottom="107" />
+    </anchor>
+    <anchor events="1">
+      <rect left="222" right="275" top="6" bottom="109" />
+      <point x="27" y="102" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="227" top="11" right="270" bottom="107" />
+    </anchor>
+    <anchor events="1">
+      <rect left="282" right="335" top="6" bottom="109" />
+      <point x="25" y="102" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="289" top="12" right="332" bottom="107" />
+    </anchor>
+    <anchor events="1">
+      <rect left="341" right="409" top="6" bottom="109" />
+      <point x="31" y="101" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="347" top="12" right="406" bottom="106" />
+    </anchor>
+    <anchor events="1">
+      <rect left="415" right="474" top="6" bottom="109" />
+      <point x="25" y="102" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="419" top="14" right="469" bottom="106" />
+    </anchor>
+  </animation_info>
+  <animation_info name="fox_std_jump" type="anchor" image_file="Resources\Images\Characters\MASQ_sprites_fox.png" r="0" g="0" b="0" num_anchors="4">
+    <anchor events="1">
+      <rect left="8" right="62" top="645" bottom="726" />
+      <point x="28" y="75" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="10" top="647" right="59" bottom="723" />
+    </anchor>
+    <anchor events="1">
+      <rect left="102" right="159" top="597" bottom="713" />
+      <point x="13" y="106" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="104" top="599" right="158" bottom="711" />
+    </anchor>
+    <anchor events="1">
+      <rect left="188" right="259" top="601" bottom="709" />
+      <point x="47" y="98" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="190" top="603" right="257" bottom="706" />
+    </anchor>
+    <anchor events="1">
+      <rect left="8" right="62" top="645" bottom="726" />
+      <point x="28" y="75" />
+      <duration value="0.25" />
+      <event id="None" render="false" left="10" top="647" right="59" bottom="723" />
+    </anchor>
+  </animation_info>
+</animation-list>

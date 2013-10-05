@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Level Name="1" World_Width="200" End_Point_X="4800" BG_Width="8192" BG_Height="512" BG_RectWidth="34000" BG_RectHeight="600" BG_ImageID="1" BG_LayerType="4" BG_Filename="MASQ_Background.png">
+  <Unique_Objects>
+    <Object EventID="Corinne_1" X="300" Y="200" />
+    <Object EventID="Fox_1" X="400" Y="200" />
+    <Object EventID="Tool_1" X="400" Y="400" Tool_Type="1" />
+    <Object EventID="Tool_2" X="2470" Y="450" Tool_Type="3" />
+    <Object EventID="Tool_3" X="2730" Y="450" Tool_Type="2" />
+    <Object EventID="Powerup_1" X="2497" Y="300" Powerup_Type="1" />
+    <Object EventID="Powerup_2" X="2535" Y="300" Powerup_Type="2" />
+    <Object EventID="Powerup_3" X="2573" Y="300" Powerup_Type="3" />
+    <Object EventID="Powerup_4" X="2611" Y="300" Powerup_Type="4" />
+    <Object EventID="Powerup_5" X="2649" Y="300" Powerup_Type="5" />
+    <Object EventID="Checkpoint_1" X="1824" Y="416" />
+    <Object EventID="Checkpoint_2" X="4275" Y="340" />
+    <Object EventID="Node_1" X="1824" Y="416" />
+    <Object EventID="Hoodlum_1" X="3500" Y="416" />
+    <Object EventID="Clown_1" X="800" Y="416" />
+    <Object EventID="Rat_3" X="3500" Y="416" />
+    <Object EventID="Rat_4" X="2600" Y="416" />
+  </Unique_Objects>
+  <Unique_Tiles IMGFileName="MASQ_Tileset.png" Image_Width="1024" Image_Height="512" Tile_Widths="32" Tile_Heights="32">
+    <Tile Layer_Type="2" TileX="0" TileY="16" X="0" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="1" TileY="16" X="32" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="2" TileY="16" X="64" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="3" TileY="16" X="96" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="4" TileY="16" X="128" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="5" TileY="16" X="160" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="6" TileY="16" X="192" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="7" TileY="16" X="224" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="8" TileY="16" X="256" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="9" TileY="16" X="288" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="10" TileY="15" X="320" Y="480" RectX="256" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="10" TileY="16" X="320" Y="512" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="11" TileY="15" X="352" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="12" TileY="15" X="384" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="13" TileY="15" X="416" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="14" TileY="15" X="448" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="15" TileY="15" X="480" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="16" TileY="15" X="512" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="17" TileY="15" X="544" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="18" TileY="15" X="576" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="19" TileY="15" X="608" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="20" TileY="15" X="640" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="21" TileY="15" X="672" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="22" TileY="15" X="704" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="23" TileY="15" X="736" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="24" TileY="15" X="768" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="25" TileY="15" X="800" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="25" TileY="16" X="800" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="25" TileY="17" X="800" Y="544" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="25" TileY="18" X="800" Y="576" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="26" TileY="15" X="832" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="26" TileY="16" X="832" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="27" TileY="15" X="864" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="27" TileY="16" X="864" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="28" TileY="15" X="896" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="28" TileY="16" X="896" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="29" TileY="15" X="928" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="29" TileY="16" X="928" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="30" TileY="15" X="960" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="30" TileY="16" X="960" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="30" TileY="17" X="960" Y="544" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="30" TileY="18" X="960" Y="576" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="31" TileY="15" X="992" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="31" TileY="16" X="992" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="32" TileY="15" X="1024" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="32" TileY="16" X="1024" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="33" TileY="15" X="1056" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="33" TileY="16" X="1056" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="34" TileY="15" X="1088" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="34" TileY="16" X="1088" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="35" TileY="15" X="1120" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="35" TileY="16" X="1120" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="35" TileY="17" X="1120" Y="544" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="35" TileY="18" X="1120" Y="576" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="36" TileY="15" X="1152" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="36" TileY="16" X="1152" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="37" TileY="15" X="1184" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="37" TileY="16" X="1184" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="38" TileY="15" X="1216" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="38" TileY="16" X="1216" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="39" TileY="15" X="1248" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="39" TileY="16" X="1248" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="40" TileY="15" X="1280" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="40" TileY="16" X="1280" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="40" TileY="17" X="1280" Y="544" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="40" TileY="18" X="1280" Y="576" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="41" TileY="15" X="1312" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="41" TileY="16" X="1312" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="42" TileY="15" X="1344" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="42" TileY="16" X="1344" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="43" TileY="15" X="1376" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="43" TileY="16" X="1376" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="44" TileY="15" X="1408" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="44" TileY="16" X="1408" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="45" TileY="15" X="1440" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="45" TileY="16" X="1440" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="45" TileY="17" X="1440" Y="544" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="45" TileY="18" X="1440" Y="576" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="46" TileY="15" X="1472" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="46" TileY="16" X="1472" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="47" TileY="15" X="1504" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="47" TileY="16" X="1504" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="48" TileY="15" X="1536" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="48" TileY="16" X="1536" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="49" TileY="15" X="1568" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="49" TileY="16" X="1568" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="50" TileY="15" X="1600" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="50" TileY="16" X="1600" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="50" TileY="17" X="1600" Y="544" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="50" TileY="18" X="1600" Y="576" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="51" TileY="15" X="1632" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="51" TileY="16" X="1632" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="51" TileY="17" X="1632" Y="544" RectX="384" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="51" TileY="18" X="1632" Y="576" RectX="384" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="52" TileY="15" X="1664" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="52" TileY="16" X="1664" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="53" TileY="15" X="1696" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="53" TileY="16" X="1696" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="54" TileY="15" X="1728" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="54" TileY="16" X="1728" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="55" TileY="15" X="1760" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="55" TileY="16" X="1760" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="55" TileY="17" X="1760" Y="544" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="55" TileY="18" X="1760" Y="576" RectX="512" RectY="96" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="56" TileY="15" X="1792" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="56" TileY="16" X="1792" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="57" TileY="15" X="1824" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="57" TileY="16" X="1824" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="58" TileY="15" X="1856" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="58" TileY="16" X="1856" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="59" TileY="15" X="1888" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="59" TileY="16" X="1888" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="60" TileY="15" X="1920" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="60" TileY="16" X="1920" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="60" TileY="17" X="1920" Y="544" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="60" TileY="18" X="1920" Y="576" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="61" TileY="15" X="1952" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="61" TileY="16" X="1952" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="61" TileY="17" X="1952" Y="544" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="61" TileY="18" X="1952" Y="576" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="62" TileY="15" X="1984" Y="480" RectX="288" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="62" TileY="16" X="1984" Y="512" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="62" TileY="17" X="1984" Y="544" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="62" TileY="18" X="1984" Y="576" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="63" TileY="15" X="2016" Y="480" RectX="352" RectY="0" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="63" TileY="16" X="2016" Y="512" RectX="352" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="63" TileY="17" X="2016" Y="544" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="63" TileY="18" X="2016" Y="576" RectX="288" RectY="32" RectWidth="32" RectHeight="32" Collide_Type="1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="64" TileY="17" X="2048" Y="544" RectX="0" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="64" TileY="18" X="2048" Y="576" RectX="0" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="65" TileY="17" X="2080" Y="544" RectX="32" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="65" TileY="18" X="2080" Y="576" RectX="32" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="66" TileY="17" X="2112" Y="544" RectX="64" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="66" TileY="18" X="2112" Y="576" RectX="64" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="67" TileY="17" X="2144" Y="544" RectX="96" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="67" TileY="18" X="2144" Y="576" RectX="96" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="68" TileY="17" X="2176" Y="544" RectX="128" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="68" TileY="18" X="2176" Y="576" RectX="128" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="69" TileY="17" X="2208" Y="544" RectX="160" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="69" TileY="18" X="2208" Y="576" RectX="160" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="70" TileY="17" X="2240" Y="544" RectX="0" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="70" TileY="18" X="2240" Y="576" RectX="0" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="71" TileY="17" X="2272" Y="544" RectX="32" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="71" TileY="18" X="2272" Y="576" RectX="32" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="72" TileY="17" X="2304" Y="544" RectX="64" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="72" TileY="18" X="2304" Y="576" RectX="64" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="73" TileY="17" X="2336" Y="544" RectX="96" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="73" TileY="18" X="2336" Y="576" RectX="96" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="74" TileY="17" X="2368" Y="544" RectX="128" RectY="192" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+    <Tile Layer_Type="2" TileX="74" TileY="18" X="2368" Y="576" RectX="128" RectY="224" RectWidth="32" RectHeight="32" Collide_Type="-1" ImageID="0" />
+  </Unique_Tiles>
+</Level>

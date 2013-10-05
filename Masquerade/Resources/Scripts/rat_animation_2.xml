@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="rat2" type="anchor" image_file="Resources/Images/Characters/MASQ_Enemy_Rat_Sheet.png" r="0" g="0" b="0" num_anchors="3">
+    <anchor events="1">
+      <rect left="0" right="27" top="44" bottom="68" />
+      <point x="17" y="18" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="0" top="0" right="27" bottom="24" />
+    </anchor>
+    <anchor events="1">
+      <rect left="30" right="57" top="44" bottom="68" />
+      <point x="19" y="19" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="0" top="0" right="27" bottom="24" />
+    </anchor>
+    <anchor events="1">
+      <rect left="61" right="92" top="44" bottom="68" />
+      <point x="18" y="17" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="0" top="0" right="31" bottom="24" />
+    </anchor>
+  </animation_info>
+  <animation_info name="Pikachu" type="anchor" image_file="Resources\Images\Characters\MASQ_Pikachu.png" r="0" g="0" b="0" num_anchors="4">
+    <anchor events="1">
+      <rect left="10" right="50" top="93" bottom="130" />
+      <point x="22" y="33" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="5" top="4" right="35" bottom="33" />
+    </anchor>
+    <anchor events="1">
+      <rect left="53" right="94" top="91" bottom="129" />
+      <point x="21" y="35" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="5" top="2" right="37" bottom="36" />
+    </anchor>
+    <anchor events="1">
+      <rect left="98" right="139" top="90" bottom="129" />
+      <point x="22" y="35" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="6" top="4" right="35" bottom="36" />
+    </anchor>
+    <anchor events="1">
+      <rect left="143" right="179" top="89" bottom="129" />
+      <point x="17" y="37" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="5" top="4" right="31" bottom="37" />
+    </anchor>
+  </animation_info>
+  <animation_info name="thunder" type="anchor" image_file="Resources\Images\Characters\MASQ_Pikachu.png" r="0" g="0" b="0" num_anchors="7">
+    <anchor events="0">
+      <rect left="636" right="693" top="19" bottom="234" />
+      <point x="27" y="210" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="316" right="354" top="13" bottom="239" />
+      <point x="21" y="217" />
+      <duration value="0.06" />
+    </anchor>
+    <anchor events="0">
+      <rect left="368" right="410" top="16" bottom="240" />
+      <point x="22" y="215" />
+      <duration value="0.06" />
+    </anchor>
+    <anchor events="0">
+      <rect left="424" right="471" top="18" bottom="236" />
+      <point x="27" y="211" />
+      <duration value="0.06" />
+    </anchor>
+    <anchor events="0">
+      <rect left="484" right="545" top="18" bottom="234" />
+      <point x="31" y="211" />
+      <duration value="0.06" />
+    </anchor>
+    <anchor events="0">
+      <rect left="554" right="620" top="17" bottom="233" />
+      <point x="34" y="210" />
+      <duration value="0.06" />
+    </anchor>
+    <anchor events="0">
+      <rect left="636" right="693" top="19" bottom="234" />
+      <point x="27" y="210" />
+      <duration value="0.12" />
+    </anchor>
+  </animation_info>
+</animation-list>

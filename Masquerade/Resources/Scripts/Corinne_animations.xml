@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animation-list>
+  <animation_info name="Corinne_walk" type="anchor" image_file="Resources/Images/Characters/MASQ_sprites_corinne.png" r="0" g="0" b="0" num_anchors="7">
+    <anchor events="1">
+      <rect left="5" right="39" top="4" bottom="52" />
+      <point x="21" y="42" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="12" top="6" right="29" bottom="44" />
+    </anchor>
+    <anchor events="1">
+      <rect left="44" right="76" top="7" bottom="52" />
+      <point x="17" y="40" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="11" top="4" right="28" bottom="43" />
+    </anchor>
+    <anchor events="1">
+      <rect left="82" right="112" top="4" bottom="52" />
+      <point x="17" y="43" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="10" top="5" right="25" bottom="44" />
+    </anchor>
+    <anchor events="1">
+      <rect left="118" right="152" top="4" bottom="52" />
+      <point x="17" y="42" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="7" top="7" right="28" bottom="43" />
+    </anchor>
+    <anchor events="1">
+      <rect left="157" right="188" top="4" bottom="52" />
+      <point x="15" y="44" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="9" top="8" right="26" bottom="44" />
+    </anchor>
+    <anchor events="1">
+      <rect left="194" right="226" top="5" bottom="51" />
+      <point x="16" y="40" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="12" top="6" right="25" bottom="43" />
+    </anchor>
+    <anchor events="1">
+      <rect left="232" right="262" top="5" bottom="51" />
+      <point x="14" y="41" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="8" top="4" right="23" bottom="44" />
+    </anchor>
+  </animation_info>
+  <animation_info name="Corinne_idle" type="anchor" image_file="Resources/Images/Characters/MASQ_sprites_corinne.png" r="0" g="0" b="0" num_anchors="1">
+    <anchor events="1">
+      <rect left="309" right="345" top="5" bottom="55" />
+      <point x="19" y="43" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="15" top="5" right="27" bottom="43" />
+    </anchor>
+  </animation_info>
+  <animation_info name="Corinne_seek" type="anchor" image_file="Resources/Images/Characters/MASQ_sprites_corinne.png" r="0" g="0" b="0" num_anchors="7">
+    <anchor events="1">
+      <rect left="6" right="42" top="55" bottom="101" />
+      <point x="17" y="40" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="8" top="8" right="34" bottom="42" />
+    </anchor>
+    <anchor events="1">
+      <rect left="47" right="82" top="55" bottom="102" />
+      <point x="15" y="41" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="8" top="2" right="33" bottom="42" />
+    </anchor>
+    <anchor events="1">
+      <rect left="89" right="124" top="56" bottom="100" />
+      <point x="16" y="40" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="7" top="3" right="31" bottom="39" />
+    </anchor>
+    <anchor events="1">
+      <rect left="128" right="166" top="54" bottom="102" />
+      <point x="15" y="43" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="11" top="7" right="36" bottom="41" />
+    </anchor>
+    <anchor events="1">
+      <rect left="172" right="208" top="54" bottom="102" />
+      <point x="16" y="43" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="8" top="4" right="33" bottom="43" />
+    </anchor>
+    <anchor events="1">
+      <rect left="212" right="250" top="53" bottom="102" />
+      <point x="17" y="45" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="10" top="7" right="34" bottom="42" />
+    </anchor>
+    <anchor events="1">
+      <rect left="253" right="290" top="52" bottom="102" />
+      <point x="16" y="45" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="6" top="6" right="35" bottom="45" />
+    </anchor>
+  </animation_info>
+  <animation_info name="Corinne_jump" type="anchor" image_file="Resources/Images/Characters/MASQ_sprites_corinne.png" r="0" g="0" b="0" num_anchors="5">
+    <anchor events="1">
+      <rect left="7" right="39" top="110" bottom="157" />
+      <point x="11" y="41" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="5" top="9" right="26" bottom="41" />
+    </anchor>
+    <anchor events="1">
+      <rect left="46" right="71" top="103" bottom="155" />
+      <point x="8" y="46" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="4" top="6" right="21" bottom="46" />
+    </anchor>
+    <anchor events="1">
+      <rect left="78" right="101" top="103" bottom="153" />
+      <point x="7" y="45" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="2" top="4" right="17" bottom="45" />
+    </anchor>
+    <anchor events="1">
+      <rect left="107" right="139" top="103" bottom="154" />
+      <point x="17" y="46" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="10" top="6" right="26" bottom="46" />
+    </anchor>
+    <anchor events="1">
+      <rect left="143" right="175" top="105" bottom="152" />
+      <point x="18" y="42" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="12" top="4" right="27" bottom="43" />
+    </anchor>
+  </animation_info>
+  <animation_info name="Corinne_inflicted" type="anchor" image_file="Resources/Images/Characters/MASQ_sprites_corinne.png" r="0" g="0" b="0" num_anchors="7">
+    <anchor events="1">
+      <rect left="17" right="55" top="185" bottom="226" />
+      <point x="20" y="36" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="9" top="2" right="30" bottom="38" />
+    </anchor>
+    <anchor events="1">
+      <rect left="70" right="105" top="182" bottom="226" />
+      <point x="17" y="39" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="6" top="4" right="26" bottom="40" />
+    </anchor>
+    <anchor events="1">
+      <rect left="111" right="167" top="169" bottom="235" />
+      <point x="29" y="50" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="18" top="17" right="37" bottom="54" />
+    </anchor>
+    <anchor events="1">
+      <rect left="181" right="213" top="182" bottom="227" />
+      <point x="17" y="36" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="6" top="3" right="23" bottom="40" />
+    </anchor>
+    <anchor events="0">
+      <rect left="111" right="167" top="169" bottom="235" />
+      <point x="29" y="50" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="0">
+      <rect left="181" right="213" top="182" bottom="227" />
+      <point x="17" y="36" />
+      <duration value="0.12" />
+    </anchor>
+    <anchor events="1">
+      <rect left="221" right="271" top="203" bottom="233" />
+      <point x="23" y="22" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="3" top="7" right="45" bottom="24" />
+    </anchor>
+  </animation_info>
+  <animation_info name="Corinne_held" type="anchor" image_file="Resources/Images/Characters/MASQ_sprites_corinne.png" r="0" g="0" b="0" num_anchors="4">
+    <anchor events="1">
+      <rect left="10" right="56" top="253" bottom="290" />
+      <point x="22" y="19" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="4" top="4" right="42" bottom="23" />
+    </anchor>
+    <anchor events="1">
+      <rect left="60" right="108" top="253" bottom="286" />
+      <point x="24" y="16" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="4" top="8" right="44" bottom="21" />
+    </anchor>
+    <anchor events="1">
+      <rect left="117" right="162" top="253" bottom="287" />
+      <point x="21" y="16" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="2" top="7" right="40" bottom="22" />
+    </anchor>
+    <anchor events="1">
+      <rect left="167" right="217" top="255" bottom="287" />
+      <point x="23" y="15" />
+      <duration value="0.12" />
+      <event id="None" render="false" left="3" top="7" right="46" bottom="19" />
+    </anchor>
+  </animation_info>
+</animation-list>
