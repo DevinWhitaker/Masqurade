@@ -12,26 +12,32 @@
 #pragma once
 
 #include <string>
-using std::string;
 
-typedef string EVENTID;		//	could be an int or enum, just used strings to change it
-							//	up.
+typedef std::string EVENTID;		//	could be changed to an int or enum
+
 
 class CEvent
 {
 private:
-	EVENTID			m_EventID;	//	The event's id type.
-	void*			m_pParam;	//	Store any variable type (but only one)
+	EVENTID			m_EventID;		//	The event's id type.
+	void*			m_pParam;		//	Store any variable type (but only one)
+	const void*		m_pDestination;	//	Intended listener
+	void*			m_pSender;		//	Object that sent the event
+
 public:
-	CEvent(EVENTID eventID, void* pParam = NULL)
+	CEvent( const EVENTID& eventID, void* pParam, const void* pDestination, void* pSender )
 	{
-		m_EventID = eventID;
-		m_pParam  = pParam;
+		m_EventID		= eventID;
+		m_pParam		= pParam;
+		m_pDestination	= pDestination;
+		m_pSender		= pSender;
 	}
 
 	~CEvent() {}
 
 	//	Accessors:
-	inline EVENTID  GetEventID(void)	{	return m_EventID;	}
-	inline void*	GetParam(void)		{	return m_pParam;	}
+	inline EVENTID		GetEventID		( void ) const	{	return m_EventID;		}
+	inline void*		GetParam		( void ) const	{	return m_pParam;		}
+	inline const void*	GetDestination	( void ) const	{	return m_pDestination;	}
+	inline void*		GetSender		( void ) const	{	return m_pSender;		}
 };

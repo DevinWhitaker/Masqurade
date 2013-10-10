@@ -15,10 +15,10 @@ class CEvent;
 class IListener
 {
 public:
-	IListener(void) {}
-	virtual ~IListener(void) {}
+	IListener( void ) {}
+	virtual ~IListener( void ) {}
 
-	//	Blue print function - MUST be defined in the derived class.
-	//	Mini-proc function for whenever this object receives an event
-	virtual void HandleEvent(CEvent* pEvent) = 0;
+	//	Pure virtual method - MUST be defined in the derived class.
+	//	Callback function triggers whenever this listener receives an event.
+	virtual void HandleEvent( const CEvent* pEvent ) = 0;
 };

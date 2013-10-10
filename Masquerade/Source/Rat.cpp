@@ -73,7 +73,7 @@ void CRat::Update(float fElapsed)
 	{
 		m_bIsAlive = false;
 		CDestroyEnemyMessage* pMsg = new CDestroyEnemyMessage(this);
-		CSGD_MessageSystem::GetInstance()->SendMsg(pMsg);
+		CSGD_MessageSystem::GetInstance()->QueueMessage(pMsg);
 		pMsg = nullptr;
 		CAnimationManager::GetInstance()->RemoveFrame(&m_ratFrame);
 		if ( CGamePlayState::GetInstance()->GetCurStage() == 2 )
@@ -122,7 +122,7 @@ bool CRat::CheckCollision(IBaseObject* pBase)
 	if( CBaseObject::CheckCollision( pBase ) == true )
 	{
 		if(pBase->GetType() == OBJ_FOX)
-			CSGD_EventSystem::GetInstance()->SendEvent( "Fox_Hit", this);
+			CSGD_EventSystem::GetInstance()->QueueEvent( "Fox_Hit", this);
 
 		if (pBase->GetType() == OBJ_FOX || pBase->GetType() == OBJ_CORINNE)
 		{
@@ -161,7 +161,7 @@ void CRat::tileCollisionResponse(int COLLISION_SIDE)
 void CRat::CollisionResponse( CBaseObject* pBase, RECT hitbox, RECT hit, POINT anchor )
 {
 	if(pBase->GetType() == OBJ_FOX)
-			CSGD_EventSystem::GetInstance()->SendEvent( "Fox_Hit", this);
+			CSGD_EventSystem::GetInstance()->QueueEvent( "Fox_Hit", this);
 }
 
 

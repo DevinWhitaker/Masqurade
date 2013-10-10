@@ -17,26 +17,34 @@
 /////////////////////////////////////////////////////////////////
 
 /* 
-Disclaimer:
-This source code was developed for and is the property of:
+	Disclaimer:
+	This source code was developed for and is the property of:
 
-(c) Full Sail University Game Development Curriculum 2008-2011 and
-(c) Full Sail Real World Education Game Design & Development Curriculum 2000-2008
+	(c) Full Sail University
 
-Full Sail students may not redistribute or make this code public, 
-but may use it in their own personal projects.
+	Full Sail students may not redistribute or make this code public, 
+	but may use it in their own personal projects.
 */
 
 #include "CSGD_DirectInput.h"
-#include <tchar.h>
+#pragma comment(lib, "dinput8.lib")
+#pragma comment(lib, "dxguid.lib")
+
+using std::vector;
 
 //	MessageBox for Errors that occur within DirectInput.
 #ifndef DIERRBOX
 	#define DIERRBOX(hWnd, errorText)	{ MessageBox(hWnd, errorText, _T("CSGD_DirectInput Error"), MB_OK | MB_ICONEXCLAMATION); }
 #endif
 
+
+// Instantiate the static object.
 CSGD_DirectInput CSGD_DirectInput::m_Instance;
 
+
+///////////////////////////////////////////////////////////////////
+//	Function:	"CSGD_DirectInput" (Constructor)
+///////////////////////////////////////////////////////////////////
 CSGD_DirectInput::CSGD_DirectInput(void)
 {
 	m_lpDIObject	= NULL;
@@ -45,9 +53,11 @@ CSGD_DirectInput::CSGD_DirectInput(void)
 
 }
 
+///////////////////////////////////////////////////////////////////
+//	Function:	"~CSGD_DirectInput" (Destructor)
+///////////////////////////////////////////////////////////////////	
 CSGD_DirectInput::~CSGD_DirectInput(void)
 {
-	ShutdownDirectInput();
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -67,7 +77,7 @@ CSGD_DirectInput* CSGD_DirectInput::GetInstance(void)
 }
 
 ///////////////////////////////////////////////////////////////////
-//	Function:	"InitDirectInput"
+//	Function:	"Initialize"
 //
 //	Last Modified:		7/05/2008
 //
@@ -83,42 +93,37 @@ CSGD_DirectInput* CSGD_DirectInput::GetInstance(void)
 //
 //	Purpose	:	To initialize the DirectInput Object and requested devices.
 ///////////////////////////////////////////////////////////////////
-bool CSGD_DirectInput::InitDirectInput(HWND hWnd, HINSTANCE hInstance, unsigned int unInitDevices, unsigned int unExclusiveDevices)
+bool CSGD_DirectInput::Initialize(HWND hWnd, HINSTANCE hInstance, unsigned int unInitDevices, unsigned int unExclusiveDevices)
 {
 	//	Create the DirectInput Object
 	if (FAILED( DirectInput8Create(hInstance, DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&m_lpDIObject, NULL) ))
 		return false;
 
+	//	Store the window
+	m_hWnd = hWnd;
+
 	//	Initialize the keyboard if the keyboard flag is on
 	if (unInitDevices & DI_KEYBOARD)
-	{
-		//	Initialize the keyboard
-		if (!InitKeyboard(hWnd, (unExclusiveDevices & DI_KEYBOARD) ? true : false ))
+		if (!InitKeyboard(hWnd, (unExclusiveDevices & DI_KEYBOARD) != 0))
 			return false;
-	}
 
 	//	Initialize the mouse if the mouse flag is on
 	if (unInitDevices & DI_MOUSE)
-	{
-		//	Initialize the mouse
-		if (!InitMouse(hWnd, (unExclusiveDevices & DI_MOUSE) ? true : false ))
+		if (!InitMouse(hWnd, (unExclusiveDevices & DI_MOUSE) != 0))
 			return false;
-	}
 
 	//	Initialize joysticks if the joystick flag is on
 	if (unInitDevices & DI_JOYSTICKS)
-	{
-		//	Initialize joysticks
-		if (!InitJoysticks(hWnd, (unExclusiveDevices & DI_JOYSTICKS) ? true : false ))
+		if (!InitJoysticks(hWnd, (unExclusiveDevices & DI_JOYSTICKS) != 0))
 			return false;
-	}
+
 
 	//	Return success.
 	return true;
 }
 
 ///////////////////////////////////////////////////////////////////
-//	Function:	"ShutdownDirectInput"
+//	Function:	"Terminate"
 //
 //	Last Modified:		5/25/2008
 //
@@ -128,7 +133,7 @@ bool CSGD_DirectInput::InitDirectInput(HWND hWnd, HINSTANCE hInstance, unsigned 
 //
 //	Purpose:	Shuts down DirectInput and any initialized devices.
 ///////////////////////////////////////////////////////////////////
-void CSGD_DirectInput::ShutdownDirectInput(void)
+void CSGD_DirectInput::Terminate(void)
 {
 	UnacquireAll();
 
@@ -177,8 +182,16 @@ void CSGD_DirectInput::ReadDevices(void)
 	{
 		m_pMouse->ReadDevice();
 		m_pMouse->ReadBufferedDevice();
+
+		// Get Windows mouse position
+		POINT ptMouse = { };
+		GetCursorPos( &ptMouse );
+		ScreenToClient( m_hWnd, &ptMouse );
+
+		m_pMouse->SetPosX( ptMouse.x );
+		m_pMouse->SetPosY( ptMouse.y );
 	}
-	
+
 	if (m_vpJoysticks.size() > 0)
 	{
 		for (unsigned int i=0; i < m_vpJoysticks.size(); i++)
@@ -246,7 +259,7 @@ void CSGD_DirectInput::AcquireAll(void)
 
 	if (m_pMouse)
 		m_pMouse->Acquire();
-	
+
 	if (m_vpJoysticks.size() > 0)
 	{
 		for (unsigned int i=0; i < m_vpJoysticks.size(); i++)
@@ -311,11 +324,11 @@ bool CSGD_DirectInput::InitKeyboard(HWND hWnd, bool bIsExclusive)
 	if (m_pKeyboard)
 	{
 		DIERRBOX(hWnd, _T("Keyboard has already been initialized"))
-		return false;
+			return false;
 	}
 
 	m_pKeyboard = new CSGD_DIKeyboard(m_lpDIObject, hWnd, bIsExclusive);
-	
+
 	if (m_pKeyboard == NULL)
 		return false;
 
@@ -482,11 +495,11 @@ bool CSGD_DirectInput::InitMouse(HWND hWnd, bool bIsExclusive)
 	if (m_pMouse)
 	{
 		DIERRBOX(hWnd, _T("Mouse has already been initialized"))
-		return false;
+			return false;
 	}
 
 	m_pMouse = new CSGD_DIMouse(m_lpDIObject, hWnd, bIsExclusive);
-	
+
 	if (m_pMouse == NULL)
 		return false;
 
@@ -663,54 +676,80 @@ int CSGD_DirectInput::MouseGetNumButtons(void)			{ return (m_pMouse) ? m_pMouse-
 ///////////////////////////////////////////////////////////////////
 //	Function		:	"MouseGetPosX"
 //
-//	Last Modified	:	6/23/2008
+//	Last Modified	:	2/26/2013
 //
 //	Input			:	void
 //
-//	Return			:	The "psuedo" position of the mouse.
+//	Return			:	The x position of the cursor.
 //
-//	Purpose			:	To help track the "psuedo" position of the mouse.
+//	Purpose			:	To report the x position of the mouse.
 ///////////////////////////////////////////////////////////////////
 int CSGD_DirectInput::MouseGetPosX(void)			{ return (m_pMouse) ? m_pMouse->GetPosX() : 0; }
 
 ///////////////////////////////////////////////////////////////////
 //	Function		:	"MouseGetPosY"
 //
-//	Last Modified	:	6/23/2008
+//	Last Modified	:	2/26/2013
 //
 //	Input			:	void
 //
-//	Return			:	The "psuedo" position of the mouse.
+//	Return			:	The y position of the cursor.
 //
-//	Purpose			:	To help track the "psuedo" position of the mouse.
+//	Purpose			:	To report the y position of the mouse.
 ///////////////////////////////////////////////////////////////////
 int CSGD_DirectInput::MouseGetPosY(void)			{ return (m_pMouse) ? m_pMouse->GetPosY() : 0; }
 
 ///////////////////////////////////////////////////////////////////
 //	Function		:	"MouseSetPosX"
 //
-//	Last Modified	:	7/05/2008
+//	Last Modified	:	8/30/2013
 //
-//	Input			:	The "psuedo" position of the mouse.
+//	Input			:	The x position of the cursor.
 //
 //	Return			:	void
 //
-//	Purpose			:	To set the "psuedo" position of the mouse.
+//	Purpose			:	To set the x position of the mouse.
 ///////////////////////////////////////////////////////////////////
-void CSGD_DirectInput::MouseSetPosX(int nPosX)			{ if (m_pMouse) m_pMouse->SetPosX( nPosX ); }
+void CSGD_DirectInput::MouseSetPosX(int nPosX)			
+{
+	if (m_pMouse) 
+	{
+		m_pMouse->SetPosX( nPosX ); 
+		
+		POINT ptMouse = { };
+		ptMouse.x = m_pMouse->GetPosX();
+		ptMouse.y = m_pMouse->GetPosY();
+
+		ClientToScreen( m_hWnd, &ptMouse );
+		SetCursorPos( ptMouse.x, ptMouse.y );
+	}
+}
 
 ///////////////////////////////////////////////////////////////////
 //	Function		:	"MouseSetPosY"
 //
-//	Last Modified	:	7/05/2008
+//	Last Modified	:	8/30/2013
 //
-//	Input			:	The "psuedo" position of the mouse.
+//	Input			:	The y position of the cursor.
 //
 //	Return			:	void
 //
-//	Purpose			:	To set the "psuedo" position of the mouse.
+//	Purpose			:	To set the y position of the mouse.
 ///////////////////////////////////////////////////////////////////
-void CSGD_DirectInput::MouseSetPosY(int nPosY)			{ if (m_pMouse) m_pMouse->SetPosY( nPosY ); }
+void CSGD_DirectInput::MouseSetPosY(int nPosY)			
+{
+	if (m_pMouse) 
+	{
+		m_pMouse->SetPosY( nPosY ); 
+		
+		POINT ptMouse = { };
+		ptMouse.x = m_pMouse->GetPosX();
+		ptMouse.y = m_pMouse->GetPosY();
+
+		ClientToScreen( m_hWnd, &ptMouse );
+		SetCursorPos( ptMouse.x, ptMouse.y );
+	}
+}
 
 ///////////////////////////////////////////////////////////////////
 //						JOYSTICKS								 //
@@ -734,7 +773,7 @@ bool CSGD_DirectInput::InitJoysticks(HWND hWnd, bool bIsExclusive)
 	if (m_vpJoysticks.size() > 0)
 	{
 		DIERRBOX(hWnd, _T("Joysticks have already been initialized"))
-		return false;
+			return false;
 	}
 
 	//	Remember the info in a struct to pass along
@@ -1251,20 +1290,38 @@ const TCHAR* CSGD_DirectInput::JoystickGetName(int nJoyNum)	const { return (nJoy
 //
 //	Purpose	:	To swap the X/Y axes of certain controllers
 //
-//	NOTE:	Only works on non-Xbox360 controllers.
+//	NOTE:	Only works on certain controllers.
 ///////////////////////////////////////////////////////////////////
 void CSGD_DirectInput::JoystickSwapRStickAxes(bool bSwapAxes, int nJoyNum) { if (nJoyNum < 0 || nJoyNum >= (int)m_vpJoysticks.size()) return; m_vpJoysticks[nJoyNum]->SwapRStickAxes(bSwapAxes); }
 
-//////////////////////////////////////////////////////////////////////////////////
-//	CSGD_DIKeyboard
-//////////////////////////////////////////////////////////////////////////////////
+	
+///////////////////////////////////////////////////////////////////
+//	Function:	"JoystickTreatAsFiveAxes"
+//
+//	Last Modified:		6/11/2013
+//
+//	Input	:	bHas5Axes	-	Whether or not to treat the joypad as though it has 5 axes.
+//				nJoyNum		-	The joystick to set.
+//
+//	Return	:	void
+//
+//	Purpose	:	To treat controllers as though they have 5 axes.
+//
+//	NOTE:	Z-axis is considered the trigger on a 5-axes controller.
+//			Z-axis is considered the R-stick's X-axis on a 4-axes controller.
+///////////////////////////////////////////////////////////////////
+void CSGD_DirectInput::JoystickTreatAsFiveAxes(bool bHas5Axes, int nJoyNum) { if (nJoyNum < 0 || nJoyNum >= (int)m_vpJoysticks.size()) return; m_vpJoysticks[nJoyNum]->TreatAsFiveAxes(bHas5Axes); }
 
+//////////////////////////////////////////////////////////////////////////////////
+//	Function:	"CSGD_DIKeyboard" (Constructor)
+//////////////////////////////////////////////////////////////////////////////////
 CSGD_DIKeyboard::CSGD_DIKeyboard(LPDIRECTINPUT8 pDI, HWND hWnd, bool bIsExclusive)
 {
 	//	Create the Keyboard Device.
 	if (FAILED( pDI->CreateDevice(GUID_SysKeyboard, &m_lpDevice, NULL) ))
 	{
 		DIERRBOX(hWnd, _T("Failed to create Keyboard device."))
+			return;
 	}
 
 	//	Set the Data Format for the Keyboard.
@@ -1279,7 +1336,7 @@ CSGD_DIKeyboard::CSGD_DIKeyboard(LPDIRECTINPUT8 pDI, HWND hWnd, bool bIsExclusiv
 	if (bIsExclusive)
 		dwFlags |= DISCL_EXCLUSIVE;
 	else
-		dwFlags |= DISCL_NONEXCLUSIVE | DISCL_NOWINKEY;
+		dwFlags |= DISCL_NONEXCLUSIVE; // | DISCL_NOWINKEY;
 
 	if (FAILED( m_lpDevice->SetCooperativeLevel(hWnd, dwFlags) ))
 	{
@@ -1303,16 +1360,17 @@ CSGD_DIKeyboard::CSGD_DIKeyboard(LPDIRECTINPUT8 pDI, HWND hWnd, bool bIsExclusiv
 	if (FAILED( m_lpDevice->SetProperty(DIPROP_BUFFERSIZE, &dipdw.diph) ))
 		DIERRBOX(hWnd, _T("Could not Set the Properties for Buffered Input for Keyboard."))
 
-	//	Acquire the Keyboard.
-	if (FAILED( m_lpDevice->Acquire() ))
-	{
-		DIERRBOX(hWnd, _T("Failed to acquire Keyboard."))
-	}	
+		//	Acquire the Keyboard.
+		if (FAILED( m_lpDevice->Acquire() ))
+		{
+			OutputDebugString( _T("SGD DIRECTINPUT - Failed to acquire Keyboard\n") );
+			//DIERRBOX(hWnd, _T("Failed to acquire Keyboard."))
+		}	
 
-	ClearKeys();
+		ClearKeys();
 
-	//	Get the Keyboard Layout.
-	m_keyLayout = GetKeyboardLayout(0);
+		//	Get the Keyboard Layout.
+		m_keyLayout = GetKeyboardLayout(0);
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -1721,44 +1779,44 @@ CSGD_DIMouse::CSGD_DIMouse(LPDIRECTINPUT8 pDI, HWND hWnd, bool bIsExclusive)
 	if (FAILED( m_lpDevice->SetProperty(DIPROP_BUFFERSIZE, &dipdw.diph) ))
 		DIERRBOX(hWnd, _T("Could not Set the Properties for Buffered Input for Mouse."))
 
-	//	Acquire the Mouse.
-	if (FAILED( m_lpDevice->Acquire() ))
-	{
-		DIERRBOX(hWnd, _T("Failed to acquire Mouse."))
-	}	
+		//	Acquire the Mouse.
+		if (FAILED( m_lpDevice->Acquire() ))
+		{
+			DIERRBOX(hWnd, _T("Failed to acquire Mouse."))
+		}	
 
-	// DIDC_ATTACHED 
-	// DIDC_FORCEFEEDBACK
-	// DIDC_POLLEDDATAFORMAT VS DIDC_POLLEDDEVICE 
-	// dwAxes 
-	// dwButtons 
-	// dwPOVs 
-	DIDEVCAPS  didCaps;
+		// DIDC_ATTACHED 
+		// DIDC_FORCEFEEDBACK
+		// DIDC_POLLEDDATAFORMAT VS DIDC_POLLEDDEVICE 
+		// dwAxes 
+		// dwButtons 
+		// dwPOVs 
+		DIDEVCAPS  didCaps;
 
-	// clear out struct
-	memset(&didCaps, 0, sizeof(didCaps));
-	didCaps.dwSize = sizeof(didCaps); 
+		// clear out struct
+		memset(&didCaps, 0, sizeof(didCaps));
+		didCaps.dwSize = sizeof(didCaps); 
 
-	//if (SUCCEEDED( m_lpDevice->GetCapabilities(&didCaps) ))
-	m_lpDevice->GetCapabilities(&didCaps);
-	{
-		if (didCaps.dwFlags & DIDC_POLLEDDATAFORMAT)
-			int y = 4;
-		if (didCaps.dwFlags & DIDC_POLLEDDEVICE)
-			int y = 5;
-	}
+		//if (SUCCEEDED( m_lpDevice->GetCapabilities(&didCaps) ))
+		m_lpDevice->GetCapabilities(&didCaps);
+		{
+			if (didCaps.dwFlags & DIDC_POLLEDDATAFORMAT)
+				int y = 4;
+			if (didCaps.dwFlags & DIDC_POLLEDDEVICE)
+				int y = 5;
+		}
 
-	// will be zero if it failed because the struct was cleared out
-	m_nNumButtons = didCaps.dwButtons;
+		// will be zero if it failed because the struct was cleared out
+		m_nNumButtons = didCaps.dwButtons;
 
-	//	clear out current state
-	memset(&m_diMouseState, 0, sizeof(m_diMouseState));
-	//	clear prev state
-	memset(&m_diPrevMouseState, 0, sizeof(m_diPrevMouseState));
+		//	clear out current state
+		memset(&m_diMouseState, 0, sizeof(m_diMouseState));
+		//	clear prev state
+		memset(&m_diPrevMouseState, 0, sizeof(m_diPrevMouseState));
 
-	//	Set psuedo position of mouse
-	SetPosX( 0 );
-	SetPosY( 0 );
+		//	Set psuedo position of mouse
+		SetPosX( 0 );
+		SetPosY( 0 );
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -2115,8 +2173,6 @@ CSGD_DIJoystick::CSGD_DIJoystick(LPDIRECTINPUT8 pDI, HWND hWnd, const DIDEVICEIN
 	//	Get the Joystick Name and store it.
 	_tcscpy_s(m_szJoyName, _countof(m_szJoyName), lpdidi->tszProductName);
 
-	// Remember if it is an Xbox 360 pad
-	m_bIsXbox360Pad = (_tcscmp(m_szJoyName, _T("Xbox 360 Wireless Receiver for Windows")) == 0 || _tcscmp(m_szJoyName, _T("Controller (XBOX 360 For Windows)")) == 0) ? true : false;
 
 	//	Create the Joystick Device.
 	if (FAILED( pDI->CreateDevice(lpdidi->guidInstance, &m_lpDevice, NULL) ))
@@ -2177,88 +2233,12 @@ CSGD_DIJoystick::CSGD_DIJoystick(LPDIRECTINPUT8 pDI, HWND hWnd, const DIDEVICEIN
 		DIERRBOX(hWnd, szErrorBuffer)
 	}
 
-	//	Set the Properties for the Joystick Axes:
+	
+	//	Set the Properties for the Joystick Axes
+	//	based on whether or not it is an Xbox360 controller
+//	TreatAsFiveAxes( _tcscmp(m_szJoyName, _T("Xbox 360 Wireless Receiver for Windows")) == 0 || _tcscmp(m_szJoyName, _T("Controller (XBOX 360 For Windows)")) == 0 );
+	TreatAsFiveAxes( axes > 4 );
 
-	//	Set the ranges for the axes:
-	DIPROPRANGE dipr;
-	dipr.diph.dwSize		= sizeof(DIPROPRANGE);
-	dipr.diph.dwHeaderSize	= sizeof(DIPROPHEADER);
-	dipr.diph.dwHow			= DIPH_BYOFFSET;
-	dipr.lMin				= -JOYSTICK_AXIS_RANGE;	//	Minimum range.
-	dipr.lMax				= +JOYSTICK_AXIS_RANGE;	//	Maximum range.
-
-	dipr.diph.dwObj			= DIJOFS_X;				//	Change the X-Axis.
-	m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
-
-	//	Change the Y-Axis.
-	dipr.diph.dwObj			= DIJOFS_Y;
-	m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
-
-	//	Is it not an Xbox360 controller?
-	if (!m_bIsXbox360Pad)
-	{
-		//	Change the Z-Axis //(left/right on R-stick).
-		dipr.diph.dwObj			= DIJOFS_Z;
-		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
-
-		//	Change the RotationZ-Axis //(up/down on R-stick).
-		dipr.diph.dwObj			= DIJOFS_RZ;
-		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
-	}
-	else // it is an Xbox360 controller
-	{
-		//	Change the Z-Axis (for L + R triggers).
-		dipr.diph.dwObj			= DIJOFS_Z;
-		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
-
-		//	Change the RotationX-Axis (left/right on R-stick).
-		dipr.diph.dwObj			= DIJOFS_RX;
-		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
-
-		//	Change the RotationY-Axis (up/down on R-stick).
-		dipr.diph.dwObj			= DIJOFS_RY;
-		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
-	}
-
-	//	Setup a Dead Zone for the axes.
-	DIPROPDWORD deadZone;
-	deadZone.diph.dwSize	   = sizeof (deadZone);
-	deadZone.diph.dwHeaderSize = sizeof (deadZone.diph);
-	deadZone.diph.dwObj		   = DIJOFS_X;
-	deadZone.diph.dwHow		   = DIPH_BYOFFSET;
-	deadZone.dwData			   = 1000;
-
-	//	Setup the X-Axis Dead Zone.
-	m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
-
-	//	Setup the Y-Axis Dead Zone.
-	deadZone.diph.dwObj		   = DIJOFS_Y;
-	m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
-
-	if (!m_bIsXbox360Pad)
-	{
-		//	Setup the Z-Axis Dead Zone.
-		deadZone.diph.dwObj		   = DIJOFS_Z;
-		m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
-
-		//	Setup the ZR-Axis Dead Zone.
-		deadZone.diph.dwObj		   = DIJOFS_RZ;
-		m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
-	}
-	else
-	{
-		//	Setup the Z-Axis Dead Zone.
-		//deadZone.diph.dwObj		   = DIJOFS_Z;
-		//m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
-
-		//	Setup the RotationX-Axis Dead Zone.
-		deadZone.diph.dwObj		   = DIJOFS_RX;
-		m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
-		
-		//	Setup the RotationY-Axis Dead Zone.
-		deadZone.diph.dwObj		   = DIJOFS_RY;
-		m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
-	}
 
 	//	Set up the device to use buffered input
 	//	For Use With Buffered Input.
@@ -2347,7 +2327,7 @@ bool CSGD_DIJoystick::ReadDevice(void)
 		//	Success.
 		//return true;
 	}
-	
+
 	//	Attempt to read the joystick state...
 	if (FAILED( m_lpDevice->GetDeviceState(sizeof(m_diJoyState), (LPVOID)&m_diJoyState) ))
 		return false;
@@ -2547,7 +2527,7 @@ bool CSGD_DIJoystick::TranslatePOV(int nDir, DWORD dwPOVDir)
 {
 	// means neutral
 	bool bIsPOVCentered = (LOWORD(dwPOVDir) == 0xFFFF);
-	
+
 	if (bIsPOVCentered)
 		return false;
 
@@ -2555,30 +2535,30 @@ bool CSGD_DIJoystick::TranslatePOV(int nDir, DWORD dwPOVDir)
 
 	switch(nDir)
 	{
-		case DIR_UP: // could be up/left, up, or up/right.
+	case DIR_UP: // could be up/left, up, or up/right.
 		{
 			return (nPOV > POV_LEFT || nPOV < POV_RIGHT);
 		}
 		break;
 
-		case DIR_DOWN: // could be dwn/left, dwn, or dwn/right.
+	case DIR_DOWN: // could be dwn/left, dwn, or dwn/right.
 		{
 			return (nPOV > POV_RIGHT && nPOV < POV_LEFT);
 		}
 		break;
 
-		case DIR_LEFT: // could be up/left, left, or dwn/left.
+	case DIR_LEFT: // could be up/left, left, or dwn/left.
 		{
 			return (/*dwPOVDir > POV_UP && */nPOV > POV_DOWN);
 		}
 		break;
 
-		case DIR_RIGHT: // could be up/right, right, or dwn/right.
+	case DIR_RIGHT: // could be up/right, right, or dwn/right.
 		{
 			return (nPOV > POV_UP && nPOV < POV_DOWN);
 		}
 		break;
-	};
+	}
 
 	return false;
 }
@@ -2601,14 +2581,10 @@ LONG CSGD_DIJoystick::TranslateRStickX(DIJOYSTATE2& diJoyState)
 		return 0;
 
 	//	Check for the Direction.
-	if (!m_bIsXbox360Pad)
-	{
+	if (m_bHasFiveAxes)				// separate axis for right joystick
+		return diJoyState.lRx;	
+	else							// right joystick may be Z or Rz axis?!?
 		return (m_bIsZAxisY) ? diJoyState.lRz : diJoyState.lZ;
-	}
-	else	//	is Xbox 360 pad
-	{
-		return diJoyState.lRx;
-	}
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -2629,14 +2605,10 @@ LONG CSGD_DIJoystick::TranslateRStickY(DIJOYSTATE2& diJoyState)
 		return 0;
 
 	//	Check for the Direction.
-	if (!m_bIsXbox360Pad)
-	{
-		return (m_bIsZAxisY) ? diJoyState.lZ : diJoyState.lRz; 
-	}
-	else	//	is Xbox 360 pad
-	{
+	if (m_bHasFiveAxes)			// separate axis for right joystick
 		return diJoyState.lRy;
-	}
+	else						// right joystick may be Rz or Z axis?!?
+		return (m_bIsZAxisY) ? diJoyState.lZ : diJoyState.lRz; 
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -2746,34 +2718,34 @@ bool CSGD_DIJoystick::GetLStickDirDown(int nDir)
 	//	Check for the Direction.
 	switch(nDir)
 	{
-		case DIR_LEFT:
+	case DIR_LEFT:
 		{
 			if (m_diJoyState.lX < 0) 
 				return true;
 		}		
 		break;
 
-		case DIR_RIGHT:
+	case DIR_RIGHT:
 		{
 			if (m_diJoyState.lX > 0) 
 				return true;
 		}	
 		break;
 
-		case DIR_UP:
+	case DIR_UP:
 		{
 			if (m_diJoyState.lY < 0) 
 				return true;
 		}
 		break;
 
-		case DIR_DOWN:
+	case DIR_DOWN:
 		{
 			if (m_diJoyState.lY > 0) 
 				return true;
 		}	
 		break;
-	};
+	}
 
 	//	The direction wasn't pressed.
 	return false;
@@ -2801,34 +2773,34 @@ bool CSGD_DIJoystick::GetLStickDirPressed(int nDir)
 	//	Check for the Direction.
 	switch(nDir)
 	{
-		case DIR_LEFT:
+	case DIR_LEFT:
 		{
 			if (m_diJoyState.lX < -JOYSTICK_THRESHOLD && !(m_diPrevJoyState.lX < -JOYSTICK_THRESHOLD)) 
 				return true;
 		}		
 		break;
 
-		case DIR_RIGHT:
+	case DIR_RIGHT:
 		{
 			if (m_diJoyState.lX > JOYSTICK_THRESHOLD && !(m_diPrevJoyState.lX > JOYSTICK_THRESHOLD)) 
 				return true;
 		}	
 		break;
 
-		case DIR_UP:
+	case DIR_UP:
 		{
 			if (m_diJoyState.lY < -JOYSTICK_THRESHOLD && !(m_diPrevJoyState.lY < -JOYSTICK_THRESHOLD)) 
 				return true;
 		}
 		break;
 
-		case DIR_DOWN:
+	case DIR_DOWN:
 		{
 			if (m_diJoyState.lY > JOYSTICK_THRESHOLD && !(m_diPrevJoyState.lY > JOYSTICK_THRESHOLD)) 
 				return true;
 		}	
 		break;
-	};
+	}
 
 	//	The direction wasn't pressed.
 	return false;
@@ -2936,34 +2908,34 @@ bool CSGD_DIJoystick::GetRStickDirDown(int nDir)
 
 	switch(nDir)
 	{
-		case DIR_LEFT:
+	case DIR_LEFT:
 		{
 			if ( TranslateRStickX(m_diJoyState) < 0 ) 
 				return true;
 		}		
 		break;
 
-		case DIR_RIGHT:
+	case DIR_RIGHT:
 		{
 			if ( TranslateRStickX(m_diJoyState) > 0 ) 
 				return true;
 		}	
 		break;
 
-		case DIR_UP:
+	case DIR_UP:
 		{
 			if ( TranslateRStickY(m_diJoyState) < 0 ) 
 				return true;
 		}
 		break;
 
-		case DIR_DOWN:
+	case DIR_DOWN:
 		{
 			if ( TranslateRStickY(m_diJoyState) > 0 ) 
 				return true;
 		}	
 		break;
-	};
+	}
 
 	//	The direction wasn't pressed.
 	return false;
@@ -2989,34 +2961,34 @@ bool CSGD_DIJoystick::GetRStickDirPressed(int nDir)
 	//	Check for the Direction.
 	switch(nDir)
 	{
-		case DIR_LEFT:
+	case DIR_LEFT:
 		{
 			if ( TranslateRStickX(m_diJoyState) < -JOYSTICK_THRESHOLD && !(TranslateRStickX(m_diPrevJoyState) < -JOYSTICK_THRESHOLD) ) 
 				return true;
 		}		
 		break;
 
-		case DIR_RIGHT:
+	case DIR_RIGHT:
 		{
 			if ( TranslateRStickX(m_diJoyState) > JOYSTICK_THRESHOLD && !(TranslateRStickX(m_diPrevJoyState) > JOYSTICK_THRESHOLD) ) 
 				return true;
 		}	
 		break;
 
-		case DIR_UP:
+	case DIR_UP:
 		{
 			if ( TranslateRStickY(m_diJoyState) < -JOYSTICK_THRESHOLD && !(TranslateRStickY(m_diPrevJoyState) < -JOYSTICK_THRESHOLD) ) 
 				return true;
 		}
 		break;
 
-		case DIR_DOWN:
+	case DIR_DOWN:
 		{
 			if ( TranslateRStickY(m_diJoyState) > JOYSTICK_THRESHOLD && !(TranslateRStickY(m_diPrevJoyState) > JOYSTICK_THRESHOLD) ) 
 				return true;
 		}	
 		break;
-	};
+	}
 
 	//	The direction wasn't pressed.
 	return false;
@@ -3110,7 +3082,10 @@ float CSGD_DIJoystick::GetRStickYNormalized()
 ///////////////////////////////////////////////////////////////////	
 int CSGD_DIJoystick::GetLTriggerAmount(void)
 {
-	if (!m_bIsXbox360Pad) return 0;
+	// The Z axis is used for the triggers, but is shared between the
+	// left and right sides (think of a teeter-totter).
+	// The left trigger is a positive change on the Z axis.
+	if (!m_bHasFiveAxes || m_diJoyState.lZ < 0.0) return 0;
 
 	return m_diJoyState.lZ;
 }
@@ -3131,7 +3106,10 @@ int CSGD_DIJoystick::GetLTriggerAmount(void)
 ///////////////////////////////////////////////////////////////////	
 int CSGD_DIJoystick::GetRTriggerAmount(void)
 {
-	if (!m_bIsXbox360Pad) return 0;
+	// The Z axis is used for the triggers, but is shared between the
+	// left and right sides (think of a teeter-totter).
+	// The right trigger is a negative change on the Z axis.
+	if (!m_bHasFiveAxes || m_diJoyState.lZ > 0.0) return 0;
 
 	return -m_diJoyState.lZ; // - to take into account that it is actually 0 to -JOYSTICK_AXIS_RANGE
 }
@@ -3152,7 +3130,7 @@ int CSGD_DIJoystick::GetRTriggerAmount(void)
 ///////////////////////////////////////////////////////////////////
 float CSGD_DIJoystick::GetLTriggerNormalized(void)
 {
-	return GetRTriggerAmount() * ONE_OVER_RANGE;	// same as dividing by JOYSTICK_AXIS_RANGE (but twice as fast!)
+	return GetLTriggerAmount() * ONE_OVER_RANGE;	// same as dividing by JOYSTICK_AXIS_RANGE (but twice as fast!)
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -3229,7 +3207,7 @@ int CSGD_DIJoystick::CheckBufferedButtonsEx(void)
 		for (int j = 0; j < GetNumButtons(); j++)
 		{
 			//	If the offset matches the button we are looking for and the high bit is on, it is pressed.
-			if ((m_didod[i].dwOfs == (DWORD)(DWORD)DIJOFS_BUTTON(j)) && (m_didod[i].dwData & 0x80))
+			if ((m_didod[i].dwOfs == (DWORD)DIJOFS_BUTTON(j)) && (m_didod[i].dwData & 0x80))
 			{
 				//	return the first one that was found to be pressed.
 				nButton = j;
@@ -3240,4 +3218,108 @@ int CSGD_DIJoystick::CheckBufferedButtonsEx(void)
 
 	//	return the button.
 	return nButton;
+}
+	
+///////////////////////////////////////////////////////////////////
+//	Function:	"TreatAsFiveAxes"
+//
+//	Last Modified:		6/11/2013
+//
+//	Input	:	bHas5Axes	-	Whether or not to treat the joypad as though it has 5 axes.
+//
+//	Return	:	void
+//
+//	Purpose	:	To treat a controller as though it has 5 axes.
+//
+//	NOTE:	Z-axis is considered the trigger on a 5-axes controller.
+//			Z-axis is considered the R-stick's X-axis on a 4-axes controller.
+///////////////////////////////////////////////////////////////////
+void CSGD_DIJoystick::TreatAsFiveAxes(bool bHas5Axes)	
+{
+	// Store the parameter
+	m_bHasFiveAxes = bHas5Axes; 
+
+
+	//	Set the Properties for the Joystick Axes:
+
+	//	Set the ranges for the axes:
+	DIPROPRANGE dipr;
+	dipr.diph.dwSize		= sizeof(DIPROPRANGE);
+	dipr.diph.dwHeaderSize	= sizeof(DIPROPHEADER);
+	dipr.diph.dwHow			= DIPH_BYOFFSET;
+	dipr.lMin				= -JOYSTICK_AXIS_RANGE;	//	Minimum range.
+	dipr.lMax				= +JOYSTICK_AXIS_RANGE;	//	Maximum range.
+
+	dipr.diph.dwObj			= DIJOFS_X;				//	Change the X-Axis.
+	m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
+
+	//	Change the Y-Axis.
+	dipr.diph.dwObj			= DIJOFS_Y;
+	m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
+
+	//	Is it not an Xbox360 controller?
+	if (!m_bHasFiveAxes)
+	{
+		//	Change the Z-Axis //(left/right on R-stick).
+		dipr.diph.dwObj			= DIJOFS_Z;
+		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
+
+		//	Change the RotationZ-Axis //(up/down on R-stick).
+		dipr.diph.dwObj			= DIJOFS_RZ;
+		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
+	}
+	else // it is an Xbox360 controller
+	{
+		//	Change the Z-Axis (for L + R triggers).
+		dipr.diph.dwObj			= DIJOFS_Z;
+		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
+
+		//	Change the RotationX-Axis (left/right on R-stick).
+		dipr.diph.dwObj			= DIJOFS_RX;
+		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
+
+		//	Change the RotationY-Axis (up/down on R-stick).
+		dipr.diph.dwObj			= DIJOFS_RY;
+		m_lpDevice->SetProperty(DIPROP_RANGE, &dipr.diph);
+	}
+
+	//	Setup a Dead Zone for the axes.
+	DIPROPDWORD deadZone;
+	deadZone.diph.dwSize	   = sizeof (deadZone);
+	deadZone.diph.dwHeaderSize = sizeof (deadZone.diph);
+	deadZone.diph.dwObj		   = DIJOFS_X;
+	deadZone.diph.dwHow		   = DIPH_BYOFFSET;
+	deadZone.dwData			   = 1000;
+
+	//	Setup the X-Axis Dead Zone.
+	m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
+
+	//	Setup the Y-Axis Dead Zone.
+	deadZone.diph.dwObj		   = DIJOFS_Y;
+	m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
+
+	if (!m_bHasFiveAxes)
+	{
+		//	Setup the Z-Axis Dead Zone.
+		deadZone.diph.dwObj		   = DIJOFS_Z;
+		m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
+
+		//	Setup the ZR-Axis Dead Zone.
+		deadZone.diph.dwObj		   = DIJOFS_RZ;
+		m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
+	}
+	else
+	{
+		//	Setup the Z-Axis Dead Zone.
+		//deadZone.diph.dwObj		   = DIJOFS_Z;
+		//m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
+
+		//	Setup the RotationX-Axis Dead Zone.
+		deadZone.diph.dwObj		   = DIJOFS_RX;
+		m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
+
+		//	Setup the RotationY-Axis Dead Zone.
+		deadZone.diph.dwObj		   = DIJOFS_RY;
+		m_lpDevice->SetProperty(DIPROP_DEADZONE, &deadZone.diph);
+	}
 }

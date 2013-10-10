@@ -58,7 +58,7 @@ void CParticleManager::RenderAllParticles()
 {
 	CSGD_Direct3D* pD3D = CSGD_Direct3D::GetInstance();
 	IDirect3DDevice9* pDevice = nullptr;
-	pD3D->SetBlend();
+	//pD3D->SetBlend();ToFix
 	//LPDIRECT3DDEVICE9
 	//pD3D->GetSprite()->GetDevice(&pDevice);
 	//pDevice = pD3D->GetDevice();

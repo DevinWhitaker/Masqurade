@@ -7,70 +7,68 @@
 ///////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include <list>
 #include <map>
-using std::multimap;
-using std::pair;
-using std::list;
+#include <list>
 
 #include "CEvent.h"
 #include "IListener.h"
 
 class CSGD_EventSystem
 {
-	private:
-		//	Our Database, this will contain clients that can "listen" for events.
-		multimap<EVENTID, IListener*>	m_ClientDatabase;
-	
-		//	Events waiting to be processed.
-		list<CEvent>		m_CurrentEvents;
+private:
+	//	Our Database, this will contain clients that can "listen" for events.
+	std::multimap< EVENTID, IListener* >	m_ClientDatabase;
 
-		//	Utility functions - private because they will only ever be used by this class.
-		//
-		//	Finds the event in the database and then calls each of the registered client's 
-		//	EventHandler functions.
-		void DispatchEvent(CEvent* pEvent);
-		bool AlreadyRegistered(EVENTID eventID, IListener* pClient);
+	//	Events waiting to be processed.
+	std::list< const CEvent >				m_EventQueue;
 
-		CSGD_EventSystem() {}
-		CSGD_EventSystem(const CSGD_EventSystem&);
-		CSGD_EventSystem& operator=(const CSGD_EventSystem&);
 
-		~CSGD_EventSystem() {}
+	//	Utility functions - private because they will only ever be used by this class.
+	//
+	//	Finds the event in the database and then calls each of the registered client's 
+	//	EventHandler functions.
+	void DispatchEvent( const CEvent* pEvent );
+	bool AlreadyRegistered( const EVENTID& eventID, const IListener* pClient );
 
-	public:
+	CSGD_EventSystem() {}
+	~CSGD_EventSystem() {}
 
-		static CSGD_EventSystem* GetInstance(void)
-		{
-			static CSGD_EventSystem instance;
-			return &instance;
-		}
+	CSGD_EventSystem( const CSGD_EventSystem& );
+	CSGD_EventSystem& operator= ( const CSGD_EventSystem& );
 
-		//	This adds a client to the database.  This will make new "buckets" if necessary and then
-		//	add the client to that given bucket.
-		void RegisterClient(EVENTID eventID, IListener* pClient);
 
-		//	Unregisters the client for the specified event only
-		void UnregisterClient(EVENTID eventID, IListener* pClient);
+public:
 
-		//	Removes the client from the database entirely
-		void UnregisterClientAll(IListener* pClient);
+	static CSGD_EventSystem* GetInstance( void );
 
-		//	Checks if an event is already queued.
-		bool HasEventTriggered( EVENTID eventID );
+	//	This adds a client to the database.  This will make new "buckets" if necessary and then
+	//	add the client to that given bucket.
+	void RegisterClient( const EVENTID& eventID, IListener* pClient);
 
-		//	Sends an event to be processed later on.
-		void SendEvent(EVENTID eventID, void* pData = NULL);
+	//	Unregisters the client for the specified event only
+	void UnregisterClient( const EVENTID& eventID, const IListener* pClient);
 
-		//	Sends an event to be processed later on if it has not already been triggered.
-		void SendUniqueEvent( EVENTID eventID, void* pData = NULL );
+	//	Removes the client from the database entirely
+	void UnregisterClientAll( const IListener* pClient );
 
-		//	Processes all events in our event list.
-		void ProcessEvents(void);
+	//	Checks if an event is already queued.
+	bool HasEventTriggered( const EVENTID& eventID );
 
-		//	Clears all pending events
-		void ClearEvents(void);
+	//	Queues an event to be processed later on.
+	void QueueEvent( const EVENTID& eventID, void* pData = NULL, const void* pDestination = NULL, void* pSender = NULL );
 
-		//	Unregisters all objects
-		void ShutdownEventSystem(void);
+	//	Queues an event to be processed later on if it has not already been triggered.
+	void QueueUniqueEvent( const EVENTID& eventID, void* pData = NULL );
+
+	//	Sends an event to be processed immediately.
+	void SendEventNow( const EVENTID& eventID, void* pData = NULL, const void* pDestination = NULL, void* pSender = NULL );
+
+	//	Processes all events in our event list.
+	void ProcessEvents( void );
+
+	//	Clears all pending events
+	void ClearEvents( void );
+
+	//	Unregisters all objects
+	void Terminate( void );
 };

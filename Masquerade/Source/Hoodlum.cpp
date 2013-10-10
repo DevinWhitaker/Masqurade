@@ -100,7 +100,7 @@ void CHoodlum::Update(float fElapsed)
 	{
 		m_sHoodAndCorinne.pCarrier = this;
 		m_sHoodAndCorinne.pCarried = m_pCorinne;
-		CSGD_EventSystem::GetInstance()->SendEvent( "flee", &m_sHoodAndCorinne );
+		CSGD_EventSystem::GetInstance()->QueueEvent( "flee", &m_sHoodAndCorinne );
 	}
 
 	if( distance_between_me_and_corinne < GRAB_CORINNE_RANGE && !m_bHasCorinne && m_nHealth > 0 )
@@ -119,7 +119,7 @@ void CHoodlum::Update(float fElapsed)
 			{
 				if( rand() % GRAB_CHANCE == 0 )//random chance to grab corinne
 				{
-					CSGD_EventSystem::GetInstance()->SendUniqueEvent( "pickup", &m_sHoodAndCorinne );
+					CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "pickup", &m_sHoodAndCorinne );
 					CFleeState* pFlee = new CFleeState;
 					pFlee->Enter( this );
 					pFlee->AddFleeType( OBJ_FOX );
@@ -131,7 +131,7 @@ void CHoodlum::Update(float fElapsed)
 			}
 			else//normal conditions
 			{
-				CSGD_EventSystem::GetInstance()->SendUniqueEvent( "pickup", &m_sHoodAndCorinne );
+				CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "pickup", &m_sHoodAndCorinne );
 				CFleeState* pFlee = new CFleeState;
 				pFlee->Enter( this );
 				pFlee->AddFleeType( OBJ_FOX );
@@ -201,10 +201,10 @@ void CHoodlum::Update(float fElapsed)
 		if( m_frAnime.isPlaying() == false )
 		{
 			CDestroyEnemyMessage* pMsg = new CDestroyEnemyMessage( this );
-			CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+			CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 			CAnimationManager::GetInstance()->RemoveFrame( &m_frAnime );
 			m_sHoodAndCorinne.pCarrier = nullptr;
-			CSGD_EventSystem::GetInstance()->SendUniqueEvent( "putdown", &m_sHoodAndCorinne );
+			CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "putdown", &m_sHoodAndCorinne );
 			CSGD_EventSystem::GetInstance()->UnregisterClientAll(GetCurrentState());
 		}
 	}

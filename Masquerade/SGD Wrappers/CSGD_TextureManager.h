@@ -9,14 +9,13 @@
 ////////////////////////////////////////////////////////
 
 /* 
-Disclaimer:
-This source code was developed for and is the property of:
+	Disclaimer:
+	This source code was developed for and is the property of:
 
-(c) Full Sail University Game Development Curriculum 2008-2012 and
-(c) Full Sail Real World Education Game Design & Development Curriculum 2000-2008
+	(c) Full Sail University
 
-Full Sail students may not redistribute or make this code public, 
-but may use it in their own personal projects.
+	Full Sail students may not redistribute or make this code public, 
+	but may use it in their own personal projects.
 */
 
 #pragma once
@@ -27,7 +26,6 @@ but may use it in their own personal projects.
 
 #include <tchar.h>
 #include <vector>
-using std::vector;
 
 class CSGD_TextureManager
 {
@@ -62,7 +60,7 @@ private:
 	~CSGD_TextureManager(void);
 
 private:
-	vector<TEXTURE>				m_Textures;			// A list of all the loaded textures.
+	std::vector<TEXTURE>		m_Textures;			// A list of all the loaded textures.
 	LPDIRECT3DDEVICE9			m_lpDevice;			// A pointer to the Direct3D device.
 	LPD3DXSPRITE				m_lpSprite;			// A pointer to the sprite interface.
 	static CSGD_TextureManager	m_Instance;			// An instance to this class.
@@ -83,7 +81,7 @@ public:
 	static CSGD_TextureManager *GetInstance(void);
 
 	///////////////////////////////////////////////////////////////////
-	//	Function:	"InitializeTextureManager"
+	//	Function:	"Initialize"
 	//
 	//	Last Modified:		8/29/2006
 	//
@@ -94,10 +92,10 @@ public:
 	//
 	//	Purpose:	Initializes the texture manager.
 	///////////////////////////////////////////////////////////////////
-	bool InitTextureManager(LPDIRECT3DDEVICE9 lpDevice, LPD3DXSPRITE lpSprite);
+	bool Initialize(LPDIRECT3DDEVICE9 lpDevice, LPD3DXSPRITE lpSprite);
 
 	///////////////////////////////////////////////////////////////////
-	//	Function:	"ShutdownTextureManager"
+	//	Function:	"Terminate"
 	//
 	//	Last Modified:		10/29/2008
 	//
@@ -108,7 +106,7 @@ public:
 	//	Purpose:	Unloads all the loaded textures and 
 	//				releases references to sprite and d3d devices.
 	///////////////////////////////////////////////////////////////////
-	void ShutdownTextureManager(void);
+	void Terminate(void);
 
 	///////////////////////////////////////////////////////////////////
 	//	Function:	"LoadTexture"
@@ -188,7 +186,7 @@ public:
 	//				fRotCenterX	-	The x center to apply the rotation from.
 	//				fRotCenterY	-	The y center to apply the rotation from.
 	//				fRotation	-	How much to rotate the texture.
-	//				dwColor		-	The color to apply to the texture (use D3DCOLOR_XRGB() Macro).
+	//				dwColor		-	The color to apply to the texture (use D3DCOLOR_ARGB() macro).
 	//
 	//	Return:		true if successful.
 	//

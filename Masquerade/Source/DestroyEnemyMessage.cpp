@@ -5,8 +5,7 @@
 #include "BaseObject.h"
 
 CDestroyEnemyMessage::CDestroyEnemyMessage(CEnemy* pEnemy)
-	: CMessage( MSG_DESTROY_ENEMY ),
-	  m_pEnemy( pEnemy )
+	: m_pEnemy( pEnemy )
 {
 	if( m_pEnemy != nullptr )
 		m_pEnemy->AddRef();

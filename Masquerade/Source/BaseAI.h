@@ -24,7 +24,7 @@ public:
 	virtual void Render(void) ;
 	virtual int GetAIType(void) ;
 	virtual void NodeCollision( void );
-	virtual void HandleEvent( CEvent* pEvent );
+	virtual void HandleEvent( const CEvent* pEvent );
 
 	struct sObjectStruct
 	{

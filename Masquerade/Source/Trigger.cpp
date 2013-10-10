@@ -66,7 +66,7 @@ void CTrigger::Use( void )
 				GetInRangeBool() == true /*&&
 				CSGD_EventSystem::GetInstance()->HasEventTriggered( "activate") == false */ )
 			{
-				CSGD_EventSystem::GetInstance()->SendEvent( "activate", (*iter).second );
+				CSGD_EventSystem::GetInstance()->QueueEvent( "activate", (*iter).second );
 				(*iter).second->SetActivatedBool( true );
 				if( pXA->SFXIsSoundPlaying( CFileManager::GetInstance()->GetSoundID("MASQ_Gate") ) == false )
 					pXA->SFXPlaySound( CFileManager::GetInstance()->GetSoundID("MASQ_Gate") );
@@ -76,7 +76,7 @@ void CTrigger::Use( void )
 				GetInRangeBool() == true /*&&
 				CSGD_EventSystem::GetInstance()->HasEventTriggered(  "deactivate" ) == false  */)
 			{
-				CSGD_EventSystem::GetInstance()->SendEvent( "deactivate", (*iter).second );
+				CSGD_EventSystem::GetInstance()->QueueEvent( "deactivate", (*iter).second );
 				(*iter).second->SetActivatedBool( false );
 				if( pXA->SFXIsSoundPlaying( CFileManager::GetInstance()->GetSoundID("MASQ_Gate") ) == false )
 					pXA->SFXPlaySound( CFileManager::GetInstance()->GetSoundID("MASQ_Gate") );

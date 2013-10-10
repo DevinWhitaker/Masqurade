@@ -54,7 +54,7 @@ CObjectManager::~CObjectManager(void)
 void CObjectManager::UpdateAllObjects(float fElapsedTime)
 {
 	// Call the Update method of all objects in the list'
-	iterator iter;
+	vector<IBaseObject*>::iterator iter;
 	CCamera* cam = CCamera::GetInstance();
 
 #if _DEVIN
@@ -93,7 +93,7 @@ void CObjectManager::UpdateAllObjects(float fElapsedTime)
 
 void CObjectManager::SetGlobalTimeScalar(float m_fScalar)
 {
-	iterator iter;
+	vector<IBaseObject*>::iterator iter;
 
 	for( iter = m_vObjectList.begin(); iter != m_vObjectList.end(); ++iter)
 	{
@@ -103,8 +103,8 @@ void CObjectManager::SetGlobalTimeScalar(float m_fScalar)
 
 void CObjectManager::CheckCollisions( void )
 {
-	iterator iter;
-	iterator iterj;
+	vector<IBaseObject*>::iterator iter;
+	vector<IBaseObject*>::iterator iterj;
 	CCamera* cam = CCamera::GetInstance();
 
 #if _DEVIN
@@ -145,7 +145,7 @@ void CObjectManager::CheckCollisions( void )
 void CObjectManager::RenderAllObjects(void)
 {
 	// Call the Update method of all objects in the list'
-	iterator iter;
+	vector<IBaseObject*>::iterator iter;
 	CCamera* cam = CCamera::GetInstance();
 
 #if _DEVIN
@@ -195,7 +195,7 @@ void CObjectManager::RemoveObject( IBaseObject* pObject)
 	if( pObject == nullptr )
 		return;
 
-	iterator iter;
+	vector<IBaseObject*>::iterator iter;
 
 	for( iter = m_vObjectList.begin(); iter != m_vObjectList.end(); ++iter)
 	{
@@ -215,7 +215,7 @@ void CObjectManager::RemoveObject( IBaseObject* pObject)
 void CObjectManager::RemoveAllObjects(void)
 {
 	// Rlease ever object in the list
-	iterator iter;
+	vector<IBaseObject*>::iterator iter;
 
 	for( iter = m_vObjectList.begin(); iter != m_vObjectList.end(); ++iter)
 	{
@@ -229,7 +229,7 @@ void CObjectManager::RemoveAllObjects(void)
 
 std::vector<IBaseObject*>  CObjectManager::FindObjectsWithType( int nBaseObjType, int eObjType  )
 {
-	iterator iter;
+	vector<IBaseObject*>::iterator iter;
 	std::vector<IBaseObject*> vReturnVector;
 	for( iter = m_vObjectList.begin(); iter != m_vObjectList.end(); ++iter)
 	{

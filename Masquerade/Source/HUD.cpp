@@ -114,12 +114,12 @@ void CHUD::Render()
 			r.right = 110;
 			r.bottom = 60;
 
-			pD3D->DrawRect(r,255, 100, 200);
+			pD3D->DrawRect(r, 0xFF060C);
 			
-			pD3D->DrawLine( 100, 10, 110, 10, 0,0,0);
-			pD3D->DrawLine( 110, 10, 110, 60, 0,0,0);
-			pD3D->DrawLine( 110, 60, 100, 60, 0,0,0);
-			pD3D->DrawLine( 100, 60, 100, 10, 0,0,0);
+			pD3D->DrawLine( 100, 10, 110, 10, 0x000000);
+			pD3D->DrawLine( 110, 10, 110, 60, 0x000000);
+			pD3D->DrawLine( 110, 60, 100, 60, 0x000000);
+			pD3D->DrawLine( 100, 60, 100, 10, 0x000000);
 		}
 	}
 
@@ -158,7 +158,7 @@ void CHUD::Render()
 				float xPos = (m_nHeartStartPos.fX-curHeartSize+offsetX+spacer) + curHeartSize/2.0f;
 				float yPos = ((m_nHeartStartPos.fY-(height*HeartScale)/2.0f+offsetY)+raiseYpos) + curHeartSize/2.0f;
 				CCreateEmitterMessage*	pPE = new CCreateEmitterMessage( "Heart Pop", "Heart Pop", xPos, yPos, nullptr, false );
-				CSGD_MessageSystem::GetInstance()->SendMsg( pPE );
+				CSGD_MessageSystem::GetInstance()->QueueMessage( pPE );
 				pPE = nullptr;
 				/*m_pHeartPop = CParticleManager::GetInstance()->CloneEmitterFromTemplate("Heart Pop");
 				m_pHeartPop->SetPos( (m_nHeartStartPos.fX-curHeartSize+offsetX+spacer),
@@ -203,6 +203,6 @@ void CHUD::Render()
 
 }
 
-void CHUD::HandleEvent(CEvent* pEvent)
+void CHUD::HandleEvent(	const CEvent* pEvent)
 {
 }

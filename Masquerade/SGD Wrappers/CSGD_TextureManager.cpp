@@ -9,14 +9,13 @@
 ////////////////////////////////////////////////////////
 
 /* 
-Disclaimer:
-This source code was developed for and is the property of:
+	Disclaimer:
+	This source code was developed for and is the property of:
 
-(c) Full Sail University Game Development Curriculum 2008-2012 and
-(c) Full Sail Real World Education Game Design & Development Curriculum 2000-2008
+	(c) Full Sail University
 
-Full Sail students may not redistribute or make this code public, 
-but may use it in their own personal projects.
+	Full Sail students may not redistribute or make this code public, 
+	but may use it in their own personal projects.
 */
 
 #include "CSGD_TextureManager.h"
@@ -25,12 +24,18 @@ but may use it in their own personal projects.
 //	For macros
 #include "SGD_Util.h" // for SAFE_RELEASE and DXERROR
 
+
+using std::vector;
+
 #pragma warning (disable : 4996)
 
+
+// Instantiate the static object.
 CSGD_TextureManager CSGD_TextureManager::m_Instance;
 
+
 ///////////////////////////////////////////////////////////////////
-//	Function:	"CSGD_TextureManager(Constructor)"
+//	Function:	"CSGD_TextureManager" (Constructor)
 ///////////////////////////////////////////////////////////////////
 CSGD_TextureManager::CSGD_TextureManager(void)
 {
@@ -39,7 +44,7 @@ CSGD_TextureManager::CSGD_TextureManager(void)
 }
 
 ///////////////////////////////////////////////////////////////////
-//	Function:	"CSGD_TextureManager(Destructor)"
+//	Function:	"CSGD_TextureManager" (Destructor)
 ///////////////////////////////////////////////////////////////////
 CSGD_TextureManager::~CSGD_TextureManager(void)
 {
@@ -62,7 +67,7 @@ CSGD_TextureManager *CSGD_TextureManager::GetInstance(void)
 }
 
 ///////////////////////////////////////////////////////////////////
-//	Function:	"InitTextureManager"
+//	Function:	"Initialize"
 //
 //	Last Modified:		8/29/2006
 //
@@ -73,7 +78,7 @@ CSGD_TextureManager *CSGD_TextureManager::GetInstance(void)
 //
 //	Purpose:	Initializes the texture manager.
 ///////////////////////////////////////////////////////////////////
-bool CSGD_TextureManager::InitTextureManager(LPDIRECT3DDEVICE9 lpDevice, LPD3DXSPRITE lpSprite)
+bool CSGD_TextureManager::Initialize(LPDIRECT3DDEVICE9 lpDevice, LPD3DXSPRITE lpSprite)
 {
 	m_lpDevice = lpDevice;
 	m_lpDevice->AddRef();
@@ -85,7 +90,7 @@ bool CSGD_TextureManager::InitTextureManager(LPDIRECT3DDEVICE9 lpDevice, LPD3DXS
 }
 
 ///////////////////////////////////////////////////////////////////
-//	Function:	"ShutdownTextureManager"
+//	Function:	"Terminate"
 //
 //	Last Modified:		10/29/2008
 //
@@ -96,7 +101,7 @@ bool CSGD_TextureManager::InitTextureManager(LPDIRECT3DDEVICE9 lpDevice, LPD3DXS
 //	Purpose:	Unloads all the loaded textures and 
 //				releases references to sprite and d3d devices.
 ///////////////////////////////////////////////////////////////////
-void CSGD_TextureManager::ShutdownTextureManager(void)
+void CSGD_TextureManager::Terminate(void)
 {
 	for (unsigned int i = 0; i < m_Textures.size(); i++)
 	{
@@ -167,82 +172,61 @@ int CSGD_TextureManager::LoadTexture(const TCHAR* szFilename, DWORD dwColorkey)
 	// if we didn't find an open spot, load it in a new one
 	if (nID == -1)
 	{
-		// A temp texture object.
-		TEXTURE loaded;
-
-		// Copy the filename of the loaded texture.
-		_tcscpy_s(loaded.filename, _countof(loaded.filename), szFilename);
-
-		// Load the texture from the given file.
-		HRESULT hr = 0;
-		if (FAILED(hr = D3DXCreateTextureFromFileEx(m_lpDevice, szFilename, 0, 0, D3DX_DEFAULT, 0,
-			D3DFMT_UNKNOWN, D3DPOOL_MANAGED, D3DX_DEFAULT,
-			D3DX_DEFAULT, dwColorkey, 0, 0, &loaded.texture)))
-		{
-			// Failed.
-			TCHAR szBuffer[256] = {0};
-			_stprintf_s(szBuffer, _countof(szBuffer), _T("Failed to Create Texture - %s"), szFilename); 
-			MessageBox(0, szBuffer, _T("TextureManager Error"), MB_OK);
-			return -1;
-		}
-
-		// AddRef.
-		loaded.ref = 1;
-
-		// Get surface description (to find Width/Height of the texture)
-		D3DSURFACE_DESC d3dSurfDesc;
-		ZeroMemory(&d3dSurfDesc, sizeof(d3dSurfDesc));
-
-		loaded.texture->GetLevelDesc(0, &d3dSurfDesc);
-
-		// Remember the Width and Height
-		loaded.Width	= d3dSurfDesc.Width;
-		loaded.Height	= d3dSurfDesc.Height;
-
-		// Put the texture into the list.
-		m_Textures.push_back(loaded);
-
-		// Return the nID of the texture.
-		return (int)m_Textures.size() - 1;
+		TEXTURE newTexture;
+		m_Textures.push_back( newTexture );
+		nID = m_Textures.size() - 1;
 	}
-	// we found an open spot
 	else
 	{
 		// Make sure the texture has been released.
 		SAFE_RELEASE(m_Textures[nID].texture);
-
-		// Copy the filename of the loaded texture.
-		_tcscpy_s(m_Textures[nID].filename, _countof(m_Textures[nID].filename), szFilename);
-
-		// Load the texture from the given file.
-		HRESULT hr = 0;
-		if (FAILED(hr = D3DXCreateTextureFromFileEx(m_lpDevice, szFilename, 0, 0, D3DX_DEFAULT, 0,
-			D3DFMT_UNKNOWN, D3DPOOL_MANAGED, D3DX_DEFAULT,
-			D3DX_DEFAULT, dwColorkey, 0, 0, &m_Textures[nID].texture)))
-		{
-			// Failed.
-			TCHAR szBuffer[256] = {0};
-			_stprintf_s(szBuffer, _countof( szBuffer ), _T("Failed to Create Texture - %s"), szFilename); 
-			MessageBox(0, szBuffer, _T("TextureManager Error"), MB_OK);
-			return -1;
-		}
-
-		// Get surface description (to find Width/Height of the texture)
-		D3DSURFACE_DESC d3dSurfDesc;
-		ZeroMemory(&d3dSurfDesc, sizeof(d3dSurfDesc));
-
-		m_Textures[nID].texture->GetLevelDesc(0, &d3dSurfDesc);
-
-		// Remember the Width and Height
-		m_Textures[nID].Width	= d3dSurfDesc.Width;
-		m_Textures[nID].Height	= d3dSurfDesc.Height;
-
-		// AddRef
-		m_Textures[nID].ref = 1;
-
-		// Return the nID of the texture.
-		return nID;
 	}
+
+
+	// Easy reference to the texture
+	TEXTURE& tex = m_Textures[ nID ];
+
+	// Copy the filename of the texture.
+	_tcscpy_s(tex.filename, _countof(tex.filename), szFilename);
+
+	// Load the texture from the given file.
+	D3DXIMAGE_INFO info = {};
+	HRESULT hr = 0;
+	if (FAILED(hr = D3DXCreateTextureFromFileEx(m_lpDevice, szFilename, 0, 0, D3DX_DEFAULT, 0,
+		D3DFMT_UNKNOWN, D3DPOOL_MANAGED, D3DX_DEFAULT,
+		D3DX_DEFAULT, dwColorkey, &info, NULL, &tex.texture)))
+	{
+		// Failed.
+		TCHAR szBuffer[256] = {0};
+		_stprintf_s(szBuffer, _countof(szBuffer), _T("Failed to Create Texture - %s"), szFilename); 
+		MessageBox(0, szBuffer, _T("TextureManager Error"), MB_OK);
+		return -1;
+	}
+
+	// AddRef.
+	tex.ref = 1;
+
+	// Get surface description (to find Width/Height of the texture)
+	D3DSURFACE_DESC d3dSurfDesc;
+	ZeroMemory(&d3dSurfDesc, sizeof(d3dSurfDesc));
+
+	tex.texture->GetLevelDesc(0, &d3dSurfDesc);
+
+	// Remember the Width and Height
+	tex.Width	= d3dSurfDesc.Width;
+	tex.Height	= d3dSurfDesc.Height;
+
+	// Check if the surface size matches the original image's size
+	if( tex.Width != info.Width || tex.Height != info.Height )
+	{
+		TCHAR warning[ 256 ] = {};
+		_stprintf_s( warning, 256, _T("SGD TEXTUREMANAGER - Image (%s) is stretched from %ix%i to %ix%i"), szFilename, info.Width, info.Height, tex.Width, tex.Height );
+		OutputDebugString( warning );
+		OutputDebugString( _T("\n") );
+	}
+
+	// Return the nID of the texture.
+	return nID;
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -328,7 +312,7 @@ int CSGD_TextureManager::GetTextureHeight(int nID)
 //				fRotCenterX	-	The x center to apply the rotation from.
 //				fRotCenterY	-	The y center to apply the rotation from.
 //				fRotation	-	How much to rotate the texture.
-//				dwColor		-	The color to apply to the texture (use D3DCOLOR_XRGB() Macro).
+//				dwColor		-	The color to apply to the texture (use D3DCOLOR_ARGB() macro).
 //
 //	Return:		true if successful.
 //
@@ -370,7 +354,7 @@ bool CSGD_TextureManager::Draw(int nID, int nX, int nY, float fScaleX, float fSc
 	D3DXMatrixTranslation(&translate, fRotCenterX * fScaleX, fRotCenterY * fScaleY, 0.0f);
 	combined *= translate;
 
-	// Translate the sprite
+	// Translate the sprite.
 	D3DXMatrixTranslation(&translate, (float)nX, (float)nY, 0.0f);
 	combined *= translate;
 

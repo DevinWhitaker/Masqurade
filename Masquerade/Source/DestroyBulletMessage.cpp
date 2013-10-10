@@ -5,8 +5,7 @@
 #include "BaseObject.h"
 
 CDestroyBulletMessage::CDestroyBulletMessage(CBullet* pBullet)
-	: CMessage( MSG_DESTROY_BULLET ),
-	  m_pBullet( pBullet )
+	: m_pBullet( pBullet )
 {
 	if( m_pBullet != nullptr )
 		m_pBullet->AddRef();

@@ -32,7 +32,7 @@ public:
 	virtual bool CheckCollision( IBaseObject * pBase );
 	virtual void CollisionResponse( CBaseObject* pBase, RECT hitbox, RECT hit, POINT anchor );
 
-	virtual void HandleEvent( CEvent* pEvent );
+	virtual void HandleEvent( const CEvent* pEvent );
 
 	void ChangeState( CBaseAI* newState );
 

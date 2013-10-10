@@ -40,7 +40,7 @@ void CBullet::Update( float fElapsedTime )
 	if(m_fTimeAlive >= m_fLifeDuration)
 	{
 		CDestroyBulletMessage* pMsg = new CDestroyBulletMessage( this );
-		CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+		CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 		pMsg = nullptr;
 	}
 
@@ -59,7 +59,7 @@ void CBullet::Update( float fElapsedTime )
 		{
 			// Self Destruct Sequence Activated
 			CDestroyBulletMessage* pMsg = new CDestroyBulletMessage( this );
-			CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+			CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 			pMsg = nullptr;
 		}
 
@@ -72,7 +72,7 @@ void CBullet::Update( float fElapsedTime )
 		{
 			// Self Destruct Sequence Activated
 			CDestroyBulletMessage* pMsg = new CDestroyBulletMessage( this );
-			CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+			CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 			pMsg = nullptr;
 
 		}
@@ -85,7 +85,7 @@ void CBullet::Update( float fElapsedTime )
 			{
 				// Self Destruct Sequence Activated
 				CDestroyBulletMessage* pMsg = new CDestroyBulletMessage( this );
-				CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+				CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 				pMsg = nullptr;
 			}
 		}
@@ -150,10 +150,10 @@ bool CBullet::CheckCollision( IBaseObject* pOther )
 		case SQUIRT_BULLET:
 			if(pOther->GetType() == OBJ_ENEMY)
 			{
-				CSGD_EventSystem::GetInstance()->SendEvent( "Enemy_Hit", pOther);
+				CSGD_EventSystem::GetInstance()->QueueEvent( "Enemy_Hit", pOther);
 				// Play Sound Here
 				CDestroyBulletMessage* pMsg = new CDestroyBulletMessage(this);
-				CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+				CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 				pMsg = nullptr;
 			}
 			break;
@@ -190,10 +190,10 @@ bool CBullet::CheckCollision( IBaseObject* pOther )
 			if(pOther->GetType() == OBJ_FOX)
 			{
 				//this->AddRef();
-				CSGD_EventSystem::GetInstance()->SendEvent( "Fox_Hit", this);
+				CSGD_EventSystem::GetInstance()->QueueEvent( "Fox_Hit", this);
 				// Play Sound Here
 				/*CDestroyBulletMessage* pMsg = new CDestroyBulletMessage(this);
-				CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+				CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 				pMsg = nullptr;*/
 			}
 			break;
@@ -213,7 +213,7 @@ void CBullet::tileCollisionResponse(int COLLISION_SIDE)
 	case SQUIRT_BULLET:
 		{
 			CDestroyBulletMessage* pMsg = new CDestroyBulletMessage(this);
-			CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+			CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 			pMsg = nullptr;
 		}
 		break;
@@ -241,7 +241,7 @@ void CBullet::tileCollisionResponse(int COLLISION_SIDE)
 			SetVelX(0);
 			break;
 		case TOP:
-			CSGD_EventSystem::GetInstance()->SendEvent( "Pie Landed", this );
+			CSGD_EventSystem::GetInstance()->QueueEvent( "Pie Landed", this );
 			SetVelY(0);
 			break;
 		case BOTTOM:

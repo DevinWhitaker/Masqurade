@@ -9,7 +9,7 @@
 #include "ParticleEmitter.h"
 
 CDestroyEmitterMessage::CDestroyEmitterMessage( std::string szMapName ) 
-	: CMessage( MSG_DESTROY_PEMITTER ), m_szMapName( szMapName ) 
+	: m_szMapName( szMapName ) 
 {
 	//this->GetEmitter()->AddRef();
 }

@@ -96,7 +96,7 @@ void CSeekState::Update( float fElapsedTime )
 #if _DEBUG
 			printf( "Switching State to Idle because the vector was empty. \n" );
 #endif
-		CSGD_EventSystem::GetInstance()->SendUniqueEvent( "follow", &GetObjectsInvolved() );
+		CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "follow", &GetObjectsInvolved() );
 		return;
 	}
 
@@ -104,7 +104,7 @@ void CSeekState::Update( float fElapsedTime )
 		IsObjectInBeingSeeked( OBJ_TRIGGER, CTrigger::TRIG_LEVER ) == false &&
 		GetObjectsInvolved().pCarried->GetType() == OBJ_CORINNE )
 	{
-		CSGD_EventSystem::GetInstance()->SendUniqueEvent("idle", &GetObjectsInvolved() );
+		CSGD_EventSystem::GetInstance()->QueueUniqueEvent("idle", &GetObjectsInvolved() );
 		return;
 	}
 
@@ -132,7 +132,7 @@ void CSeekState::Update( float fElapsedTime )
 
 	if( sClosetObject.nPosInVec == -1 )
 	{
-			CSGD_EventSystem::GetInstance()->SendUniqueEvent("idle", &GetObjectsInvolved() );
+			CSGD_EventSystem::GetInstance()->QueueUniqueEvent("idle", &GetObjectsInvolved() );
 			return;
 	}
 //#if _DEBUG
@@ -151,7 +151,7 @@ void CSeekState::Update( float fElapsedTime )
 #endif
 			CLever*	pLever = dynamic_cast< CLever* >(  m_vObjectsToCheck[ sClosetObject.nPosInVec ] );
 			pLever->Use();
-			CSGD_EventSystem::GetInstance()->SendUniqueEvent("idle", &GetObjectsInvolved() );
+			CSGD_EventSystem::GetInstance()->QueueUniqueEvent("idle", &GetObjectsInvolved() );
 			return;
 		}
 		else

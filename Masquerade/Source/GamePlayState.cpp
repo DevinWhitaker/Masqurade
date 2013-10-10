@@ -21,7 +21,7 @@ Purpose:	Handle gameplay components.
 #include "../SGD Wrappers/CSGD_XAudio2.h"
 #include "../SGD Wrappers/SGD_String.h"
 /***********************************************/
-#include "Message.h"
+#include "../SGD Wrappers/IMessage.h"
 #include "CreateEmitterMessage.h"
 #include "DestroyEmitterMessage.h"
 #include "CreateBulletMessage.h"
@@ -251,7 +251,7 @@ void CGamePlayState::Enter(void)
 	m_pFM->AddSoundID( "World_2",
 		m_pXA->MusicLoadSong( _T("Resources/Sound/Music/MASQ_Pikachu.xwm") ), true );UpdateLoad(m_fLoadingPercent,CSEC);
 	/*******************************************************************/
-	m_pMS->InitMessageSystem( &MessageProc );	/*Call After Every Function*/UpdateLoad(m_fLoadingPercent,CSEC);
+	m_pMS->Initialize( &MessageProc );	/*Call After Every Function*/UpdateLoad(m_fLoadingPercent,CSEC);
 
 	m_bMessageTest = false;
 	
@@ -581,7 +581,7 @@ void CGamePlayState::Exit(void)
 	if( m_pES != nullptr )
 	{
 		m_pES->ClearEvents();
-		m_pES->ShutdownEventSystem();
+		m_pES->Terminate();
 		m_pES = nullptr;
 	}
 
@@ -667,14 +667,14 @@ bool CGamePlayState::Input(void)
 	//	if( m_bMessageTest == false)
 	//	{
 	//		CCreateEmitterMessage*	pWE = new CCreateEmitterMessage( "Colored Wisps", "Test", 0, 0, m_Fox );
-	//		m_pMS->SendMsg( pWE );
+	//		m_pMS->QueueMessage( pWE );
 	//		pWE = nullptr;
 	//		m_bMessageTest = true;
 	//	}
 	//	else
 	//	{
 	//		CDestroyEmitterMessage*	pWE = new CDestroyEmitterMessage( "Test" );
-	//		m_pMS->SendMsg( pWE );
+	//		m_pMS->QueueMessage( pWE );
 	//		pWE = nullptr;
 	//		m_bMessageTest = false;
 	//	}
@@ -717,7 +717,7 @@ bool CGamePlayState::Input(void)
 			case LAST_CHECKPOINT:
 				{
 					CResetMessage* msg = new CResetMessage;
-					CSGD_MessageSystem::GetInstance()->SendMsg( msg );
+					CSGD_MessageSystem::GetInstance()->QueueMessage( msg );
 					SetPauseBool( false );
 				}
 				break;
@@ -810,7 +810,7 @@ bool CGamePlayState::Input(void)
 			case LAST_CHECKPOINT:
 				{
 					CResetMessage* msg = new CResetMessage;
-					CSGD_MessageSystem::GetInstance()->SendMsg( msg );
+					CSGD_MessageSystem::GetInstance()->QueueMessage( msg );
 					SetPauseBool( false );
 				}
 				break;
@@ -983,7 +983,7 @@ void CGamePlayState::Update(float fElapsedTime)
 		if(m_bSplash && m_bSplashOnce)
 		{
 			CCreateEmitterMessage*	pPE = new CCreateEmitterMessage( "Splash", "Splash", m_Fox->GetX(), m_Fox->GetY() );
-			CSGD_MessageSystem::GetInstance()->SendMsg( pPE );
+			CSGD_MessageSystem::GetInstance()->QueueMessage( pPE );
 			pPE = nullptr;
 			m_bSplashOnce = false;
 		}
@@ -1028,14 +1028,14 @@ void CGamePlayState::Update(float fElapsedTime)
 				{
 					CCreateEmitterMessage*	pPE = new CCreateEmitterMessage( "Firework Multi 3", "Firework Multi 3", 
 						(GetStageEndMarker()-400)+(rand()%800), (float)(300-rand()%200) );
-					CSGD_MessageSystem::GetInstance()->SendMsg( pPE );
+					CSGD_MessageSystem::GetInstance()->QueueMessage( pPE );
 					pPE = nullptr;
 				}
 				else
 				{
 					CCreateEmitterMessage*	pPE2 = new CCreateEmitterMessage( "Firework Multi 5", "Firework Multi 5", 
 						(GetStageEndMarker()-400)+(rand()%800), (float)(300-rand()%100) );
-					CSGD_MessageSystem::GetInstance()->SendMsg( pPE2 );
+					CSGD_MessageSystem::GetInstance()->QueueMessage( pPE2 );
 					pPE2 = nullptr;
 				}
 				m_bNewFirework = false;
@@ -1132,7 +1132,7 @@ void CGamePlayState::Update(float fElapsedTime)
 			CCreateEmitterMessage*	pPE2 = new CCreateEmitterMessage( (bFW5) ? "Firework Multi 5" : "Firework Multi 3",
 				(bFW5) ? "Firework Multi 5" : "Firework Multi 3", 
 				FWxPos, (float)(300-rand()%100) );
-			CSGD_MessageSystem::GetInstance()->SendMsg( pPE2 );
+			CSGD_MessageSystem::GetInstance()->QueueMessage( pPE2 );
 			pPE2 = nullptr;
 		}
 		//printf("Fox's X: %f Fox's Y: %f\n", m_Fox->GetX(), m_Fox->GetY() );
@@ -1230,12 +1230,12 @@ void CGamePlayState::Render(void)
 
 		TCHAR buffer[100] = {};
 		TSPRINTF_S( buffer, 100, _T("FPS: %i"), m_nFPS );
-		m_pD3D->DrawText( buffer, CGame::GetInstance()->GetWidth() - 200, 50, 255,255,255);
+		m_pD3D->DrawText( buffer, CGame::GetInstance()->GetWidth() - 200, 50, 0xFFFFFF);
 
 		//pD3D->GetSprite()->Flush();
 		TCHAR buffer2[100] = {};
 		TSPRINTF_S( buffer2, 100, _T("Tiles Rendered: %i"), m_pTileManager->GetRenderCount() );
-		m_pD3D->DrawText( buffer2, CGame::GetInstance()->GetWidth() - 200, 70, 255,255,255);
+		m_pD3D->DrawText( buffer2, CGame::GetInstance()->GetWidth() - 200, 70, 0xFFFFFF);
 	}
 	if( GetPauseBool() == true )
 		PauseGameMenu();
@@ -1316,13 +1316,13 @@ void CGamePlayState::PauseGameMenu( void )
 	}
 }
 
-void CGamePlayState::MessageProc(CMessage* msg)
+void CGamePlayState::MessageProc(IMessage* msg)
 {
 	CGamePlayState*	pGPS = CGamePlayState::GetInstance();
 
 	switch( msg->GetMessageID() )
 	{
-	case MSG_CREATE_PEMITTER:
+	case MSG_CREATE_EMITTER:
 		{
 			CParticleEmitter*	pPE =  pGPS->GetParticleManager()->CloneEmitterFromTemplate(
 				dynamic_cast< CCreateEmitterMessage* >(msg)->GetEmitterName() );
@@ -1349,7 +1349,7 @@ void CGamePlayState::MessageProc(CMessage* msg)
 			}
 		}
 		break;
-	case MSG_DESTROY_PEMITTER:
+	case MSG_DESTROY_EMITTER:
 		{
 			std::string temp = dynamic_cast< CDestroyEmitterMessage* >(msg)->GetMapName();
 			pGPS->GetParticleManager()->RemoveEmitter( temp );
@@ -1631,7 +1631,7 @@ unsigned int WINAPI Loading(void* lpvArgList)
 
 		anime.Update( fElapsed, frame );
 
-		D3D->Clear( 0,0,0 );
+		D3D->Clear( 0x000000 );
 		D3D->DeviceBegin();
 		lpSprite->Begin(D3DXSPRITE_ALPHABLEND);
 		{
@@ -1649,7 +1649,7 @@ unsigned int WINAPI Loading(void* lpvArgList)
 
 			hr = lpSprite->Draw(background, NULL, NULL, NULL, D3DCOLOR_ARGB( alpha, 255, 255, 255 ));
 
-			D3D->DrawLine( (int)start, (int)posY, (int)stop, (int)posY, 255, 255, 255 );
+			D3D->DrawLine( (int)start, (int)posY, (int)stop, (int)posY, 0xFFFFFF );
 
 			// Move the world back to identity.
 			D3DXMatrixIdentity(&combined);
@@ -1761,10 +1761,10 @@ void CGamePlayState::RespawnFox(void)
 	m_cCorinne->SetVelY(0.0f);
 
 	if( m_pES->HasEventTriggered( "idle" ) == false )
-		m_pES->SendUniqueEvent( "idle", &m_cCorinne->GetCurrentState()->GetObjectsInvolved() );
+		m_pES->QueueUniqueEvent( "idle", &m_cCorinne->GetCurrentState()->GetObjectsInvolved() );
 	
 	if( m_pES->HasEventTriggered( "putdown" ) == false && m_cCorinne)
-		m_pES->SendUniqueEvent( "putdown", &m_cCorinne->GetCurrentState()->GetObjectsInvolved() );
+		m_pES->QueueUniqueEvent( "putdown", &m_cCorinne->GetCurrentState()->GetObjectsInvolved() );
 	
 	m_cCorinne->ResetHurtTimer();
 	
@@ -1797,7 +1797,7 @@ void CGamePlayState::RespawnCorinne(void)
 	m_cCorinne->SetVelY(0.0f);
 
 	if( m_pES->HasEventTriggered( "idle" ) == false )
-		m_pES->SendUniqueEvent( "idle", &m_cCorinne->GetCurrentState()->GetObjectsInvolved() );
+		m_pES->QueueUniqueEvent( "idle", &m_cCorinne->GetCurrentState()->GetObjectsInvolved() );
 
 	m_cCorinne->ResetHurtTimer();
 }

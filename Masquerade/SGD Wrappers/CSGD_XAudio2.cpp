@@ -15,23 +15,123 @@
 /////////////////////////////////////////////////////////////////
 
 /* 
-Disclaimer:
-This source code was developed for and is the property of:
+	Disclaimer:
+	This source code was developed for and is the property of:
 
-(c) Full Sail University Game Development Curriculum 2008-2012 and
-(c) Full Sail Real World Education Game Design & Development Curriculum 2000-2008
+	(c) Full Sail University
 
-Full Sail students may not redistribute or make this code public, 
-but may use it in their own personal projects.
+	Full Sail students may not redistribute or make this code public, 
+	but may use it in their own personal projects.
 */
 
 #include "CSGD_XAudio2.h"
+#pragma comment( lib, "Winmm.lib" )
+
 #include <assert.h>
 #include <tchar.h>
+
+using std::multimap;
+using std::pair;
+using std::vector;
+using std::queue;
 
 const UINT32 AUDIO_SAMPLE_RATE = 44100; //XAUDIO2_DEFAULT_SAMPLERATE
 const UINT32 AUDIO_ENGINE_OP_SET = XAUDIO2_COMMIT_NOW;//1;
 const float MAX_FREQ_RATIO = 3.0f; //XAUDIO2_DEFAULT_FREQ_RATIO
+
+
+
+///////////////////////////////////////////////////////////////////////////
+// Four Character Code for parsing audio data
+// source: http://msdn.microsoft.com/en-us/library/windows/desktop/ee415781%28v=vs.85%29.aspx
+#ifdef _XBOX //Big-Endian
+#define fourccRIFF 'RIFF'
+#define fourccDATA 'data'
+#define fourccFMT  'fmt '
+#define fourccWAVE 'WAVE'
+#define fourccXWMA 'XWMA'
+#define fourccDPDS 'dpds'
+#endif
+
+#ifndef _XBOX //Little-Endian
+#define fourccRIFF 'FFIR'
+#define fourccDATA 'atad'
+#define fourccFMT  ' tmf'
+#define fourccWAVE 'EVAW'
+#define fourccXWMA 'AMWX'
+#define fourccDPDS 'sdpd'
+#endif
+
+HRESULT FindChunk(HANDLE hFile, DWORD fourcc, DWORD& dwChunkSize, DWORD& dwChunkDataPosition)
+{
+    HRESULT hr = S_OK;
+    if( INVALID_SET_FILE_POINTER == SetFilePointer( hFile, 0, NULL, FILE_BEGIN ) )
+        return HRESULT_FROM_WIN32( GetLastError() );
+
+    DWORD dwChunkType;
+    DWORD dwChunkDataSize;
+    DWORD dwRIFFDataSize = 0;
+    DWORD dwFileType;
+    DWORD bytesRead = 0;
+    DWORD dwOffset = 0;
+
+    while (hr == S_OK)
+    {
+        DWORD dwRead;
+        if( 0 == ReadFile( hFile, &dwChunkType, sizeof(DWORD), &dwRead, NULL ) )
+            hr = HRESULT_FROM_WIN32( GetLastError() );
+
+        if( 0 == ReadFile( hFile, &dwChunkDataSize, sizeof(DWORD), &dwRead, NULL ) )
+            hr = HRESULT_FROM_WIN32( GetLastError() );
+
+        switch (dwChunkType)
+        {
+			case fourccRIFF:
+			{
+				dwRIFFDataSize = dwChunkDataSize;
+				dwChunkDataSize = 4;
+				if( 0 == ReadFile( hFile, &dwFileType, sizeof(DWORD), &dwRead, NULL ) )
+					hr = HRESULT_FROM_WIN32( GetLastError() );
+			}
+            break;
+
+			default:
+			{
+				if( INVALID_SET_FILE_POINTER == SetFilePointer( hFile, dwChunkDataSize, NULL, FILE_CURRENT ) )
+					return HRESULT_FROM_WIN32( GetLastError() );            
+			}
+        }
+
+        dwOffset += sizeof(DWORD) * 2;
+        
+        if (dwChunkType == fourcc)
+        {
+            dwChunkSize = dwChunkDataSize;
+            dwChunkDataPosition = dwOffset;
+            return S_OK;
+        }
+
+        dwOffset += dwChunkDataSize;
+        if (bytesRead >= dwRIFFDataSize) 
+			return S_FALSE;
+    }
+
+    return S_OK;   
+}
+
+HRESULT ReadChunkData(HANDLE hFile, void* buffer, DWORD buffersize, DWORD bufferoffset)
+{
+    HRESULT hr = S_OK;
+    if( INVALID_SET_FILE_POINTER == SetFilePointer( hFile, bufferoffset, NULL, FILE_BEGIN ) )
+        return HRESULT_FROM_WIN32( GetLastError() );
+
+    DWORD dwRead;
+    if( 0 == ReadFile( hFile, buffer, buffersize, &dwRead, NULL ) )
+        hr = HRESULT_FROM_WIN32( GetLastError() );
+
+    return hr;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////
 CVoicePointerPool::CVoicePointerPool(IXAudio2* pXAudio2,
@@ -164,8 +264,9 @@ void CVoicePointerPool::ReturnVoice(int nID)
 	
 	m_vVoiceChannel[nID] = -1;
 }
-///////////////////////////////////////////////////////////////////////////
 
+
+///////////////////////////////////////////////////////////////////////////
 //Called when the voice has just finished playing a contiguous audio stream.
 void VoiceCallback::OnStreamEnd() 
 { 
@@ -190,74 +291,25 @@ void VoiceCallback::OnLoopEnd(void * pBufferContext)
 void VoiceCallback::OnVoiceError(void * pBufferContext, HRESULT Error) { }
 
 
-HRESULT FindChunk(HANDLE hFile, DWORD fourcc, DWORD& dwChunkSize, DWORD& dwChunkDataPosition)
+///////////////////////////////////////////////////////////////////////////
+SoundInfo::SoundInfo()
 {
-    HRESULT hr = S_OK;
-    if( INVALID_SET_FILE_POINTER == SetFilePointer( hFile, 0, NULL, FILE_BEGIN ) )
-        return HRESULT_FROM_WIN32( GetLastError() );
-
-    DWORD dwChunkType;
-    DWORD dwChunkDataSize;
-    DWORD dwRIFFDataSize = 0;
-    DWORD dwFileType;
-    DWORD bytesRead = 0;
-    DWORD dwOffset = 0;
-
-    while (hr == S_OK)
-    {
-        DWORD dwRead;
-        if( 0 == ReadFile( hFile, &dwChunkType, sizeof(DWORD), &dwRead, NULL ) )
-            hr = HRESULT_FROM_WIN32( GetLastError() );
-
-        if( 0 == ReadFile( hFile, &dwChunkDataSize, sizeof(DWORD), &dwRead, NULL ) )
-            hr = HRESULT_FROM_WIN32( GetLastError() );
-
-        switch (dwChunkType)
-        {
-			case fourccRIFF:
-			{
-				dwRIFFDataSize = dwChunkDataSize;
-				dwChunkDataSize = 4;
-				if( 0 == ReadFile( hFile, &dwFileType, sizeof(DWORD), &dwRead, NULL ) )
-					hr = HRESULT_FROM_WIN32( GetLastError() );
-			}
-            break;
-
-			default:
-			{
-				if( INVALID_SET_FILE_POINTER == SetFilePointer( hFile, dwChunkDataSize, NULL, FILE_CURRENT ) )
-					return HRESULT_FROM_WIN32( GetLastError() );            
-			}
-        }
-
-        dwOffset += sizeof(DWORD) * 2;
-        
-        if (dwChunkType == fourcc)
-        {
-            dwChunkSize = dwChunkDataSize;
-            dwChunkDataPosition = dwOffset;
-            return S_OK;
-        }
-
-        dwOffset += dwChunkDataSize;
-        if (bytesRead >= dwRIFFDataSize) 
-			return S_FALSE;
-    }
-
-    return S_OK;   
+	Init();
 }
 
-HRESULT ReadChunkData(HANDLE hFile, void* buffer, DWORD buffersize, DWORD bufferoffset)
+void SoundInfo::Init()
 {
-    HRESULT hr = S_OK;
-    if( INVALID_SET_FILE_POINTER == SetFilePointer( hFile, bufferoffset, NULL, FILE_BEGIN ) )
-        return HRESULT_FROM_WIN32( GetLastError() );
+	m_nUnitType = AUDIO_NULL;
+	filename[0] = '\0';
+	m_bInUse = false;
+	m_fVolume = 1.0f;
+	m_fFrequencyRatio = 1.0f;
+	m_fPan = 0.0f;
+	m_nRef = 1;
 
-    DWORD dwRead;
-    if( 0 == ReadFile( hFile, buffer, buffersize, &dwRead, NULL ) )
-        hr = HRESULT_FROM_WIN32( GetLastError() );
-
-    return hr;
+	ZeroMemory(&wfx, sizeof(wfx));
+	ZeroMemory(&buffer, sizeof(buffer));
+	ZeroMemory(&bufferwma, sizeof(bufferwma));
 }
 
 HRESULT SoundInfo::LoadSoundInfo( LPCTSTR strFileName )
@@ -280,7 +332,7 @@ HRESULT SoundInfo::LoadSoundInfo( LPCTSTR strFileName )
 
 	DWORD dwChunkSize;
 	DWORD dwChunkPosition;
-	//check the file type, should be fourccWAVE or 'XWMA'
+	//check the file type, should be fourccWAVE or fourccXWMA
 	FindChunk(hFile,fourccRIFF,dwChunkSize, dwChunkPosition );
 
 	DWORD filetype;
@@ -326,7 +378,26 @@ HRESULT SoundInfo::LoadSoundInfo( LPCTSTR strFileName )
 		return S_FALSE;
 
 	return S_OK;
-};
+}
+	
+void SoundInfo::UnloadSoundInfo(void)
+{
+	//	Clean up allocated memory
+	if( buffer.pAudioData )
+	{
+		delete [] buffer.pAudioData;
+		buffer.pAudioData = NULL;
+	}
+
+	if ( bufferwma.pDecodedPacketCumulativeBytes )
+	{
+		delete [] bufferwma.pDecodedPacketCumulativeBytes;
+		bufferwma.pDecodedPacketCumulativeBytes = NULL;
+	}
+
+	Init();
+}
+
 
 /////////////////////////////////////////////////////////////////
 CSGD_XAudio2::CSGD_XAudio2()
@@ -360,13 +431,13 @@ CSGD_XAudio2* CSGD_XAudio2::GetInstance( void )
 
 //IXAudio2* CSGD_XAudio2::m_pXAudio2 = NULL;
 
-bool CSGD_XAudio2::InitXAudio2()
+bool CSGD_XAudio2::Initialize()
 {
 	UINT32 flags = 0;
 
-#if defined(_DEBUG) && defined(_WINDOWS)
-	flags |= XAUDIO2_DEBUG_ENGINE; // can only be done on WINDOWS
-#endif
+//#if defined(_DEBUG) && defined(_WINDOWS)
+//	flags |= XAUDIO2_DEBUG_ENGINE; // can only be done on WINDOWS
+//#endif
 
 	HRESULT hr;
 
@@ -388,7 +459,7 @@ bool CSGD_XAudio2::InitXAudio2()
 									AUDIO_SAMPLE_RATE, 0, 0, NULL );
 	if ( FAILED(hr) )
     {  
-		ShutdownXAudio2();
+		Terminate();
         return false;  
     } 
 
@@ -398,7 +469,7 @@ bool CSGD_XAudio2::InitXAudio2()
     if( FAILED(hr) )  
     {  
         //wprintf( L"Failed creating getting speaker config: %#X\n", hr );  
-		ShutdownXAudio2();
+		Terminate();
         return false;  
     } 
 
@@ -408,14 +479,14 @@ bool CSGD_XAudio2::InitXAudio2()
 	hr = m_pXAudio2->CreateSubmixVoice(&m_pSFXSubmixVoice, m_nMasterOutputChannels, AUDIO_SAMPLE_RATE, 0, 0, NULL, NULL);
 	if ( FAILED(hr) )
     {  
-		ShutdownXAudio2();
+		Terminate();
         return false;  
     } 
 
 	hr = m_pXAudio2->CreateSubmixVoice(&m_pMusicSubmixVoice, m_nMasterOutputChannels, AUDIO_SAMPLE_RATE, 0, 0, NULL, NULL);
 	if ( FAILED(hr) )
     {  
-		ShutdownXAudio2();
+		Terminate();
         return false;  
     } 
 
@@ -424,7 +495,7 @@ bool CSGD_XAudio2::InitXAudio2()
 	return true;
 }
 
-void CSGD_XAudio2::ShutdownXAudio2( void )
+void CSGD_XAudio2::Terminate( void )
 {
 	SilenceAll();
 	//m_pXAudio2->CommitChanges(AUDIO_ENGINE_OP_SET);
@@ -887,6 +958,7 @@ int CSGD_XAudio2::SFXLoadSound( const TCHAR* szFileName )
 	{
 		if (_tcsicmp(szFileName, m_vSFXLibrary[i].filename) == 0)
 		{
+			m_vSFXLibrary[i].m_nRef++;	// add a reference
 			return i;
 		}
 	}
@@ -903,6 +975,19 @@ int CSGD_XAudio2::SFXLoadSound( const TCHAR* szFileName )
 		MessageBox(0, szBuffer, _T("SGD XAudio2 Error"), MB_OK);
 		return -1;
 	}
+
+	// Verify file contents match expected file format
+	if( soundInfo.bufferwma.PacketCount != 0 )
+	{
+		// Failed.
+		TCHAR szBuffer[256] = {0};
+		_stprintf_s(szBuffer, _countof(szBuffer), _T("Invalid file format: Expecting 'WAVE' encoding - %s"), szFileName); 
+		MessageBox(0, szBuffer, _T("SGD XAudio2 Error"), MB_OK);
+		soundInfo.UnloadSoundInfo();
+		return -1;
+	}
+
+
 
 	int nID = -1;
 
@@ -932,10 +1017,20 @@ void CSGD_XAudio2::SFXUnloadSound( int nID )
 	assert( nID > -1 && nID < (int)m_vSFXLibrary.size() && "Sound ID out of range" );
 	assert( m_vSFXLibrary[nID].m_bInUse && "Sound ID not loaded" );
 
-	//	Wipe it clean
-	m_vSFXLibrary[nID].UnloadSoundInfo();
+	// Release a reference
+	m_vSFXLibrary[nID].m_nRef--;
 
-	m_qSFXLibraryOpenSlots.push(nID);
+	// No more references?
+	if( m_vSFXLibrary[nID].m_nRef == 0 )
+	{
+		// Stop the sound
+		SFXStopSound( nID );
+
+		//	Wipe it clean
+		m_vSFXLibrary[nID].UnloadSoundInfo();
+
+		m_qSFXLibraryOpenSlots.push(nID);
+	}
 }
 
 void CSGD_XAudio2::SFXPlaySound( int nID, bool bIsLooping )
@@ -1110,6 +1205,7 @@ int CSGD_XAudio2::MusicLoadSong( const TCHAR* szFileName )
 	{
 		if (_tcsicmp(szFileName, m_vMusicLibrary[i].filename) == 0)
 		{
+			m_vMusicLibrary[i].m_nRef++;		// add a reference
 			return i;
 		}
 	}
@@ -1126,6 +1222,19 @@ int CSGD_XAudio2::MusicLoadSong( const TCHAR* szFileName )
 		MessageBox(0, szBuffer, _T("SGD XAudio2 Error"), MB_OK);
 		return -1;
 	}
+	
+	// Verify file contents match expected file format
+	if( soundInfo.bufferwma.PacketCount == 0 )
+	{
+		// Failed.
+		TCHAR szBuffer[256] = {0};
+		_stprintf_s(szBuffer, _countof(szBuffer), _T("Invalid file format: Expecting 'XWMA' encoding - %s\nUse the 'convert_wav_to_xwm.bat' provided by the instructor"), szFileName); 
+		MessageBox(0, szBuffer, _T("SGD XAudio2 Error"), MB_OK);
+		soundInfo.UnloadSoundInfo();
+		return -1;
+	}
+
+
 
 	int nID = -1;
 
@@ -1154,11 +1263,21 @@ void CSGD_XAudio2::MusicUnloadSong( int nID )
 {
 	assert( nID > -1 && nID < (int)m_vMusicLibrary.size() && "Song ID out of range" );
 	assert( m_vMusicLibrary[nID].m_bInUse && "Song ID not loaded" );
+	
+	// Release a reference
+	m_vMusicLibrary[nID].m_nRef--;
 
-	//	Wipe it clean
-	m_vMusicLibrary[nID].UnloadSoundInfo();
+	// No more references?
+	if( m_vMusicLibrary[nID].m_nRef == 0 )
+	{
+		// Stop the song
+		MusicStopSong( nID );
 
-	m_qMusicLibraryOpenSlots.push(nID);
+		//	Wipe it clean
+		m_vMusicLibrary[nID].UnloadSoundInfo();
+
+		m_qMusicLibraryOpenSlots.push(nID);
+	}
 }
 
 void CSGD_XAudio2::MusicPlaySong( int nID, bool bIsLooping )

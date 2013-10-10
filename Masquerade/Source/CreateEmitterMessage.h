@@ -8,12 +8,12 @@
 #ifndef CREATEEMITTERMESSAGE_H
 #define CREATEEMITTERMESSAGE_H
 
-#include "Message.h"
+#include "../SGD Wrappers/IMessage.h"
 #include <string>
 using namespace std;
 
 class CBaseObject;
-class CCreateEmitterMessage : public CMessage
+class CCreateEmitterMessage : public IMessage
 {
 public:
 	CCreateEmitterMessage( std::string szEmitterName, char* chMapName, float fxParam = 0, float fyParam = 0,
@@ -27,6 +27,7 @@ public:
 	float				&GetXPos( void )			{ return m_fXPos;		}
 	float				&GetYPos( void )			{ return m_fYPos;		}
 	bool				&GetUseCamera( void )		{ return m_bUseCamera;  }
+	virtual MSGID		GetMessageID( void )		{ return MSG_CREATE_EMITTER; }
 
 private:
 	CBaseObject*		m_pBase;

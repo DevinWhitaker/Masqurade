@@ -43,10 +43,10 @@ bool CEnemy::CheckCollision(IBaseObject* pBase)
 		{
 			if( pBase->GetType() == OBJ_FOX )
 			{
-				CSGD_EventSystem::GetInstance()->SendEvent( "Fox_Hit", this);
+				CSGD_EventSystem::GetInstance()->QueueEvent( "Fox_Hit", this);
 			}
 			if( pBase->GetType() == OBJ_CORINNE )
-				CSGD_EventSystem::GetInstance()->SendEvent( "Corinne_Hit", pBase);
+				CSGD_EventSystem::GetInstance()->QueueEvent( "Corinne_Hit", pBase);
 			if( pBase->GetType() == OBJ_TILE )
 				int x = 0;
 		}
@@ -60,7 +60,7 @@ void CEnemy::CollisionResponse(CBaseObject* pBase, RECT hitBox, RECT hit, POINT 
 	{
 		if( pBase->GetType() == OBJ_FOX )
 		{
-			CSGD_EventSystem::GetInstance()->SendEvent( "Fox_Hit", this);
+			CSGD_EventSystem::GetInstance()->QueueEvent( "Fox_Hit", this);
 		}
 	}*/
 }

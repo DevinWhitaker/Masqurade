@@ -8,10 +8,22 @@
 ///////////////////////////////////////////////////////////////////////////
 #pragma once
 
+typedef		int		MSGID;		//	could be changed to a string or enum
+
+#include "../Source/MessageIds.h"
+
 // ABSTRACT BASE CLASS
 class IMessage
 {
 public:
-	IMessage(void) {}
-	virtual ~IMessage(void) = 0 {}
+	IMessage( void ) {}
+	virtual ~IMessage( void ) {}
+	
+	//	Pure virtual method - MUST be defined in the derived class.
+	//	Accessor for message identifier.
+	virtual MSGID	GetMessageID( void )	= 0 {}
+
+private:
+	IMessage( const IMessage& );
+	IMessage& operator= ( const IMessage& );
 };

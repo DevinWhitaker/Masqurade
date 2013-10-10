@@ -79,10 +79,10 @@ void CLever::Use( /* CLever*	pLever*/  )
 {
 	//if( GetIsActivatedBool() == true /*&&
 	//	CSGD_EventSystem::GetInstance()->HasEventTriggered( "pull_lever_right") == false*/ )
-	//	CSGD_EventSystem::GetInstance()->SendUniqueEvent( "pull_lever_left", this );
+	//	CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "pull_lever_left", this );
 	//else if( GetIsActivatedBool() == false /*&&
 	//	CSGD_EventSystem::GetInstance()->HasEventTriggered( "pull_lever_left") == false*/ )
-	//	CSGD_EventSystem::GetInstance()->SendUniqueEvent( "pull_lever_right", this );
+	//	CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "pull_lever_right", this );
 
 	if( GetIsActivatedBool() == true )
 	{

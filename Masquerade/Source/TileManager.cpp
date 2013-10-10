@@ -173,7 +173,7 @@ bool CTileManager::CheckTileCollisions( CBaseObject* pBase )
 					//	
 					//	if( pie->getBulletType() == PIE_BULLET /*&& !pie->HasPieLanded()*/ )
 					//	{
-					//		CSGD_EventSystem::GetInstance()->SendEvent( "Pie Landed", pBase );
+					//		CSGD_EventSystem::GetInstance()->QueueEvent( "Pie Landed", pBase );
 					//		/*pie->PieLanded();*/
 					//	}
 					//}
@@ -183,7 +183,7 @@ bool CTileManager::CheckTileCollisions( CBaseObject* pBase )
 						
 						if( pie->getBulletType() == PIE_BULLET /*&& !pie->HasPieLanded()*/ )
 						{
-							CSGD_EventSystem::GetInstance()->SendUniqueEvent( "Pie Landed", pBase );
+							CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "Pie Landed", pBase );
 							break;
 							/*pie->PieLanded();*/
 						}
@@ -206,14 +206,14 @@ bool CTileManager::CheckTileCollisions( CBaseObject* pBase )
 							{
 								if( pBase->GetJumpBool() != true )
 								{
-									CSGD_EventSystem::GetInstance()->SendUniqueEvent( "JUMP", pBase->GetCurrentState() );
+									CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "JUMP", pBase->GetCurrentState() );
 									pBase->SetJumpBool( true );								
 									pBase->SetGravityBool(true);
 								}
 							}
 
 							if( m_vTileList[ x ][ y ]->GetTileType() == STOP_NODE && CSGD_EventSystem::GetInstance()->HasEventTriggered("STOP") == false)
-								CSGD_EventSystem::GetInstance()->SendUniqueEvent( "STOP", pBase->GetCurrentState() );
+								CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "STOP", pBase->GetCurrentState() );
 						}
 					}
 				}

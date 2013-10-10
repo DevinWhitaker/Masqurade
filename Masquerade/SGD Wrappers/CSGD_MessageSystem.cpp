@@ -7,57 +7,63 @@
 ///////////////////////////////////////////////////////////////////////////
 
 #include "CSGD_MessageSystem.h"
+using std::queue;
 
 
-CSGD_MessageSystem* CSGD_MessageSystem::GetInstance(void)
+//	Get Instance
+CSGD_MessageSystem* CSGD_MessageSystem::GetInstance( void )
 {
-	static CSGD_MessageSystem instance;
-	return &instance;
+	static CSGD_MessageSystem s_Instance;
+	return &s_Instance;
 }
 
-void CSGD_MessageSystem::InitMessageSystem(MESSAGEPROC pfnMsgProc)
+//	Initialize
+void CSGD_MessageSystem::Initialize( void (*pfnMsgProc)( IMessage* ) )
 {
-	//	Error check to make sure the message proc is valid.
-	if (!pfnMsgProc)	return;
-
-	//	Get the Msg Proc
+	//	Store the message callback function.
 	m_pfnMsgProc = pfnMsgProc;
 }
 
-void CSGD_MessageSystem::SendMsg(CMessage* pMsg)
+//	QueueMessage
+void CSGD_MessageSystem::QueueMessage( IMessage* pMsg )
 {
-	//	Make sure the message exists.
-	if (!pMsg)	return;
+	//	Error check that the message exists.
+	if( pMsg == nullptr )	
+		return;
 
 	//	Send the message to the queue for processing later on.
-	m_MsgQueue.push(pMsg);
+	m_MsgQueue.push( pMsg );
 }
 
-void CSGD_MessageSystem::ProcessMessages(void)
+//	Process Messages
+void CSGD_MessageSystem::ProcessMessages( void )
 {
-	//	Error check to make sure we get a message proc.
-	if(!m_pfnMsgProc)	return;
+	//	Error check that there is a callback function.
+	if( m_pfnMsgProc == nullptr )	
+		return;
 
-	//	go through the entire queue and process the messsages that are waiting.
-	while(!m_MsgQueue.empty())
+	//	Go through the entire queue and process the messsages that are waiting.
+	while( m_MsgQueue.empty() == false )
 	{
-		m_pfnMsgProc(m_MsgQueue.front());								//	Process the first message.
-		delete reinterpret_cast< IMessage* >( m_MsgQueue.front() );		//	Delete the message memory.
-		m_MsgQueue.pop();												//	Go to the next message.
+		m_pfnMsgProc( m_MsgQueue.front() );		//	Process the first message.
+		delete m_MsgQueue.front();				//	Delete the message.
+		m_MsgQueue.pop();						//	Go to the next message.
 	}
 }
 
-void CSGD_MessageSystem::ClearMessages(void)
+//	Clear Messages
+void CSGD_MessageSystem::ClearMessages( void )
 {
 	//	Clear out any messages waititng.
-	while(!m_MsgQueue.empty())
+	while( m_MsgQueue.empty() == false )
 	{
-		delete reinterpret_cast< IMessage* >( m_MsgQueue.front() );		//	Delete the message memory.
-		m_MsgQueue.pop();												//	Go to the next message.
+		delete m_MsgQueue.front();
+		m_MsgQueue.pop();
 	}
 }
 
-void CSGD_MessageSystem::ShutdownMessageSystem(void)
+//	Terminate
+void CSGD_MessageSystem::Terminate( void )
 {
 	//	Clear out any messages waiting.
 	ClearMessages();

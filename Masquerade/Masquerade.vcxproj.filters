@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SGD Wrappers">
+      <UniqueIdentifier>{d8b62864-e06a-43e0-b961-ef3f39dd696a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{7cdd68a4-0469-494c-80df-e3e2dc783fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Headers">
+      <UniqueIdentifier>{7cb52460-2a8e-4c7b-a28b-fe909ee89c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Cpps">
+      <UniqueIdentifier>{3e0bec1f-12dd-4431-96e3-c6297d2a6044}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGD Wrappers\Headers">
+      <UniqueIdentifier>{1ca53057-106b-462d-8d1d-05177b605abd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGD Wrappers\Cpps">
+      <UniqueIdentifier>{b2f41966-e82c-4fb7-baae-b1ccb513c8f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tinyxml">
+      <UniqueIdentifier>{d03080d9-cdcf-4463-aa2e-2e0471dff54c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tinyxml\tinystr.h">
+      <Filter>tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml\tinyxml.h">
+      <Filter>tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\IMessage.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\SGD_Util.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\SGD_Math.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\CSGD_TextureManager.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\CSGD_XAudio2.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\CSGD_Direct3D.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\SGD_String.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\CSGD_MessageSystem.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\CSGD_EventSystem.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\IListener.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\CEvent.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\CSGD_DirectInput.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SGD Wrappers\CSGD_ObjectFactory.h">
+      <Filter>SGD Wrappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MessageIds.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IBaseObject.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CreateEmitterMessage.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CreateEnemyMessage.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DestroyBulletMessage.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DestroyEmitterMessage.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DestroyEnemyMessage.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResetMessage.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CreateBulletMessage.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HUD.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BaseAI.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BaseObject.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GamePlayState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ImageObject.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TriggeredObject.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NPC.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IdleState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HeldState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LoadGameState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Trigger.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ObjectManager.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Corinne.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IntroState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SeekState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Checkpoint.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rat.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ItemMenu.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Lever.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MainMenuState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AnimationManager.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BalloonGun.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IGameState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Clown.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\OptionState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SquirtGun.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Powerup.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tile.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Frame.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bullet.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ITool.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CellAnimation.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ParticleEmitter.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TileManager.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HowToPlayState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Gate.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FileManager.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AnchorAnimation.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThrowState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ParticleManager.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ObjectFactory.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SecurityCamera.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FleeState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CreditState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LevelSelectState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Hoodlum.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BitmapFont.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IAIState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Spring.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Fox.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Balloon.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Cursor.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CottonCandyLauncher.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FollowState.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SpawnPoint.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Crate.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PressurePlate.h">
+      <Filter>Source\Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="tinyxml\tinystr.cpp">
+      <Filter>tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxml.cpp">
+      <Filter>tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxmlerror.cpp">
+      <Filter>tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxmlparser.cpp">
+      <Filter>tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="SGD Wrappers\CSGD_TextureManager.cpp">
+      <Filter>SGD Wrappers\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="SGD Wrappers\CSGD_XAudio2.cpp">
+      <Filter>SGD Wrappers\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="SGD Wrappers\CSGD_Direct3D.cpp">
+      <Filter>SGD Wrappers\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="SGD Wrappers\CSGD_MessageSystem.cpp">
+      <Filter>SGD Wrappers\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="SGD Wrappers\CSGD_EventSystem.cpp">
+      <Filter>SGD Wrappers\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="SGD Wrappers\CSGD_DirectInput.cpp">
+      <Filter>SGD Wrappers\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="SGD Wrappers\SGD_Math.cpp">
+      <Filter>SGD Wrappers\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ObjectManager.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResetMessage.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DestroyEnemyMessage.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DestroyBulletMessage.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CreateEnemyMessage.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CreateBulletMessage.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GamePlayState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DestroyEmitterMessage.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CreateEmitterMessage.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HUD.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BaseObject.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BaseAI.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SecurityCamera.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ParticleManager.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Corinne.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Fox.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Hoodlum.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Clown.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rat.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SquirtGun.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SpawnPoint.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CottonCandyLauncher.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TriggeredObject.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lever.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SeekState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TileManager.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Trigger.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnchorAnimation.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Enemy.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FollowState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Checkpoint.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Balloon.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ItemMenu.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PressurePlate.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Crate.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Gate.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\IdleState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LoadGameState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinMain.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CellAnimation.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Cursor.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationManager.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MainMenuState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThrowState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HowToPlayState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HeldState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FleeState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LevelSelectState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Frame.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ITool.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NPC.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CreditState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FileManager.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\OptionState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BitmapFont.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Powerup.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tile.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\IntroState.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BalloonGun.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ObjectFactory.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ParticleEmitter.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Spring.cpp">
+      <Filter>Source\Cpps</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

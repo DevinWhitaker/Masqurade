@@ -20,7 +20,7 @@ void CSpawnPoint::Activate(void)
 	if( m_fElapsed > m_nSpawnRate )
 	{
 		CCreateEnemyMessage* msg = new CCreateEnemyMessage( (EnemyType)m_nEnemyType, this );		
-		CSGD_MessageSystem::GetInstance()->SendMsg( msg );
+		CSGD_MessageSystem::GetInstance()->QueueMessage( msg );
 		m_fElapsed = 0.0f;
 	}
 }

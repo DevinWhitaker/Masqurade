@@ -47,7 +47,7 @@ public:
 	virtual bool Input(void);		// Handle Input
 	virtual void Update(float fElapsedTime);		//Update game entities
 	virtual void Render(void);		//Render game entities
-	static void MessageProc(CMessage* msg);
+	static void MessageProc(IMessage* msg);
 
 	void SetPauseBool( bool bPauseGame ) { m_bPause = bPauseGame;	}
 	bool GetPauseBool( void )			 { return m_bPause;			}

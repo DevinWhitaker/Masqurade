@@ -5,16 +5,16 @@
 	Purpose:	Base Class for all Messages
 */
 
-#include "Message.h"
+#include "../SGD Wrappers/IMessage.h"
 
 
-CMessage::CMessage(MessageType msgID)
+IMessage::IMessage(MessageType msgID)
 {
 	m_msgID = msgID;
 }
 
 
-CMessage::~CMessage(void)
+IMessage::~IMessage(void)
 {
 
 }

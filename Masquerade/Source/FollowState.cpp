@@ -66,7 +66,7 @@ void CFollowState::Update( float fElapsedTime )
 				return;
 			//if( GetRangeBool() == false )
 			//{
-			//	CSGD_EventSystem::GetInstance()->SendEvent( "idle", &GetObjectsInvolved() );
+			//	CSGD_EventSystem::GetInstance()->QueueEvent( "idle", &GetObjectsInvolved() );
 			//	SetRangeBool( true );
 			//}
 			//return;
@@ -140,7 +140,7 @@ void CFollowState::Update( float fElapsedTime )
 				{
 					GetObjectsInvolved().pCarried->SetVelX( 0.0f );
 					GetObjectsInvolved().pCarried->SetVelY( 0.0f );
-					CSGD_EventSystem::GetInstance()->SendEvent( "pickup", &GetObjectsInvolved() );
+					CSGD_EventSystem::GetInstance()->QueueEvent( "pickup", &GetObjectsInvolved() );
 					SetRangeBool( true );
 				}
 			}

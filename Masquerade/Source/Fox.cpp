@@ -533,7 +533,7 @@ void CFox::Input( float fElapsed )
 					pLeverSwitch->Use( );
 				}
 				else
-					CSGD_EventSystem::GetInstance()->SendUniqueEvent( "seek", &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "seek", &m_CorinneAndFox );
 			}
 
 
@@ -546,7 +546,7 @@ void CFox::Input( float fElapsed )
 						GetFrame().SetAnimationID( m_vIDs[F_THROW] );
 					if( !GetFrame().isPlaying() )
 						GetFrame().Play();
-					CSGD_EventSystem::GetInstance()->SendEvent( "throw", &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueEvent( "throw", &m_CorinneAndFox );
 					return;
 				}
 			}
@@ -614,7 +614,7 @@ void CFox::Input( float fElapsed )
 						GetY() >= GetDaughter()->GetY() - 32.0f  &&
 						GetY() <= GetDaughter()->GetY() + 32.0f )
 					{
-						CSGD_EventSystem::GetInstance()->SendEvent( "pickup", &m_CorinneAndFox );
+						CSGD_EventSystem::GetInstance()->QueueEvent( "pickup", &m_CorinneAndFox );
 						if( GetFrame().GetAnimationID() != m_vIDs[F_PICKUP] )
 							GetFrame().SetAnimationID( m_vIDs[F_PICKUP] );
 						if( !GetFrame().isPlaying() )
@@ -624,7 +624,7 @@ void CFox::Input( float fElapsed )
 
 				else if( GetDaughter()->GetCurrentState()->GetAIType() == IAIState::HELD )
 				{
-					CSGD_EventSystem::GetInstance()->SendEvent( "putdown", &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueEvent( "putdown", &m_CorinneAndFox );
 					if( GetFrame().GetAnimationID() != m_vIDs[F_PICKUP] )
 						GetFrame().SetAnimationID( m_vIDs[F_PICKUP] );
 					GetFrame().Play();
@@ -640,18 +640,18 @@ void CFox::Input( float fElapsed )
 				m_CorinneAndFox.pCarried = GetDaughter();
 
 				if( GetDaughter()->GetCurrentState()->GetAIType() == IAIState::FOLLOW )
-					CSGD_EventSystem::GetInstance()->SendEvent( "idle",  &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueEvent( "idle",  &m_CorinneAndFox );
 				else if( GetDaughter()->GetCurrentState()->GetAIType() == IAIState::IDLE &&
 					CSGD_EventSystem::GetInstance()->HasEventTriggered( "follow" ) == false )
-					CSGD_EventSystem::GetInstance()->SendUniqueEvent( "follow",  &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "follow",  &m_CorinneAndFox );
 
 				else if( GetDaughter()->GetCurrentState()->GetAIType() == IAIState::FLEE &&
 					CSGD_EventSystem::GetInstance()->HasEventTriggered( "follow" ) == false )
-					CSGD_EventSystem::GetInstance()->SendUniqueEvent( "follow",  &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "follow",  &m_CorinneAndFox );
 
 				else if( GetDaughter()->GetCurrentState()->GetAIType() == IAIState::SEEK &&
 					CSGD_EventSystem::GetInstance()->HasEventTriggered( "follow" ) == false )
-					CSGD_EventSystem::GetInstance()->SendUniqueEvent( "follow",  &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "follow",  &m_CorinneAndFox );
 
 				if( GetFrame().GetAnimationID() != m_vIDs[F_YELL] )
 					GetFrame().SetAnimationID( m_vIDs[F_YELL] );
@@ -989,7 +989,7 @@ void CFox::Input( float fElapsed )
 			{
 				if( pDI->JoystickButtonPressed( 5 ) )
 				{
-					CSGD_EventSystem::GetInstance()->SendEvent( "throw", &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueEvent( "throw", &m_CorinneAndFox );
 					return;
 				}
 			}
@@ -1031,13 +1031,13 @@ void CFox::Input( float fElapsed )
 					GetDaughter()->GetCurrentState()->GetAIType() == IAIState::FOLLOW ||
 					GetDaughter()->GetCurrentState()->GetAIType() == IAIState::SEEK )
 				{
-					CSGD_EventSystem::GetInstance()->SendEvent( "pickup", &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueEvent( "pickup", &m_CorinneAndFox );
 					GetFrame().SetAnimationID( m_vIDs[F_PICKUP] );
 				}
 
 				else if( GetDaughter()->GetCurrentState()->GetAIType() == IAIState::HELD )
 				{
-					CSGD_EventSystem::GetInstance()->SendEvent( "putdown", &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueEvent( "putdown", &m_CorinneAndFox );
 					GetFrame().SetAnimationID( m_vIDs[F_PICKUP] );
 				}
 				GetFrame().SetFlipped( !GetMovingRightBool() );
@@ -1052,15 +1052,15 @@ void CFox::Input( float fElapsed )
 
 				if( GetDaughter()->GetCurrentState()->GetAIType() == IAIState::IDLE &&
 					CSGD_EventSystem::GetInstance()->HasEventTriggered( "follow" ) == false )
-					CSGD_EventSystem::GetInstance()->SendUniqueEvent( "follow",  &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "follow",  &m_CorinneAndFox );
 
 				else if( GetDaughter()->GetCurrentState()->GetAIType() == IAIState::FLEE &&
 					CSGD_EventSystem::GetInstance()->HasEventTriggered( "follow" ) == false )
-					CSGD_EventSystem::GetInstance()->SendUniqueEvent( "follow",  &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "follow",  &m_CorinneAndFox );
 
 				else if( GetDaughter()->GetCurrentState()->GetAIType() == IAIState::SEEK &&
 					CSGD_EventSystem::GetInstance()->HasEventTriggered( "follow" ) == false )
-					CSGD_EventSystem::GetInstance()->SendUniqueEvent( "follow",  &m_CorinneAndFox );
+					CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "follow",  &m_CorinneAndFox );
 				return;
 			}
 
@@ -1155,12 +1155,12 @@ void CFox::HandleEvent(CEvent* pEvent)
 				if(b->getBulletType() == PIE_BULLET && GetHearts() > 1 )
 				{
 					CCreateEmitterMessage*	pPE = new CCreateEmitterMessage( "Pie Splatter", "Pie Splatter", b->GetX(), b->GetY() );
-					CSGD_MessageSystem::GetInstance()->SendMsg( pPE );
+					CSGD_MessageSystem::GetInstance()->QueueMessage( pPE );
 					pPE = nullptr;
 				}
 
 				CDestroyBulletMessage* pMsg = new CDestroyBulletMessage( b );
-				CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+				CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 				pMsg = nullptr;
 			}
 			SetGravityBool(true);

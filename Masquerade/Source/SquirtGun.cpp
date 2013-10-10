@@ -30,7 +30,7 @@ void CSquirtGun::Update(float fElapsed)
 	{
 		CCreateBulletMessage* pBulletMsg = new CCreateBulletMessage(SQUIRT_BULLET, m_pFiringEntity );
 		CSGD_MessageSystem* pMS = CSGD_MessageSystem::GetInstance();
-		pMS->SendMsg(pBulletMsg);
+		pMS->QueueMessage(pBulletMsg);
 		m_bFuseLit = false;
 		m_fChargeTime = 0.0f;
 		m_isSelected = false;

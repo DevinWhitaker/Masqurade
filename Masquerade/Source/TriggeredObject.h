@@ -35,7 +35,7 @@ public:
 	 void Deactivate(void);
 	 void RegisterDefaultEvents( void );
 	 void AddEvent( std::string szEventName/*, CTriggeredObject* pTrigger */  );
-	 void SendEvent( std::string szEventName/*, CTriggeredObject* pTrigger */  );
+	 void QueueEvent( std::string szEventName/*, CTriggeredObject* pTrigger */  );
 	 void PlayAnimation( TriggeredObjectType nTriggerType );
 	 int GetTriggeredType( void ) { return m_nTriggeredType; }
 	 virtual void HandleEvent( CEvent* pEvent );

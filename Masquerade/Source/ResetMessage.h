@@ -1,10 +1,11 @@
 #pragma once
-#include "message.h"
+#include "../SGD Wrappers/IMessage.h"
 class CResetMessage :
-	public CMessage
+	public IMessage
 {
 public:
 	CResetMessage(void);
 	~CResetMessage(void);
+	virtual MSGID		GetMessageID( void )		{ return MSG_RESET; }
 };
 

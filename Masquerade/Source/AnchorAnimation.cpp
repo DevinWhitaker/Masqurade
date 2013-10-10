@@ -212,7 +212,7 @@ bool CAnchorAnimation::CheckCollision(CBaseObject* pBase, CFrame key)
 			key.m_pOwner->CollisionResponse(pBase,*dest,events[i]->collision,m_vAnchors[key.m_nCurrFrame]->Anchor);
 			if( events[i]->eventID != "NONE" )
 			{
-				CSGD_EventSystem::GetInstance()->SendEvent(events[i]->eventID);
+				CSGD_EventSystem::GetInstance()->QueueEvent(events[i]->eventID);
 #if _DEVIN
 				//printf(events[i]->eventID.c_str());
 				//printf("\n");
@@ -284,7 +284,7 @@ bool CAnchorAnimation::CheckCollision(CFrame* pBase, CFrame key)
 				key.m_pOwner->CollisionResponse(pBase->GetOwner(),dest,myCollision,m_vAnchors[key.m_nCurrFrame]->Anchor);
 				if( my_events[i]->eventID != "NONE" )
 				{
-					CSGD_EventSystem::GetInstance()->SendEvent(my_events[i]->eventID);
+					CSGD_EventSystem::GetInstance()->QueueEvent(my_events[i]->eventID);
 #if _DEVIN
 					printf(my_events[i]->eventID.c_str());
 					printf("\n");

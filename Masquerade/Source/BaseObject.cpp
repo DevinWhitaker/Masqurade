@@ -279,7 +279,7 @@ void CBaseObject::ChangeState( CBaseAI* newState)
 
 }
 
-void CBaseObject::HandleEvent(CEvent* pEvent)
+void CBaseObject::HandleEvent(const CEvent* pEvent)
 {
 	if( GetCurrentState() == nullptr )
 		return;

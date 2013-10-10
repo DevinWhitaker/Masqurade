@@ -48,16 +48,16 @@ void CGame::Initialize( HWND hWnd, HINSTANCE hInstance, int nScreenWidth, int nS
 	m_pXA = CSGD_XAudio2::GetInstance();
 
 	// Initialize wrappers
-	m_pD3D->InitDirect3D( hWnd, nScreenWidth, nScreenHeight, bWindowed, false );
+	m_pD3D->Initialize( hWnd, nScreenWidth, nScreenHeight, bWindowed, false );
 #if _DEBUG
 
-	m_pDI->InitDirectInput( hWnd, hInstance, DI_KEYBOARD | DI_MOUSE/*, DI_KEYBOARD | DI_MOUSE*/ );
+	m_pDI->Initialize( hWnd, hInstance, DI_KEYBOARD | DI_MOUSE/*, DI_KEYBOARD | DI_MOUSE*/ );
 #else
 	m_pDI->InitDirectInput( hWnd, hInstance, DI_KEYBOARD | DI_MOUSE | DI_JOYSTICKS, DI_MOUSE | DI_JOYSTICKS );
 #endif
 
-	m_pTM->InitTextureManager( m_pD3D->GetDirect3DDevice(), m_pD3D->GetSprite());
-	m_pXA->InitXAudio2();
+	m_pTM->Initialize( m_pD3D->GetDirect3DDevice(), m_pD3D->GetSprite());
+	m_pXA->Initialize();
 
 	// Store the screen info
 	m_nScreenWidth	= nScreenWidth;
@@ -120,7 +120,7 @@ void CGame::Update()
 void CGame::Render(void)
 {
 	// Clear the background
-	m_pD3D->Clear( 0, 0, 0);
+	m_pD3D->Clear(0x000000);
 
 	// Start D3D rendering
 	m_pD3D->DeviceBegin();
@@ -148,25 +148,25 @@ void CGame::Shutdown(void)
 	// Shutdown the SGD Wrappers in the Opposite order of Init (due to dependancies)
 	if( m_pXA != nullptr )
 	{
-		m_pXA->ShutdownXAudio2();
+		m_pXA->Terminate();
 		m_pXA = nullptr;
 	}
 
 	if( m_pTM != nullptr )
 	{
-		m_pTM->ShutdownTextureManager();
+		m_pTM->Terminate();
 		m_pTM = nullptr;
 	}
 
 	if( m_pDI != nullptr )
 	{
-		m_pDI->ShutdownDirectInput();
+		m_pDI->Terminate();
 		m_pDI = nullptr;
 	}
 
 	if( m_pD3D != nullptr )
 	{
-		m_pD3D->ShutdownDirect3D();
+		m_pD3D->Terminate();
 		m_pD3D = nullptr;
 	}
 
@@ -216,12 +216,12 @@ void CGame::FullScreenMode( void )
 {
 	if( this->IsWindowed() == true )
 	{
-		m_pD3D->ChangeDisplayParam( this->GetWidth(), this->GetHeight(), false );
+		//m_pD3D->ChangeDisplayParam( this->GetWidth(), this->GetHeight(), false );ToFix
 		this->m_bWindowed = false;
 	}
 	else if( this->IsWindowed() == false )
 	{
-		m_pD3D->ChangeDisplayParam( this->GetWidth(), this->GetHeight(), true );
+		//m_pD3D->ChangeDisplayParam( this->GetWidth(), this->GetHeight(), true );ToFix
 		this->m_bWindowed = true;
 	}
 }
@@ -230,12 +230,12 @@ void CGame::FullScreenMode( bool setToFullScreen )
 {
 	if( this->IsWindowed() == true && setToFullScreen == true )
 	{
-		m_pD3D->ChangeDisplayParam( this->GetWidth(), this->GetHeight(), false );
+		//m_pD3D->ChangeDisplayParam( this->GetWidth(), this->GetHeight(), false );ToFix
 		this->m_bWindowed = false;
 	}
 	else if( this->IsWindowed() == false && setToFullScreen == false )
 	{
-		m_pD3D->ChangeDisplayParam( this->GetWidth(), this->GetHeight(), true );
+		//m_pD3D->ChangeDisplayParam( this->GetWidth(), this->GetHeight(), true );ToFix
 		this->m_bWindowed = true;
 	}
 }

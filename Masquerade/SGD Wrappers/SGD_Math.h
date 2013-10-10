@@ -15,28 +15,52 @@ struct tVector2D
 	float fX;
 	float fY;
 
-	tVector2D operator+(const tVector2D& v)
+	tVector2D operator+ ( const tVector2D& v )
 	{
 		tVector2D r = { fX + v.fX, fY + v.fY };
 		return r;
 	}
+	tVector2D& operator+= ( const tVector2D& v )
+	{
+		fX += v.fX;
+		fY += v.fY;
+		return *this;
+	}
 
-	tVector2D operator-(const tVector2D& v)
+	tVector2D operator- ( const tVector2D& v )
 	{
 		tVector2D r = { fX - v.fX, fY - v.fY };
 		return r;
 	}
+	tVector2D& operator-= ( const tVector2D& v )
+	{
+		fX -= v.fX;
+		fY -= v.fY;
+		return *this;
+	}
 
-	tVector2D operator*(const float f)
+	tVector2D operator* ( const float f )
 	{
 		tVector2D r = { fX * f, fY * f };
 		return r;
 	}
+	tVector2D& operator*= ( const float f )
+	{
+		fX *= f;
+		fY *= f;
+		return *this;
+	}
 
-	tVector2D operator/(const float f )
+	tVector2D operator/ ( const float f )
 	{
 		tVector2D r = { fX / f, fY / f };
 		return r;
+	}
+	tVector2D& operator/= ( const float f )
+	{
+		fX /= f;
+		fY /= f;
+		return *this;
 	}
 };
 
@@ -78,6 +102,5 @@ float Lerp(float fStart, float fEnd, float fPercent);
 //	Tests if two floats are approximately equal given a margin of error
 bool FloatEquals(float fResult, float fExpected, float fEpsilon = 0.001f);
 
-//	Determines which way to turn (counter clockwise (+) or clockwise (-))
+//	Determines which way to turn (counter clockwise (-) or clockwise (+))
 float Steering(tVector2D vOrientation, tVector2D vToTarget);
-

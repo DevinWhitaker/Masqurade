@@ -15,14 +15,13 @@
 ///////////////////////////////////////////////////////////////////////////
 
 /* 
-Disclaimer:
-This source code was developed for and is the property of:
+	Disclaimer:
+	This source code was developed for and is the property of:
 
-(c) Full Sail University Game Development Curriculum 2008-2012 and
-(c) Full Sail Real World Education Game Design & Development Curriculum 2000-2008
+	(c) Full Sail University
 
-Full Sail students may not redistribute or make this code public, 
-but may use it in their own personal projects.
+	Full Sail students may not redistribute or make this code public, 
+	but may use it in their own personal projects.
 */
 
 #pragma once
@@ -30,35 +29,11 @@ but may use it in their own personal projects.
 #include <XAudio2.h>
 #include <MMSystem.h>
 #include <tchar.h>
-#pragma comment( lib, "Winmm.lib" )
 
 #include <map>
-using std::multimap;
-using std::pair;
-
 #include <vector>
-using std::vector;
-
 #include <queue>
-using std::queue;
 
-#ifdef _XBOX //Big-Endian
-#define fourccRIFF 'RIFF'
-#define fourccDATA 'data'
-#define fourccFMT 'fmt '
-#define fourccWAVE 'WAVE'
-#define fourccXWMA 'XWMA'
-#define fourccDPDS 'dpds'
-#endif
-
-#ifndef _XBOX //Little-Endian
-#define fourccRIFF 'FFIR'
-#define fourccDATA 'atad'
-#define fourccFMT ' tmf'
-#define fourccWAVE 'EVAW'
-#define fourccXWMA 'AMWX'
-#define fourccDPDS 'sdpd'
-#endif
 
 enum CustomAudioTypes{ AUDIO_NULL, AUDIO_SFX, AUDIO_MUSIC };
 
@@ -74,6 +49,7 @@ struct SoundInfo
 	float m_fVolume;
 	float m_fFrequencyRatio;
 	float m_fPan;
+	int   m_nRef;
 
 	// The filename of the unit.
 	TCHAR filename[_MAX_PATH];
@@ -87,45 +63,14 @@ struct SoundInfo
 	// The storage for the audio data in xwm format.
 	XAUDIO2_BUFFER_WMA bufferwma;
 
-	SoundInfo()
-	{
-		Init();
-	}
+	SoundInfo();
 
-	void Init()
-	{
-		m_nUnitType = AUDIO_NULL;
-		filename[0] = '\0';
-		m_bInUse = false;
-		m_fVolume = 1.0f;
-		m_fFrequencyRatio = 1.0f;
-		m_fPan = 0.0f;
-
-		ZeroMemory(&wfx, sizeof(wfx));
-		ZeroMemory(&buffer, sizeof(buffer));
-		ZeroMemory(&bufferwma, sizeof(bufferwma));
-	}
+	void Init();
 
 	// Configures the audio unit from a wav or .xwm file.
 	HRESULT LoadSoundInfo( LPCTSTR strFileName );
 
-	void UnloadSoundInfo(void)
-	{
-		//	Clean up allocated memory
-		if( buffer.pAudioData )
-		{
-			delete [] buffer.pAudioData;
-			buffer.pAudioData = NULL;
-		}
-
-		if ( bufferwma.pDecodedPacketCumulativeBytes )
-		{
-			delete [] bufferwma.pDecodedPacketCumulativeBytes;
-			bufferwma.pDecodedPacketCumulativeBytes = NULL;
-		}
-
-		Init();
-	}
+	void UnloadSoundInfo(void);
 };
 
 // A container for managing voices.
@@ -214,12 +159,12 @@ class CVoicePointerPool
 {
 private:
 	//	What channel this voice was playing on
-	vector<int>							m_vVoiceChannel;
-	vector<IXAudio2SourceVoice*>		m_vVoicePool;
+	std::vector<int>					m_vVoiceChannel;
+	std::vector<IXAudio2SourceVoice*>	m_vVoicePool;
 	//	DEPRECATED:	Left in to show how a VoiceCallback can be attached to a voice.
-	vector<VoiceCallback*>				m_vVoiceCallbacks;
+	std::vector<VoiceCallback*>			m_vVoiceCallbacks;
 
-	queue<int>							m_qVoiceUnusedSlots;
+	std::queue<int>						m_qVoiceUnusedSlots;
 	WAVEFORMATEX						m_wfx;
 
 	IXAudio2*							m_pXAudio2;
@@ -273,19 +218,19 @@ class CSGD_XAudio2
 	int						m_nActiveVoiceCount;
 
 	// The loaded library of SFX
-	vector<SoundInfo>		m_vSFXLibrary;
-	queue<int>				m_qSFXLibraryOpenSlots;
+	std::vector<SoundInfo>	m_vSFXLibrary;
+	std::queue<int>			m_qSFXLibraryOpenSlots;
 
 	// The loaded library of Music
-	vector<SoundInfo>		m_vMusicLibrary;
-	queue<int>				m_qMusicLibraryOpenSlots;
+	std::vector<SoundInfo>	m_vMusicLibrary;
+	std::queue<int>			m_qMusicLibraryOpenSlots;
 
 	// The collection of voices currently playing.
-	vector<VoiceInfo>		m_vVoices;
-	queue<int>				m_qVoicesOpenSlots;
+	std::vector<VoiceInfo>	m_vVoices;
+	std::queue<int>			m_qVoicesOpenSlots;
 
 	//	Collection of different format voices
-	multimap<int, CVoicePointerPool*>	m_vVoicePools;
+	std::multimap<int, CVoicePointerPool*>	m_vVoicePools;
 
 	// Proper singleton:
 	CSGD_XAudio2();
@@ -376,7 +321,7 @@ public:
 	int ActiveVoiceCount()	{ return m_nActiveVoiceCount; }
 
 	///////////////////////////////////////////////////////////////////
-	//	Function:	"InitXAudio2"
+	//	Function:	"Initialize"
 	//
 	//	Last Modified:		12/29/2011
 	//
@@ -386,10 +331,10 @@ public:
 	//
 	//	Purpose:	Initializes the XAudio2 manager.
 	///////////////////////////////////////////////////////////////////
-	bool InitXAudio2(void);
+	bool Initialize(void);
 
 	///////////////////////////////////////////////////////////////////
-	//	Function:	"ShutdownXAudio2"
+	//	Function:	"Terminate"
 	//
 	//	Last Modified:		12/29/2011
 	//
@@ -400,7 +345,7 @@ public:
 	//	Purpose:	Unloads all the loaded sounds and music and 
 	//				shutsdown XAudio2.
 	///////////////////////////////////////////////////////////////////
-	void ShutdownXAudio2(void);
+	void Terminate(void);
 
 	///////////////////////////////////////////////////////////////////
 	//	Function:	"Update"
@@ -665,6 +610,8 @@ public:
 	//				and returns the id if it was.
 	//				
 	//  IMPORTANT:	Supports .xwm files ONLY.
+	//				Convert .wav files to .xwm using the 'convert_wav_to_xwm.bat'
+	//				batch file provided by the instructor.
 	///////////////////////////////////////////////////////////////////
 	int MusicLoadSong( const TCHAR* szFileName );
 

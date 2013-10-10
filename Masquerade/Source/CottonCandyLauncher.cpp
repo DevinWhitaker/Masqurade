@@ -29,7 +29,7 @@ void CCottonCandyLauncher::Update(float fElapsed)
 	{
 		CCreateBulletMessage* pBulletMsg = new CCreateBulletMessage(COTTON_BULLET, m_pFiringEntity, -m_fChargeTime );
 		CSGD_MessageSystem* pMS = CSGD_MessageSystem::GetInstance();
-		pMS->SendMsg(pBulletMsg);
+		pMS->QueueMessage(pBulletMsg);
 		m_fChargeTime = 0.0f;
 		m_bFuseLit = false;
 		m_isSelected = false;

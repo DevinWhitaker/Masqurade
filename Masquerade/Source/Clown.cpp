@@ -104,7 +104,7 @@ void CClown::Update(float fElapsed)
 		
 		m_sClownAndCorinne.pCarried = this;
 		m_sClownAndCorinne.pCarrier = m_pCorinne;
-		CSGD_EventSystem::GetInstance()->SendEvent( "flee", &m_sClownAndCorinne );
+		CSGD_EventSystem::GetInstance()->QueueEvent( "flee", &m_sClownAndCorinne );
 	}
 
 	if( distance_between_me_and_fox < PUNCH_RANGE && m_nHealth > 0 )
@@ -193,7 +193,7 @@ void CClown::Update(float fElapsed)
 		if( m_frAnime.isPlaying() == false )
 		{
 			CDestroyEnemyMessage* pMsg = new CDestroyEnemyMessage( this );
-			CSGD_MessageSystem::GetInstance()->SendMsg( pMsg );
+			CSGD_MessageSystem::GetInstance()->QueueMessage( pMsg );
 			CAnimationManager::GetInstance()->RemoveFrame( &m_frAnime );
 		}
 	}
@@ -232,7 +232,7 @@ void CClown::ThrowPie()
 
 		CCreateBulletMessage* pBulletMsg = new CCreateBulletMessage(PIE_BULLET, this );
 		CSGD_MessageSystem* pMS = CSGD_MessageSystem::GetInstance();
-		pMS->SendMsg(pBulletMsg);
+		pMS->QueueMessage(pBulletMsg);
 		m_fElapsed = 0.0f;
 		m_frAnime.SetAnimationID( m_vIDs[C_THROW] );
 		m_frAnime.Play();

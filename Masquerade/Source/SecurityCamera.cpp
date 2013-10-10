@@ -59,7 +59,7 @@ void CSecurityCamera::Render()
 		CSGD_TextureManager::GetInstance()->Draw( m_nStationsryID, (int)((GetX() - 25) - c->OffsetX()), (int)((GetY() - 50) - c->OffsetY()) );
 		CSGD_TextureManager::GetInstance()->Draw( m_nRotatingID, (int)((GetX() - 32.0f) - c->OffsetX()), (int)((GetY() - 32.0f) - c->OffsetY()), 1.0f, 1.0f, NULL, 32.0f, 32.0f, m_fOrientation );
 		CSGD_Direct3D::GetInstance()->DrawLine( (int)(GetX() - c->OffsetX()), (int)(GetY() - c->OffsetY()),
-			(int)(GetX() - c->OffsetX() + m_vLookAt.fX), (int)(GetY() - c->OffsetY() + m_vLookAt.fY), 255, 0, 0 );
+			(int)(GetX() - c->OffsetX() + m_vLookAt.fX), (int)(GetY() - c->OffsetY() + m_vLookAt.fY), 0xFF0000 );
 	}
 }
 
@@ -79,7 +79,7 @@ bool CSecurityCamera::CheckCollision(IBaseObject* pBase)
 		if( TRUE == PtInRect(&collide,l) )
 		{
 			if( GetID() != "" )
-				CSGD_EventSystem::GetInstance()->SendEvent( GetID(), this );
+				CSGD_EventSystem::GetInstance()->QueueEvent( GetID(), this );
 #if _DEVIN
 			//printf("sending event: ");
 			//printf(GetID().c_str());

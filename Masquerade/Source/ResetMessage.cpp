@@ -2,7 +2,6 @@
 
 
 CResetMessage::CResetMessage(void)
-	: CMessage( MSG_RESET )
 {
 }
 

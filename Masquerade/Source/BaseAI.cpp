@@ -224,14 +224,14 @@ void CBaseAI::NodeCollision( void )
 			&m_ObjectsInvolved.pCarrier->GetRect() ) == TRUE )
 		{
 			if( (*iters).second.bRegisterCarrierToEvent == true )
-				CSGD_EventSystem::GetInstance()->SendEvent( (*iters).second.szNodeEvent, m_ObjectsInvolved.pCarrier );
+				CSGD_EventSystem::GetInstance()->QueueEvent( (*iters).second.szNodeEvent, m_ObjectsInvolved.pCarrier );
 			else
-				CSGD_EventSystem::GetInstance()->SendEvent( (*iters).second.szNodeEvent, m_ObjectsInvolved.pCarried );
+				CSGD_EventSystem::GetInstance()->QueueEvent( (*iters).second.szNodeEvent, m_ObjectsInvolved.pCarried );
 		}
 	}
 }
 
-void CBaseAI::HandleEvent( CEvent* pEvent )
+void CBaseAI::HandleEvent( const CEvent* pEvent )
 {
 	CBaseAI* tObj = dynamic_cast< CBaseAI* >((CBaseAI*)pEvent->GetParam());
 

@@ -51,7 +51,7 @@ public:
 	static CHUD* GetInstance();
 	void Init(void);
 	void Render(void);
-	virtual void HandleEvent(CEvent* pEvent);
+	virtual void HandleEvent(const CEvent* pEvent);
 
 	void SetDarkened(bool isDarkened)	{m_bIsDarkened = isDarkened;}
 	bool GetDarkened(void)				{return m_bIsDarkened;}

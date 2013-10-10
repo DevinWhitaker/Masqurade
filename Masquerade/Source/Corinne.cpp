@@ -70,7 +70,7 @@ void CCorinne::Update(float fElapsed)
 			CGamePlayState::GetInstance()->RespawnFox();
 			/*CResetMessage* msg = new CResetMessage;
 
-			CSGD_MessageSystem::GetInstance()->SendMsg( msg );*/
+			CSGD_MessageSystem::GetInstance()->QueueMessage( msg );*/
 
 			m_fElapsed = -1.0f;
 			GetFrame().SetColor( D3DCOLOR_ARGB( 255, 255, 255, 255 ) );
@@ -462,7 +462,7 @@ void CCorinne::tileCollisionResponse(int COLLISION_SIDE)
 		case LEFT:
 			if( GetCurrentState()->GetAIType() == IAIState::SEEK )
 			{
-				CSGD_EventSystem::GetInstance()->SendUniqueEvent( "idle",  &GetCurrentState()->GetObjectsInvolved() );
+				CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "idle",  &GetCurrentState()->GetObjectsInvolved() );
 				SetGravityBool( true );
 				break;
 			}
@@ -472,7 +472,7 @@ void CCorinne::tileCollisionResponse(int COLLISION_SIDE)
 		case RIGHT:
 			if( GetCurrentState()->GetAIType() == IAIState::SEEK )
 			{
-				CSGD_EventSystem::GetInstance()->SendUniqueEvent( "idle",  &GetCurrentState()->GetObjectsInvolved() );
+				CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "idle",  &GetCurrentState()->GetObjectsInvolved() );
 				SetGravityBool( true );
 				break;
 			}
@@ -484,7 +484,7 @@ void CCorinne::tileCollisionResponse(int COLLISION_SIDE)
 			SetVelY(0);
 			if( GetCurrentState()->GetAIType() == IAIState::THROW &&
 				CSGD_EventSystem::GetInstance()->HasEventTriggered( "seek" ) == false )
-				CSGD_EventSystem::GetInstance()->SendUniqueEvent( "seek", &GetCurrentState()->GetObjectsInvolved() );
+				CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "seek", &GetCurrentState()->GetObjectsInvolved() );
 			break;
 		case BOTTOM:
 			SetVelY(0);

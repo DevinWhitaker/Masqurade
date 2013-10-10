@@ -17,14 +17,13 @@
 /////////////////////////////////////////////////////////////////
 
 /* 
-Disclaimer:
-This source code was developed for and is the property of:
+	Disclaimer:
+	This source code was developed for and is the property of:
 
-(c) Full Sail University Game Development Curriculum 2008-2012 and
-(c) Full Sail Real World Education Game Design & Development Curriculum 2000-2008
+	(c) Full Sail University
 
-Full Sail students may not redistribute or make this code public, 
-but may use it in their own personal projects.
+	Full Sail students may not redistribute or make this code public, 
+	but may use it in their own personal projects.
 */
 
 #pragma once
@@ -35,13 +34,9 @@ but may use it in their own personal projects.
 #endif
 #include <dinput.h>
 
-#pragma comment(lib, "dinput8.lib")
-#pragma comment(lib, "dxguid.lib")
-
 
 #include <tchar.h>
 #include <vector>
-using std::vector;
 
 #include "SGD_Util.h"	//	for utility macros
 
@@ -63,11 +58,12 @@ enum MouseButtons { MOUSE_LEFT = 0, MOUSE_RIGHT = 1, MOUSE_MIDDLE = 2, MOUSE_MAX
 class CSGD_DirectInput
 {
 private:
-	LPDIRECTINPUT8				m_lpDIObject;	//	DirectInput COM Object
-	
-	CSGD_DIKeyboard*			m_pKeyboard;	//	Keyboard object
-	CSGD_DIMouse*				m_pMouse;		//	Mouse object
-	vector<CSGD_DIJoystick*>	m_vpJoysticks;	//	Joysticks attached to the system
+	LPDIRECTINPUT8					m_lpDIObject;	//	DirectInput COM Object
+	HWND							m_hWnd;			//	Handle to input window
+
+	CSGD_DIKeyboard*				m_pKeyboard;	//	Keyboard object
+	CSGD_DIMouse*					m_pMouse;		//	Mouse object
+	std::vector<CSGD_DIJoystick*>	m_vpJoysticks;	//	Joysticks attached to the system
 
 	// Utility struct for joystick setup:
 	struct tJoystickSetupInfo
@@ -77,20 +73,19 @@ private:
 	};
 
 	static CSGD_DirectInput	m_Instance;		//	The instance of this class.
-
-	//	Trilogy of EVIL!
-
-	//	Constructor
+	
+private:
+	///////////////////////////////////////////////////////////////////
+	//	Function:	"CSGD_DirectInput" (Constructors)
+	///////////////////////////////////////////////////////////////////
 	CSGD_DirectInput(void);
-	//	Copy Constructor
 	CSGD_DirectInput(const CSGD_DirectInput&);
-	//	Assignment Operator
 	CSGD_DirectInput& operator=(const CSGD_DirectInput&);
-
-	//	Plus Destructor
 	~CSGD_DirectInput(void);
 
+private:
 	//	Private utility functions:
+
 	///////////////////////////////////////////////////////////////////
 	//	Function:	"InitKeyboard"
 	//
@@ -162,7 +157,7 @@ public:
 	static CSGD_DirectInput* GetInstance(void);
 
 	///////////////////////////////////////////////////////////////////
-	//	Function:	"InitDirectInput"
+	//	Function:	"Initialize"
 	//
 	//	Last Modified:		7/05/2008
 	//
@@ -178,10 +173,10 @@ public:
 	//
 	//	Purpose	:	To initialize the DirectInput Object and requested devices.
 	///////////////////////////////////////////////////////////////////
-	bool InitDirectInput(HWND hWnd, HINSTANCE hInstance, unsigned int unInitDevices, unsigned int unExclusiveDevices = 0);
+	bool Initialize(HWND hWnd, HINSTANCE hInstance, unsigned int unInitDevices, unsigned int unExclusiveDevices = 0);
 
 	///////////////////////////////////////////////////////////////////
-	//	Function:	"ShutdownDirectInput"
+	//	Function:	"Terminate"
 	//
 	//	Last Modified:		5/25/2008
 	//
@@ -191,7 +186,7 @@ public:
 	//
 	//	Purpose:	Shuts down DirectInput and any initialized devices.
 	///////////////////////////////////////////////////////////////////
-	void ShutdownDirectInput(void);
+	void Terminate(void);
 
 	///////////////////////////////////////////////////////////////////
 	//	Function:	"ReadDevices"
@@ -566,52 +561,52 @@ public:
 	///////////////////////////////////////////////////////////////////
 	//	Function		:	"MouseGetPosX"
 	//
-	//	Last Modified	:	6/23/2008
+	//	Last Modified	:	2/26/2013
 	//
 	//	Input			:	void
 	//
-	//	Return			:	The "psuedo" position of the mouse.
+	//	Return			:	The x position of the cursor.
 	//
-	//	Purpose			:	To help track the "psuedo" position of the mouse.
+	//	Purpose			:	To report the x position of the mouse.
 	///////////////////////////////////////////////////////////////////
 	int MouseGetPosX(void);
 
 	///////////////////////////////////////////////////////////////////
 	//	Function		:	"MouseGetPosY"
 	//
-	//	Last Modified	:	6/23/2008
+	//	Last Modified	:	2/26/2013
 	//
 	//	Input			:	void
 	//
-	//	Return			:	The "psuedo" position of the mouse.
+	//	Return			:	The y position of the cursor.
 	//
-	//	Purpose			:	To help track the "psuedo" position of the mouse.
+	//	Purpose			:	To report the y position of the mouse.
 	///////////////////////////////////////////////////////////////////
 	int MouseGetPosY(void);
 
 	///////////////////////////////////////////////////////////////////
 	//	Function		:	"MouseSetPosX"
 	//
-	//	Last Modified	:	7/05/2008
+	//	Last Modified	:	8/30/2013
 	//
-	//	Input			:	The "psuedo" position of the mouse.
+	//	Input			:	The x position of the cursor.
 	//
 	//	Return			:	void
 	//
-	//	Purpose			:	To set the "psuedo" position of the mouse.
+	//	Purpose			:	To set the x position of the mouse.
 	///////////////////////////////////////////////////////////////////
 	void MouseSetPosX(int nPosX);
 
 	///////////////////////////////////////////////////////////////////
 	//	Function		:	"MouseSetPosY"
 	//
-	//	Last Modified	:	7/05/2008
+	//	Last Modified	:	8/30/2013
 	//
-	//	Input			:	The "psuedo" position of the mouse.
+	//	Input			:	The y position of the cursor.
 	//
 	//	Return			:	void
 	//
-	//	Purpose			:	To set the "psuedo" position of the mouse.
+	//	Purpose			:	To set the y position of the mouse.
 	///////////////////////////////////////////////////////////////////
 	void MouseSetPosY(int nPosY);
 
@@ -624,7 +619,7 @@ public:
 	//
 	//	Last Modified:		6/01/2008
 	//
-	//	Input	:	ucButton	-	The joystick button to check for.
+	//	Input	:	ucButton	-	The joystick button to check for (0 - 127).
 	//				nJoyNum		-	The joystick to check.
 	//
 	//	Return	:	true if the joystick button is currently down.
@@ -638,7 +633,7 @@ public:
 	//
 	//	Last Modified:		6/01/2008
 	//
-	//	Input	:	ucButton	-	The joystick button to check for.
+	//	Input	:	ucButton	-	The joystick button to check for (0 - 127).
 	//				nJoyNum		-	The joystick to check.
 	//
 	//	Return	:	true if the joystick button was pressed this frame.
@@ -652,7 +647,7 @@ public:
 	//
 	//	Last Modified:		6/01/2008
 	//
-	//	Input	:	ucButton	-	The joystick button to check for.
+	//	Input	:	ucButton	-	The joystick button to check for (0 - 127).
 	//				nJoyNum		-	The joystick to check.
 	//
 	//	Return	:	true if the joystick button was pressed this frame.
@@ -666,7 +661,7 @@ public:
 	//
 	//	Last Modified:		6/01/2008
 	//
-	//	Input	:	ucButton	-	The joystick button to check for.
+	//	Input	:	ucButton	-	The joystick button to check for (0 - 127).
 	//				nJoyNum		-	The joystick to check.
 	//
 	//	Return	:	true if the joystick button is currently up.
@@ -680,7 +675,7 @@ public:
 	//
 	//	Last Modified:		6/01/2008
 	//
-	//	Input	:	ucButton	-	The joystick button to check for.
+	//	Input	:	ucButton	-	The joystick button to check for (0 - 127).
 	//				nJoyNum		-	The joystick to check.
 	//
 	//	Return	:	true if the joystick button was released this frame.
@@ -694,7 +689,7 @@ public:
 	//
 	//	Last Modified:		6/01/2008
 	//
-	//	Input	:	ucButton	-	The joystick button to check for.
+	//	Input	:	ucButton	-	The joystick button to check for (0 - 127).
 	//				nJoyNum		-	The joystick to check.
 	//
 	//	Return	:	true if the joystick button was released this frame.
@@ -880,6 +875,9 @@ public:
 	//	Return	:	true if the right stick is currently held a certain direction.
 	//
 	//	Purpose	:	To get the (immediate) direction the stick is being held.
+	//
+	//	NOTE:	R-stick may have the X and Y axes reversed. Use JoystickSwapRStickAxes.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////
 	bool JoystickGetRStickDirDown(int nDir, int nJoyNum = 0);
 
@@ -894,6 +892,9 @@ public:
 	//	Return	:	true if the right stick was pressed a certain direction.
 	//
 	//	Purpose	:	To get the (buffered) direction the stick was pressed (without using DirectInput's Buffered Input).
+	//
+	//	NOTE:	R-stick may have the X and Y axes reversed. Use JoystickSwapRStickAxes.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////	
 	bool JoystickGetRStickDirPressed(int nDir, int nJoyNum = 0);
 	
@@ -907,6 +908,9 @@ public:
 	//	Return	:	-JOYSTICK_RANGE to +JOYSTICK_RANGE ((-) Left and (+) Right)
 	//
 	//	Purpose	:	To get the position of the joystick in a digital range.
+	//
+	//	NOTE:	R-stick may have the X and Y axes reversed. Use JoystickSwapRStickAxes.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////
 	int JoystickGetRStickXAmount(int nJoyNum = 0);
 
@@ -920,6 +924,9 @@ public:
 	//	Return	:	-JOYSTICK_RANGE to +JOYSTICK_RANGE (-JOYSTICK_RANGE is Up, +JOYSTICK_RANGE is Down)
 	//
 	//	Purpose	:	To get the position of the joystick in a digital range.
+	//
+	//	NOTE:	R-stick may have the X and Y axes reversed. Use JoystickSwapRStickAxes.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////
 	int JoystickGetRStickYAmount(int nJoyNum = 0);
 
@@ -933,6 +940,9 @@ public:
 	//	Return	:	-1.0 to +1.0 (-1.0 is Left, +1.0 is Right)
 	//
 	//	Purpose	:	To get the position of the joystick in a normalized range.
+	//
+	//	NOTE:	R-stick may have the X and Y axes reversed. Use JoystickSwapRStickAxes.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////
 	float JoystickGetRStickXNormalized(int nJoyNum = 0);
 	
@@ -946,6 +956,9 @@ public:
 	//	Return	:	-1.0 to +1.0 (-1.0 is Up, +1.0 is Down)
 	//
 	//	Purpose	:	To get the position of the joystick in a normalized range.
+	//
+	//	NOTE:	R-stick may have the X and Y axes reversed. Use JoystickSwapRStickAxes.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////
 	float JoystickGetRStickYNormalized(int nJoyNum = 0);
 
@@ -964,8 +977,9 @@ public:
 	//
 	//	Purpose	:	To get the position of the trigger in a digital range.
 	//
-	//	NOTE: If both triggers are pulled at the same time the reading won't 
-	//		  be accurate as their input is combined into one axis by DirectInput.
+	//	NOTE:	If both triggers are pulled at the same time the reading won't 
+	//			be accurate as their input is combined into one axis by DirectInput.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////	
 	int JoystickGetLTriggerAmount(int nJoyNum = 0);
 
@@ -980,8 +994,9 @@ public:
 	//
 	//	Purpose	:	To get the position of the trigger in a digital range.
 	//
-	//	NOTE: If both triggers are pulled at the same time the reading won't 
-	//		  be accurate as their input is combined into one axis by DirectInput.
+	//	NOTE:	If both triggers are pulled at the same time the reading won't 
+	//			be accurate as their input is combined into one axis by DirectInput.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////	
 	int JoystickGetRTriggerAmount(int nJoyNum = 0);
 
@@ -996,8 +1011,9 @@ public:
 	//
 	//	Purpose	:	To get the position of the trigger in a normalized range.
 	//
-	//	NOTE: If both triggers are pulled at the same time the reading won't 
-	//		  be accurate as their input is combined into one axis by DirectInput.
+	//	NOTE:	If both triggers are pulled at the same time the reading won't 
+	//			be accurate as their input is combined into one axis by DirectInput.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////
 	float JoystickGetLTriggerNormalized(int nJoyNum = 0);
 	
@@ -1012,8 +1028,9 @@ public:
 	//
 	//	Purpose	:	To get the position of the trigger in a normalized range.
 	//
-	//	NOTE: If both triggers are pulled at the same time the reading won't 
-	//		  be accurate as their input is combined into one axis by DirectInput.
+	//	NOTE:	If both triggers are pulled at the same time the reading won't 
+	//			be accurate as their input is combined into one axis by DirectInput.
+	//			Triggers may send R-stick data on certain controllers. Use JoystickTreatAsFiveAxes.
 	///////////////////////////////////////////////////////////////////
 	float JoystickGetRTriggerNormalized(int nJoyNum = 0);
 
@@ -1095,9 +1112,26 @@ public:
 	//	Purpose	:	To swap the X/Y axes of certain controllers.
 	//
 	//	NOTE:	Z axis is considered R-stick's X-axis by default.
-	//			Only works on non-Xbox360 controllers.
+	//			Only works on certain controllers.
 	///////////////////////////////////////////////////////////////////
-	void JoystickSwapRStickAxes(bool bSwapAxes, int nJoyNum = 0);
+	void JoystickSwapRStickAxes(bool bSwapAxes = true, int nJoyNum = 0);
+	
+	///////////////////////////////////////////////////////////////////
+	//	Function:	"JoystickTreatAsFiveAxes"
+	//
+	//	Last Modified:		6/11/2013
+	//
+	//	Input	:	bHas5Axes	-	Whether or not to treat the joypad as though it has 5 axes.
+	//				nJoyNum		-	The joystick to set.
+	//
+	//	Return	:	void
+	//
+	//	Purpose	:	To treat controllers as though they have 5 axes.
+	//
+	//	NOTE:	Z-axis is considered the trigger on a 5-axes controller.
+	//			Z-axis is considered the R-stick's X-axis on a 4-axes controller.
+	///////////////////////////////////////////////////////////////////
+	void JoystickTreatAsFiveAxes(bool bHas5Axes = true, int nJoyNum = 0);
 
 };  //	end class CSGD_DirectInput
 
@@ -1772,7 +1806,7 @@ private:
 	int				m_nNumButtons;				//	Number of buttons supported.
 	bool			m_bIsUnplugged;				//	Tracks if the joystick is currently unplugged.
 
-	bool			m_bIsXbox360Pad;			//	Tracks if it is an Xbox360 pad.
+	bool			m_bHasFiveAxes;				//	Fifth axis is used for floating-point Triggers.
 	bool			m_bIsZAxisY;				//	Swaps whether Z or RotationZ is considered the Y-Axis.
 
 	// POV constants
@@ -2369,8 +2403,24 @@ public:
 	//	Purpose	:	To swap the X/Y axes of certain controllers.
 	//
 	//	NOTE:	Z axis is considered R-stick's X-axis by default.
-	//			Only works on non-Xbox360 controllers.
+	//			Only works on certain controllers.
 	///////////////////////////////////////////////////////////////////
 	void SwapRStickAxes(bool bSwapAxes)	{ m_bIsZAxisY = bSwapAxes; }
+	
+	///////////////////////////////////////////////////////////////////
+	//	Function:	"TreatAsFiveAxes"
+	//
+	//	Last Modified:		6/11/2013
+	//
+	//	Input	:	bHas5Axes	-	Whether or not to treat the joypad as though it has 5 axes.
+	//
+	//	Return	:	void
+	//
+	//	Purpose	:	To treat a controller as though it has 5 axes.
+	//
+	//	NOTE:	Z-axis is considered the trigger on a 5-axes controller.
+	//			Z-axis is considered the R-stick's X-axis on a 4-axes controller.
+	///////////////////////////////////////////////////////////////////
+	void TreatAsFiveAxes(bool bHas5Axes);
 
 };	//	end class CSGD_DIJoystick

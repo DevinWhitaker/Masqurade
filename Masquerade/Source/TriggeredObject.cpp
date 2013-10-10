@@ -71,12 +71,12 @@ CTriggeredObject::~CTriggeredObject(void)
 
 void CTriggeredObject::Activate(void)
 {
-	CSGD_EventSystem::GetInstance()->SendUniqueEvent( "activate", this );
+	CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "activate", this );
 }
 
 void CTriggeredObject::Deactivate(void)
 {
-	CSGD_EventSystem::GetInstance()->SendUniqueEvent( "deactivate", this );
+	CSGD_EventSystem::GetInstance()->QueueUniqueEvent( "deactivate", this );
 }
 
 void CTriggeredObject::SetTriggeredObjectFrame( CFrame* pFrame, std::string szFilePath, unsigned int unAnimationToUse )
@@ -115,10 +115,10 @@ void CTriggeredObject::AddEvent( std::string szEventName/*, CTriggeredObject* pT
 	CSGD_EventSystem::GetInstance()->RegisterClient( szEventName, this );
 }
 
-void CTriggeredObject::SendEvent( std::string szEventName/*, CTriggeredObject* pTrigger */ )
+void CTriggeredObject::QueueEvent( std::string szEventName/*, CTriggeredObject* pTrigger */ )
 {
 	if( CSGD_EventSystem::GetInstance()->HasEventTriggered( szEventName ) == false )
-		CSGD_EventSystem::GetInstance()->SendUniqueEvent( szEventName, this );
+		CSGD_EventSystem::GetInstance()->QueueUniqueEvent( szEventName, this );
 }
 
 void CTriggeredObject::RegisterDefaultEvents( void )
