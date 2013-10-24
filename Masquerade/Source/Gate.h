@@ -27,7 +27,7 @@ public:
 	void	Update				(void);
 	void	Render				(float fElapsed);
 	virtual void	CollisionResponse	( CBaseObject* pBase, RECT hitbox, RECT hit, POINT anchor );
-	virtual void	HandleEvent			( CEvent* pEvent );
+	virtual void	HandleEvent			( const CEvent* pEvent );
 	CFrame GetGateFrame( void ) { return m_frAnime; }
 
 	//	0 for Vertical | 1 for Horizontal

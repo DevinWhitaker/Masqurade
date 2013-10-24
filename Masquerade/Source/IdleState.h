@@ -16,7 +16,7 @@ public:
 	virtual void Exit(void);
 	virtual void Update( float fElapsedTime );
 	virtual void Render(void);
-	virtual void HandleEvent( CEvent* pEvent );
+	virtual void HandleEvent( const CEvent* pEvent );
 	//virtual void NodeCollision( void );
 };
 

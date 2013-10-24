@@ -15,7 +15,7 @@ public:
 	void	Render();
 	string	GetEvent() { return m_szEvent; }
 	void	SetEvent( string e );
-	void	HandleEvent( CEvent* pEvent );
+	void	HandleEvent( const CEvent* pEvent );
 	int		GetEnemySpawnType()	{ return m_nEnemyType; }
 	void	SetEnemySpawType( int type )	{ m_nEnemyType = type; }
 

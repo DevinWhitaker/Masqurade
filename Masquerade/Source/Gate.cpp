@@ -128,7 +128,7 @@ void CGate::CollisionResponse( CBaseObject* pBase, RECT hitbox, RECT hit, POINT 
 	}
 }
 
-void CGate::HandleEvent( CEvent* pEvent )
+void CGate::HandleEvent( const CEvent* pEvent )
 {
 	if( pEvent->GetParam() != this )
 		return;

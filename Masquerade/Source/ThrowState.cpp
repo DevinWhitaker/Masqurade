@@ -62,7 +62,7 @@ void CThrowState::NodeCollision( void )
 	CBaseAI::NodeCollision();
 }
 
-void CThrowState::HandleEvent( CEvent* pEvent )
+void CThrowState::HandleEvent( const CEvent* pEvent )
 {
 	CBaseAI::HandleEvent( pEvent );
 }

@@ -222,7 +222,7 @@ bool CHoodlum::CheckCollision(IBaseObject* pBase)
 	return	m_frAnime.CheckCollision( (CBaseObject*)pBase );
 }
 
-void CHoodlum::HandleEvent( CEvent* pEvent )
+void CHoodlum::HandleEvent( const CEvent* pEvent )
 {
 	CEnemy::HandleEvent( pEvent );
 }

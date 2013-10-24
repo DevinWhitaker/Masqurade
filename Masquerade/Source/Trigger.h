@@ -31,7 +31,7 @@ public:
 	virtual ~CTrigger(void);
 
 
-	virtual void HandleEvent( CEvent* pEvent );
+	virtual void HandleEvent( const CEvent* pEvent );
 	virtual bool CheckCollision(IBaseObject* pBase);
 
 	virtual void Use( void );

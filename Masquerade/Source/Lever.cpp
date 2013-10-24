@@ -120,7 +120,7 @@ bool CLever::CheckCollision(IBaseObject* pBase)
 	return false;
 }
 
-void CLever::HandleEvent( CEvent* pEvent )
+void CLever::HandleEvent( const CEvent* pEvent )
 {
 	CLever*	pLever = dynamic_cast< CLever* >( (CLever*)pEvent->GetParam() );
 	//if( pLever->GetTriggerType() != this->GetTriggerType() )

@@ -24,7 +24,7 @@ public:
 	void Render(void);
 	RECT GetRect();
 	virtual bool CheckCollision( IBaseObject *pBase );
-	virtual void HandleEvent( CEvent* pEvent );
+	virtual void HandleEvent( const CEvent* pEvent );
 	void tileCollisionResponse(int COLLISION_SIDE);
 
 

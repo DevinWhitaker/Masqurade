@@ -19,7 +19,7 @@ public:
 	int getEnemyType(void)			{return m_nEnemyType;}
 	virtual void Update(float fElapsed);
 
-	virtual void HandleEvent(CEvent* pEvent);
+	virtual void HandleEvent(const CEvent* pEvent);
 
 protected:
 	int m_nEnemyType;

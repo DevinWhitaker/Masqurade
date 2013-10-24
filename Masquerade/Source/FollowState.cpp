@@ -172,7 +172,7 @@ void CFollowState::NodeCollision( void )
 	CBaseAI::NodeCollision();
 }
 
-void  CFollowState::HandleEvent( CEvent* pEvent )
+void  CFollowState::HandleEvent( const CEvent* pEvent )
 {
 	CBaseAI::HandleEvent( pEvent );
 }

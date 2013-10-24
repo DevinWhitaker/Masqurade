@@ -27,7 +27,7 @@ public:
 	void Update(float fElapsed);
 	void Render();
 	bool CheckCollision(IBaseObject* pBase);
-	void HandleEvent( CEvent* pEvent );
+	void HandleEvent( const CEvent* pEvent );
 	RECT GetRect();
 
 	void SetFox( CFox* fox ) { m_pFox = fox; }

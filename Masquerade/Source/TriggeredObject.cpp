@@ -163,7 +163,7 @@ void CTriggeredObject::PlayAnimation( TriggeredObjectType nTriggerType )
 	//};
 }
 
-void CTriggeredObject::HandleEvent( CEvent* pEvent )
+void CTriggeredObject::HandleEvent( const CEvent* pEvent )
 {
 	if( pEvent->GetParam() != this )
 		return;

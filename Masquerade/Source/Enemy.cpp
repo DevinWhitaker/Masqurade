@@ -14,7 +14,7 @@ CEnemy::~CEnemy(void)
 	CSGD_EventSystem::GetInstance()->UnregisterClient( "Enemy_Hit", this );
 }
 
-void CEnemy::HandleEvent(CEvent* pEvent)
+void CEnemy::HandleEvent(const CEvent* pEvent)
 {
 	if(m_bIsAlive)
 	{

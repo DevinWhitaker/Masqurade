@@ -29,7 +29,7 @@ private:
 public:
 	CCorinne(void);
 	virtual ~CCorinne(void);
-	virtual void HandleEvent( CEvent* pEvent );
+	virtual void HandleEvent( const CEvent* pEvent );
 	void Update(float fElapsed);
 	void Render();
 	bool CheckCollision(IBaseObject * pBase);

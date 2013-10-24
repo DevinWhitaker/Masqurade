@@ -283,7 +283,7 @@ void	CTrigger::SetTriggerFrame( std::string szFilePath,
 	}
 }
 
-void CTrigger::HandleEvent( CEvent* pEvent )
+void CTrigger::HandleEvent( const CEvent* pEvent )
 {
 	CBaseObject::HandleEvent( pEvent );
 }

@@ -895,7 +895,6 @@ bool CGamePlayState::Input(void)
 }
 void CGamePlayState::Update(float fElapsedTime)
 {
-
 	switch( GetCurStage() )
 	{
 	case 0:

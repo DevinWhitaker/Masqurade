@@ -53,7 +53,7 @@ void CGame::Initialize( HWND hWnd, HINSTANCE hInstance, int nScreenWidth, int nS
 
 	m_pDI->Initialize( hWnd, hInstance, DI_KEYBOARD | DI_MOUSE/*, DI_KEYBOARD | DI_MOUSE*/ );
 #else
-	m_pDI->InitDirectInput( hWnd, hInstance, DI_KEYBOARD | DI_MOUSE | DI_JOYSTICKS, DI_MOUSE | DI_JOYSTICKS );
+	m_pDI->Initialize( hWnd, hInstance, DI_KEYBOARD | DI_MOUSE | DI_JOYSTICKS, DI_MOUSE | DI_JOYSTICKS );
 #endif
 
 	m_pTM->Initialize( m_pD3D->GetDirect3DDevice(), m_pD3D->GetSprite());

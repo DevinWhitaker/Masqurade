@@ -118,7 +118,7 @@ void CIdleState::Render(void)
 	};
 }
 
-void CIdleState::HandleEvent( CEvent* pEvent )
+void CIdleState::HandleEvent( const CEvent* pEvent )
 {
 	CBaseAI::HandleEvent( pEvent );
 }

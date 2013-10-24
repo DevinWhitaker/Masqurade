@@ -77,7 +77,7 @@ void CFleeState::AddFleeType( int nBaseType, int nType )
 	m_vFleeFromObjTypes.push_back( sData );
 }
 
-void CFleeState::HandleEvent( CEvent* pEvent )
+void CFleeState::HandleEvent( const CEvent* pEvent )
 {
 	CBaseAI::HandleEvent( pEvent );
 }

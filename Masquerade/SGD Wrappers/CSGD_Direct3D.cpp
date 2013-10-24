@@ -135,7 +135,7 @@ bool CSGD_Direct3D::Initialize(HWND hWnd, int nScreenWidth, int nScreenHeight, b
 
 	// Create the Direct3D Device.
 	if (FAILED(m_lpDirect3DObject->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
-		D3DCREATE_HARDWARE_VERTEXPROCESSING,
+		D3DCREATE_MULTITHREADED | D3DCREATE_HARDWARE_VERTEXPROCESSING,
 		&m_PresentParams, &m_lpDirect3DDevice)))
 		DXERROR(_T("Failed to Create D3D Device"))
 

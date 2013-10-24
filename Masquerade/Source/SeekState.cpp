@@ -221,7 +221,7 @@ bool CSeekState::IsObjectInBeingSeeked( int nBaseObject, int nObjToCheckFor )
 	return false;
 }
 
-void CSeekState::HandleEvent( CEvent* pEvent )
+void CSeekState::HandleEvent( const CEvent* pEvent )
 {
 	CBaseAI::HandleEvent( pEvent );
 }

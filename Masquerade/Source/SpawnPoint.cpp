@@ -45,7 +45,7 @@ void CSpawnPoint::SetEvent( string e )
 	CSGD_EventSystem::GetInstance()->RegisterClient( m_szEvent, this );
 }
 
-void CSpawnPoint::HandleEvent( CEvent* pEvent )
+void CSpawnPoint::HandleEvent( const CEvent* pEvent )
 {
 	
 	if( pEvent->GetEventID() == m_szEvent )

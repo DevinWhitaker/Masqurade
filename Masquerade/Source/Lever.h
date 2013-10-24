@@ -18,6 +18,6 @@ public:
 	virtual~CLever(void);
 	virtual void Use( void );
 	virtual bool CheckCollision(IBaseObject* pBase);
-	virtual void HandleEvent( CEvent* pEvent );
+	virtual void HandleEvent( const CEvent* pEvent );
 };
 

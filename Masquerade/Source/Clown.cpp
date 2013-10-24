@@ -211,7 +211,7 @@ bool CClown::CheckCollision(IBaseObject* pBase)
 	return m_frAnime.CheckCollision( (CBaseObject*)pBase );
 }
 
-void CClown::HandleEvent( CEvent* pEvent )
+void CClown::HandleEvent( const CEvent* pEvent )
 {
 	CEnemy::HandleEvent( pEvent );
 }

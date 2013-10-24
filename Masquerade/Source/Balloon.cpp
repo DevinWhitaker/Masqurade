@@ -169,7 +169,7 @@ void CBalloon::Render(void)
 	//pD3D->DrawRect( r, 0, 255, 0);
 }
 
-void CBalloon::HandleEvent( CEvent* pEvent )
+void CBalloon::HandleEvent( const CEvent* pEvent )
 {
 	// Is this event for us?
 	if( pEvent->GetParam() != this )

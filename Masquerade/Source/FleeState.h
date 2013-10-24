@@ -16,7 +16,7 @@ public:
 	virtual void Update( float fElapsedTime ) ;
 	virtual void Render(void) ;
 	virtual void NodeCollision( void );
-	virtual void HandleEvent( CEvent* pEvent );
+	virtual void HandleEvent( const CEvent* pEvent );
 	void	AddFleeType( int nBaseType, int otType = -100 );
 
 };

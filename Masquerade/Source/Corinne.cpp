@@ -188,7 +188,7 @@ void CCorinne::AddAnimation( const char* szFileName, int nAnimationToUse )
 	GetFrame().SetAnimationID( m_vIDs[ nAnimationToUse ] );
 }
 
-void CCorinne::HandleEvent( CEvent* pEvent )
+void CCorinne::HandleEvent( const CEvent* pEvent )
 {
 
 	CBaseObject::sDataToPassIn* pBase = (CBaseObject::sDataToPassIn* )pEvent->GetParam();

@@ -38,7 +38,7 @@ public:
 	 void QueueEvent( std::string szEventName/*, CTriggeredObject* pTrigger */  );
 	 void PlayAnimation( TriggeredObjectType nTriggerType );
 	 int GetTriggeredType( void ) { return m_nTriggeredType; }
-	 virtual void HandleEvent( CEvent* pEvent );
+	 virtual void HandleEvent( const CEvent* pEvent );
 
 	CFrame*	GetTriggeredObjectFrame( void )	const		{ return m_pFrame;		}
 	void	SetTriggeredObjectFrame( CFrame* pFrame, std::string szFilePath, unsigned int unAnimationToUse = 0 );
